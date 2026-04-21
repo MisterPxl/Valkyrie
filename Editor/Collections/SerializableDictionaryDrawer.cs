@@ -125,7 +125,11 @@ namespace Valkyrie.Editor
                     result = prop.enumValueIndex.ToString();
                     return true;
                 case SerializedPropertyType.ObjectReference:
+#if UNITY_6000_0_OR_NEWER
+                    result = prop.objectReferenceEntityIdValue.ToString();
+#else
                     result = prop.objectReferenceInstanceIDValue.ToString();
+#endif
                     return true;
                 default:
                     result = null;

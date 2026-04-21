@@ -4,18 +4,52 @@ using UnityEngine;
 
 namespace Valkyrie.Editor
 {
+    /// <summary>
+    /// Renderer for a single <c>[SerializeReference]</c> slot.
+    /// Layout mirrors Odin's UX:
+    /// <list type="bullet">
+    ///   <item>Foldout-style header showing the field name and the current concrete type
+    ///         (or <c>None (BaseType)</c> when empty).</item>
+    ///   <item>Clicking the header dropdown opens a searchable type picker
+    ///         (<see cref="ManagedReferenceTypeDropdown"/>).</item>
+    ///   <item>When a value is set, child properties render below in a foldable section.</item>
+    /// </list>
+    /// </summary>
     public static class ManagedReferenceRenderer
     {
-        private static readonly Color HeaderBgColor = new(0.22f, 0.22f, 0.22f, 0.6f);
-        private static GUIStyle _headerLabelStyle;
-
         public static void Draw(SerializedProperty property, InspectedField field)
         {
+            if (property.propertyType != SerializedPropertyType.ManagedReference)
+            {
+                EditorGUILayout.PropertyField(property, true);
+                return;
+            }
+
+            DrawElement(property, field.ManagedReferenceBaseType, property.displayName);
+        }
+
+        /// <summary>
+        /// Draws a single managed reference slot with an explicit base type and label.
+        /// Used by both <see cref="Draw"/> and <see cref="ManagedReferenceListRenderer"/>.
+        /// </summary>
+        public static void DrawElement(SerializedProperty property, Type baseType, string label)
+        {
+            if (property.propertyType != SerializedPropertyType.ManagedReference)
+            {
+                EditorGUILayout.PropertyField(property, true);
+                return;
+            }
+
             bool hasValue = !string.IsNullOrEmpty(property.managedReferenceFullTypename);
 
-            DrawTypeSelector(property, field, hasValue);
+            // Header line: foldout triangle (when value exists) + label + type dropdown.
+            Rect line = EditorGUILayout.GetControlRect(true, EditorGUIUtility.singleLineHeight);
+            DrawHeader(line, property, baseType, label, hasValue);
 
             if (!hasValue)
+                return;
+
+            if (!property.isExpanded)
                 return;
 
             EditorGUI.indentLevel++;
@@ -23,112 +57,40 @@ namespace Valkyrie.Editor
             EditorGUI.indentLevel--;
         }
 
-        private static void DrawTypeSelector(SerializedProperty property, InspectedField field, bool hasValue)
+        private static void DrawHeader(Rect rect, SerializedProperty property, Type baseType, string label, bool hasValue)
         {
-            Rect fullRect = EditorGUILayout.GetControlRect(true, EditorGUIUtility.singleLineHeight);
-
-            // Subtle background for the type selector row
-            Rect bgRect = new(fullRect.x - 2, fullRect.y, fullRect.width + 4, fullRect.height);
-            EditorGUI.DrawRect(bgRect, HeaderBgColor);
-
             float labelWidth = EditorGUIUtility.labelWidth;
-            float clearWidth = 22f;
-            float gap = 2f;
+            Rect labelRect = new Rect(rect.x, rect.y, labelWidth, rect.height);
+            Rect dropdownRect = new Rect(rect.x + labelWidth, rect.y, rect.width - labelWidth, rect.height);
 
-            Rect labelRect = new(fullRect.x, fullRect.y, labelWidth, fullRect.height);
-            Rect clearRect = new(fullRect.xMax - clearWidth, fullRect.y, clearWidth, fullRect.height);
-            Rect dropdownRect = new(
-                fullRect.x + labelWidth + gap,
-                fullRect.y,
-                fullRect.width - labelWidth - clearWidth - gap * 2,
-                fullRect.height
-            );
-
-            _headerLabelStyle ??= new GUIStyle(EditorStyles.label) { fontStyle = FontStyle.Bold };
-            EditorGUI.LabelField(labelRect, property.displayName, _headerLabelStyle);
-
-            string displayType = hasValue ? ExtractTypeName(property.managedReferenceFullTypename) : "(None)";
-
-            if (EditorGUI.DropdownButton(dropdownRect, new GUIContent(displayType), FocusType.Keyboard))
+            // Foldout doubles as the label when there's a value to expand.
+            if (hasValue)
             {
-                ShowTypeMenu(property, field.ManagedReferenceBaseType);
-            }
-
-            using (new EditorGUI.DisabledScope(!hasValue))
-            {
-                if (GUI.Button(clearRect, "×", EditorStyles.miniButtonRight))
-                {
-                    property.managedReferenceValue = null;
-                    property.serializedObject.ApplyModifiedProperties();
-                }
-            }
-        }
-
-        private static void ShowTypeMenu(SerializedProperty property, Type baseType)
-        {
-            var types = ManagedReferenceTypeCache.GetCompatibleTypes(baseType);
-            var menu = new GenericMenu();
-
-            // Capture stable references for async callback
-            string propertyPath = property.propertyPath;
-            var serializedObject = property.serializedObject;
-            Type currentType = GetCurrentInstanceType(property);
-
-            menu.AddItem(
-                new GUIContent("None"),
-                currentType == null,
-                () => AssignType(serializedObject, propertyPath, null)
-            );
-
-            if (types.Length == 0)
-            {
-                menu.AddDisabledItem(new GUIContent("No compatible types found"));
+                property.isExpanded = EditorGUI.Foldout(labelRect, property.isExpanded, label, true);
             }
             else
             {
-                menu.AddSeparator("");
-
-                foreach (var type in types)
-                {
-                    string path = FormatMenuPath(type);
-                    bool isSelected = type == currentType;
-
-                    var capturedType = type;
-                    menu.AddItem(
-                        new GUIContent(path),
-                        isSelected,
-                        () => AssignType(serializedObject, propertyPath, capturedType)
-                    );
-                }
+                EditorGUI.LabelField(labelRect, label);
             }
 
-            menu.ShowAsContext();
-        }
+            // Object-field-styled dropdown matching Unity's native look (image 1 in the spec).
+            string dropdownLabel = hasValue
+                ? FormatValueLabel(property)
+                : $"None ({FormatBaseType(baseType)})";
 
-        private static void AssignType(SerializedObject serializedObject, string propertyPath, Type type)
-        {
-            var prop = serializedObject.FindProperty(propertyPath);
-            if (prop == null)
-                return;
+            GUIContent content = new GUIContent(
+                dropdownLabel,
+                hasValue ? EditorGUIUtility.IconContent("cs Script Icon").image : null);
 
-            if (type == null)
+            if (EditorGUI.DropdownButton(dropdownRect, content, FocusType.Keyboard, EditorStyles.objectField))
             {
-                prop.managedReferenceValue = null;
+                ManagedReferenceTypeDropdown.Show(
+                    dropdownRect,
+                    baseType,
+                    type => AssignType(property.serializedObject, property.propertyPath, type),
+                    includeNoneEntry: hasValue,
+                    title: "Select " + FormatBaseType(baseType));
             }
-            else
-            {
-                try
-                {
-                    prop.managedReferenceValue = Activator.CreateInstance(type);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"Valkyrie: failed to create instance of {type.Name} — {e.Message}");
-                    return;
-                }
-            }
-
-            serializedObject.ApplyModifiedProperties();
         }
 
         private static void DrawChildProperties(SerializedProperty property)
@@ -147,43 +109,48 @@ namespace Valkyrie.Editor
             }
         }
 
-        private static Type GetCurrentInstanceType(SerializedProperty property)
+        private static void AssignType(SerializedObject serializedObject, string propertyPath, Type type)
         {
-            try
+            var prop = serializedObject.FindProperty(propertyPath);
+            if (prop == null) return;
+
+            if (type == null)
             {
-                return property.managedReferenceValue?.GetType();
+                prop.managedReferenceValue = null;
             }
-            catch
+            else
             {
-                return null;
+                try
+                {
+                    prop.managedReferenceValue = Activator.CreateInstance(type);
+                    prop.isExpanded = true;
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"Valkyrie: failed to create instance of {type.Name} — {e.Message}");
+                    return;
+                }
             }
+
+            serializedObject.ApplyModifiedProperties();
         }
 
-        /// <summary>
-        /// managedReferenceFullTypename format: "assemblyName typeFullName"
-        /// </summary>
-        private static string ExtractTypeName(string fullTypename)
+        private static string FormatValueLabel(SerializedProperty property)
         {
-            if (string.IsNullOrEmpty(fullTypename))
-                return "(None)";
+            string fullTypename = property.managedReferenceFullTypename;
+            if (string.IsNullOrEmpty(fullTypename)) return "None";
 
             int spaceIdx = fullTypename.IndexOf(' ');
             string typeFullName = spaceIdx >= 0 ? fullTypename.Substring(spaceIdx + 1) : fullTypename;
-
             int lastDot = typeFullName.LastIndexOf('.');
             string shortName = lastDot >= 0 ? typeFullName.Substring(lastDot + 1) : typeFullName;
-
             return ObjectNames.NicifyVariableName(shortName);
         }
 
-        private static string FormatMenuPath(Type type)
+        private static string FormatBaseType(Type baseType)
         {
-            string niceName = ObjectNames.NicifyVariableName(type.Name);
-
-            if (string.IsNullOrEmpty(type.Namespace))
-                return niceName;
-
-            return type.Namespace.Replace('.', '/') + "/" + niceName;
+            if (baseType == null) return "Object";
+            return ObjectNames.NicifyVariableName(baseType.Name);
         }
     }
 }

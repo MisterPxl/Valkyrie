@@ -75,6 +75,8 @@ public class ExperienceReward : RewardBase
 /// Demonstrates Valkyrie's SerializeReference support.
 /// Attach to a GameObject to see polymorphic type selectors.
 /// </summary>
+// CS0414: sample fields are inspected through the editor only, not read in code.
+#pragma warning disable 0414
 public class ValkyriePolymorphicExample : MonoBehaviour
 {
     // ── Interface field ──────────────────────────────────
@@ -126,3 +128,4 @@ public class ValkyriePolymorphicExample : MonoBehaviour
         _optionalReward = null;
     }
 }
+#pragma warning restore 0414

@@ -21,7 +21,9 @@ namespace Valkyrie.Editor
 
             using (new EditorGUI.DisabledScope(field.IsReadOnly))
             {
-                if (field.IsManagedReference)
+                if (field.IsManagedReferenceCollection)
+                    ManagedReferenceListRenderer.Draw(property, field);
+                else if (field.IsManagedReference)
                     ManagedReferenceRenderer.Draw(property, field);
                 else
                     EditorGUILayout.PropertyField(property, true);
