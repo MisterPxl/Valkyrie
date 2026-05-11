@@ -143,6 +143,8 @@ namespace Valkyrie.Editor
         {
             if (field.GetCustomAttribute<NonSerializedAttribute>() != null)
                 return false;
+            if (field.GetCustomAttribute<HideInInspector>() != null)
+                return false;
             if (field.IsPublic)
                 return true;
             if (field.IsDefined(typeof(SerializeField), false))
