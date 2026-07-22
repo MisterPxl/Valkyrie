@@ -1,6 +1,14 @@
 # Valkyrie Inspector
 
-Valkyrie is a lightweight inspector helper bundled with this template.
+Valkyrie is a lightweight inspector helper for Unity projects.
+
+## Installation
+
+Add the package to the project's `Packages/manifest.json`:
+
+```json
+"com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.0.0"
+```
 
 ## Supported attributes
 
