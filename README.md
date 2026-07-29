@@ -7,8 +7,16 @@ Valkyrie is a lightweight inspector helper for Unity projects.
 Add the package to the project's `Packages/manifest.json`:
 
 ```json
-"com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.0.0"
+"com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.1.0"
 ```
+
+## Sample
+
+Import `Usage Examples` from the Package Manager, then open
+`ValkyrieShowcase.unity`. Select the showcase prefab's child objects to inspect
+the configured attributes, dictionaries, and polymorphic references.
+
+`ValkyrieShowcase.prefab` can also be dropped into another test scene.
 
 ## Supported attributes
 

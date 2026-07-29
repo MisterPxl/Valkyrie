@@ -1,13 +1,13 @@
 {
   "name": "com.misterpxl.valkyrie",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "displayName": "Valkyrie Inspector",
   "description": "Lightweight inspector attributes, polymorphic rendering and serializable collections for Unity.",
   "unity": "6000.0",
   "samples": [
     {
       "displayName": "Usage Examples",
-      "description": "Examples for attributes, dictionaries and polymorphic collections.",
+      "description": "Showcase scene and prefab for attributes, dictionaries and polymorphic collections.",
       "path": "Samples~"
     }
   ],

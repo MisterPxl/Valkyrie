@@ -47,12 +47,12 @@ namespace Valkyrie.Editor
 
         /// <summary>
         /// Returns a stable per-target id usable as a key for editor-state caches
-        /// (foldouts, expansion, etc.). Uses the modern EntityId on Unity 6+ and
-        /// falls back to GetInstanceID on older editors.
+        /// (foldouts, expansion, etc.). Uses the modern EntityId when available
+        /// and falls back to GetInstanceID on older editors.
         /// </summary>
         private static int GetStableObjectKey(Object target)
         {
-#if UNITY_6000_0_OR_NEWER
+#if UNITY_6000_3_OR_NEWER
             return target.GetEntityId().GetHashCode();
 #else
             return target.GetInstanceID();

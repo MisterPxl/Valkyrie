@@ -112,7 +112,7 @@ namespace Valkyrie.Editor
 
         private static int GetStableObjectKey(UnityEngine.Object target)
         {
-#if UNITY_6000_0_OR_NEWER
+#if UNITY_6000_3_OR_NEWER
             return target.GetEntityId().GetHashCode();
 #else
             return target.GetInstanceID();
