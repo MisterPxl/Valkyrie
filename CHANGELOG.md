@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.2.0 - 2026-07-30
+
+### Added
+
+- Add EditMode coverage for managed-reference type discovery, mutation, multi-editing, nested fields, and Undo.
+
+### Fixed
+
+- Add the missing Unity metadata file for `CHANGELOG.md`.
+- Include concrete base types and generic variance matches in `[SerializeReference]` type dropdowns.
+- Preserve matching serialized fields when switching managed-reference concrete types.
+- Route nested `[SerializeReference]` fields and collections through Valkyrie's polymorphic renderers.
+- Show a native object-field picker affordance on `[SerializeReference]` selectors.
+
 ## 1.1.0 - 2026-07-29
 
 ### Added

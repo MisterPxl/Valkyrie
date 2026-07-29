@@ -7,7 +7,7 @@ Valkyrie is a lightweight inspector helper for Unity projects.
 Add the package to the project's `Packages/manifest.json`:
 
 ```json
-"com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.1.0"
+"com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.2.0"
 ```
 
 ## Sample
@@ -26,6 +26,18 @@ the configured attributes, dictionaries, and polymorphic references.
 - `[Button]`
 - `[SerializeReference]` type dropdowns and lists
 - `SerializableDictionary<TKey, TValue>`
+
+## SerializeReference support
+
+Valkyrie renders `[SerializeReference]` fields without requiring an additional
+selector attribute. The dropdown includes compatible concrete types, concrete
+base types, and generic variance matches supported by Unity 6.
+
+When switching a managed-reference value to another type, Valkyrie preserves
+serialized fields with matching names through Unity's `JsonUtility`. Right-click
+the reference header and choose `Reset/New Instance` when you want a fresh
+instance instead. Nested `[SerializeReference]` fields and collections inside a
+polymorphic value are routed through the same renderer.
 
 ## Opt out
 

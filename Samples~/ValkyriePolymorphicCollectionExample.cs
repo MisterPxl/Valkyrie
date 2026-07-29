@@ -9,7 +9,7 @@ using Valkyrie;
 /// <list type="bullet">
 ///   <item>Header with element count + "+ Add" dropdown of compatible types</item>
 ///   <item>Per-element type selector, reorder (▲ / ▼), individual remove (×)</item>
-///   <item>Clear-all button on the header</item>
+///   <item>Sample button below the list to clear all entries</item>
 /// </list>
 ///
 /// <para>Reuses <c>ICondition</c> and <c>RewardBase</c> declared in

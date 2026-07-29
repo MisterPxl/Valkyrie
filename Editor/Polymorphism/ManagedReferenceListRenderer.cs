@@ -37,6 +37,11 @@ namespace Valkyrie.Editor
 
         public static void Draw(SerializedProperty listProperty, InspectedField field)
         {
+            Draw(listProperty, field.ManagedReferenceBaseType);
+        }
+
+        public static void Draw(SerializedProperty listProperty, Type baseType)
+        {
             if (listProperty == null) return;
             if (!listProperty.isArray)
             {
@@ -44,20 +49,40 @@ namespace Valkyrie.Editor
                 return;
             }
 
-            ReorderableList list = GetOrBuildList(listProperty, field);
+            ReorderableList list = GetOrBuildList(listProperty, baseType);
             list.DoLayoutList();
         }
 
-        private static ReorderableList GetOrBuildList(SerializedProperty listProperty, InspectedField field)
+        public static float GetHeight(SerializedProperty listProperty, Type baseType)
         {
-            string key = BuildCacheKey(listProperty);
+            if (listProperty == null || !listProperty.isArray)
+                return EditorGUI.GetPropertyHeight(listProperty, true);
+
+            return GetOrBuildList(listProperty, baseType).GetHeight();
+        }
+
+        public static void Draw(Rect rect, SerializedProperty listProperty, Type baseType)
+        {
+            if (listProperty == null) return;
+            if (!listProperty.isArray)
+            {
+                EditorGUI.PropertyField(rect, listProperty, true);
+                return;
+            }
+
+            GetOrBuildList(listProperty, baseType).DoList(rect);
+        }
+
+        private static ReorderableList GetOrBuildList(SerializedProperty listProperty, Type baseType)
+        {
+            string key = BuildCacheKey(listProperty, baseType);
 
             if (_cache.TryGetValue(key, out CacheEntry entry) && IsEntryValid(entry, listProperty))
             {
                 return entry.List;
             }
 
-            ReorderableList list = BuildList(listProperty, field);
+            ReorderableList list = BuildList(listProperty, baseType);
             _cache[key] = new CacheEntry
             {
                 List = list,
@@ -89,7 +114,7 @@ namespace Valkyrie.Editor
             }
         }
 
-        private static string BuildCacheKey(SerializedProperty property)
+        private static string BuildCacheKey(SerializedProperty property, Type baseType)
         {
             // Stable per (target instance + property path). Wrap the target lookup
             // in a try/catch in case the underlying object has been destroyed since
@@ -102,7 +127,7 @@ namespace Valkyrie.Editor
                 {
                     if (targets[i] != null) hash = hash * 31 + GetStableObjectKey(targets[i]);
                 }
-                return hash + "::" + property.propertyPath;
+                return hash + "::" + property.propertyPath + "::" + (baseType != null ? baseType.AssemblyQualifiedName : "");
             }
             catch
             {
@@ -119,9 +144,8 @@ namespace Valkyrie.Editor
 #endif
         }
 
-        private static ReorderableList BuildList(SerializedProperty listProperty, InspectedField field)
+        private static ReorderableList BuildList(SerializedProperty listProperty, Type baseType)
         {
-            Type baseType = field.ManagedReferenceBaseType;
             string headerLabel = listProperty.displayName;
 
             var list = new ReorderableList(
@@ -144,7 +168,7 @@ namespace Valkyrie.Editor
             {
                 if (index < 0 || index >= listProperty.arraySize) return EditorGUIUtility.singleLineHeight;
                 SerializedProperty element = listProperty.GetArrayElementAtIndex(index);
-                return ComputeElementHeight(element);
+                return ComputeElementHeight(element, baseType);
             };
 
             list.drawElementCallback = (rect, index, isActive, isFocused) =>
@@ -159,18 +183,20 @@ namespace Valkyrie.Editor
                 ManagedReferenceTypeDropdown.Show(
                     rect,
                     baseType,
-                    type => AppendInstance(listProperty, type),
+                    type => ManagedReferenceMutationService.AppendInstance(
+                        listProperty.serializedObject,
+                        listProperty.propertyPath,
+                        type),
                     includeNoneEntry: false,
                     title: "Add " + (baseType != null ? ObjectNames.NicifyVariableName(baseType.Name) : "Item"));
             };
 
             list.onRemoveCallback = rl =>
             {
-                int idx = rl.index;
-                if (idx < 0 || idx >= listProperty.arraySize) idx = listProperty.arraySize - 1;
-                if (idx < 0) return;
-                listProperty.DeleteArrayElementAtIndex(idx);
-                listProperty.serializedObject.ApplyModifiedProperties();
+                ManagedReferenceMutationService.RemoveAt(
+                    listProperty.serializedObject,
+                    listProperty.propertyPath,
+                    rl.index);
             };
 
             return list;
@@ -180,179 +206,23 @@ namespace Valkyrie.Editor
         // Re-implements ManagedReferenceRenderer.DrawElement against a fixed Rect
         // (instead of EditorGUILayout) so it integrates cleanly with ReorderableList.
 
-        private static float ComputeElementHeight(SerializedProperty element)
+        private static float ComputeElementHeight(SerializedProperty element, Type baseType)
         {
-            float lineHeight = EditorGUIUtility.singleLineHeight;
             float spacing = EditorGUIUtility.standardVerticalSpacing;
 
             if (element.propertyType != SerializedPropertyType.ManagedReference)
             {
-                return EditorGUI.GetPropertyHeight(element, true) + spacing;
+                return ManagedReferencePropertyRouter.GetPropertyHeight(element) + spacing;
             }
 
-            float height = lineHeight + spacing;
-            bool hasValue = !string.IsNullOrEmpty(element.managedReferenceFullTypename);
-            if (!hasValue || !element.isExpanded) return height + 4f;
-
-            var iterator = element.Copy();
-            var endProperty = iterator.GetEndProperty();
-            if (!iterator.NextVisible(true)) return height + 4f;
-
-            while (!SerializedProperty.EqualContents(iterator, endProperty))
-            {
-                height += EditorGUI.GetPropertyHeight(iterator, true) + spacing;
-                if (!iterator.NextVisible(false)) break;
-            }
-
-            return height + 4f;
+            return ManagedReferenceRenderer.GetElementHeight(element, baseType) + spacing + 4f;
         }
 
         private static void DrawElementInRect(Rect rect, SerializedProperty element, Type baseType, string fallbackLabel)
         {
-            if (element.propertyType != SerializedPropertyType.ManagedReference)
-            {
-                EditorGUI.PropertyField(rect, element, true);
-                return;
-            }
-
-            float lineHeight = EditorGUIUtility.singleLineHeight;
-            float spacing = EditorGUIUtility.standardVerticalSpacing;
-
-            Rect headerRect = new Rect(rect.x, rect.y + 2f, rect.width, lineHeight);
-            DrawElementHeader(headerRect, element, baseType, fallbackLabel);
-
-            bool hasValue = !string.IsNullOrEmpty(element.managedReferenceFullTypename);
-            if (!hasValue || !element.isExpanded) return;
-
-            float y = headerRect.yMax + spacing;
-            EditorGUI.indentLevel++;
-
-            var iterator = element.Copy();
-            var endProperty = iterator.GetEndProperty();
-            if (iterator.NextVisible(true))
-            {
-                while (!SerializedProperty.EqualContents(iterator, endProperty))
-                {
-                    float h = EditorGUI.GetPropertyHeight(iterator, true);
-                    Rect childRect = new Rect(rect.x, y, rect.width, h);
-                    EditorGUI.PropertyField(childRect, iterator, true);
-                    y += h + spacing;
-                    if (!iterator.NextVisible(false)) break;
-                }
-            }
-
-            EditorGUI.indentLevel--;
+            Rect adjustedRect = new Rect(rect.x, rect.y + 2f, rect.width, rect.height - 2f);
+            ManagedReferenceRenderer.DrawElement(adjustedRect, element, baseType, fallbackLabel, labelWidthAdjustment: 20f);
         }
 
-        private static void DrawElementHeader(Rect rect, SerializedProperty element, Type baseType, string fallbackLabel)
-        {
-            bool hasValue = !string.IsNullOrEmpty(element.managedReferenceFullTypename);
-            float labelWidth = EditorGUIUtility.labelWidth - 20f; // compensate ReorderableList drag handle
-
-            Rect labelRect = new Rect(rect.x, rect.y, labelWidth, rect.height);
-            Rect dropdownRect = new Rect(rect.x + labelWidth, rect.y, rect.width - labelWidth, rect.height);
-
-            string elementLabel = hasValue
-                ? FormatValueLabel(element)
-                : fallbackLabel;
-
-            if (hasValue)
-            {
-                element.isExpanded = EditorGUI.Foldout(labelRect, element.isExpanded, elementLabel, true);
-            }
-            else
-            {
-                EditorGUI.LabelField(labelRect, elementLabel);
-            }
-
-            string dropdownText = hasValue
-                ? FormatValueLabel(element)
-                : $"None ({FormatBaseType(baseType)})";
-
-            GUIContent content = new GUIContent(
-                dropdownText,
-                hasValue ? EditorGUIUtility.IconContent("cs Script Icon").image : null);
-
-            if (EditorGUI.DropdownButton(dropdownRect, content, FocusType.Keyboard, EditorStyles.objectField))
-            {
-                SerializedObject serializedObject = element.serializedObject;
-                string propertyPath = element.propertyPath;
-
-                ManagedReferenceTypeDropdown.Show(
-                    dropdownRect,
-                    baseType,
-                    type => AssignType(serializedObject, propertyPath, type),
-                    includeNoneEntry: hasValue,
-                    title: "Select " + FormatBaseType(baseType));
-            }
-        }
-
-        // ── Helpers ──────────────────────────────────────────────────────────
-
-        private static void AppendInstance(SerializedProperty listProperty, Type type)
-        {
-            if (listProperty == null || !listProperty.isArray) return;
-            if (type == null) return;
-
-            int newIndex = listProperty.arraySize;
-            listProperty.arraySize = newIndex + 1;
-
-            SerializedProperty element = listProperty.GetArrayElementAtIndex(newIndex);
-            try
-            {
-                element.managedReferenceValue = Activator.CreateInstance(type);
-                element.isExpanded = true;
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"Valkyrie: failed to create instance of {type.Name} — {e.Message}");
-                listProperty.arraySize = newIndex;
-            }
-
-            listProperty.serializedObject.ApplyModifiedProperties();
-        }
-
-        private static void AssignType(SerializedObject serializedObject, string propertyPath, Type type)
-        {
-            var prop = serializedObject.FindProperty(propertyPath);
-            if (prop == null) return;
-
-            if (type == null)
-            {
-                prop.managedReferenceValue = null;
-            }
-            else
-            {
-                try
-                {
-                    prop.managedReferenceValue = Activator.CreateInstance(type);
-                    prop.isExpanded = true;
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"Valkyrie: failed to create instance of {type.Name} — {e.Message}");
-                    return;
-                }
-            }
-            serializedObject.ApplyModifiedProperties();
-        }
-
-        private static string FormatValueLabel(SerializedProperty property)
-        {
-            string fullTypename = property.managedReferenceFullTypename;
-            if (string.IsNullOrEmpty(fullTypename)) return "None";
-
-            int spaceIdx = fullTypename.IndexOf(' ');
-            string typeFullName = spaceIdx >= 0 ? fullTypename.Substring(spaceIdx + 1) : fullTypename;
-            int lastDot = typeFullName.LastIndexOf('.');
-            string shortName = lastDot >= 0 ? typeFullName.Substring(lastDot + 1) : typeFullName;
-            return ObjectNames.NicifyVariableName(shortName);
-        }
-
-        private static string FormatBaseType(Type baseType)
-        {
-            if (baseType == null) return "Object";
-            return ObjectNames.NicifyVariableName(baseType.Name);
-        }
     }
 }

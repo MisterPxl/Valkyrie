@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,6 +16,9 @@ namespace Valkyrie.Editor
     /// </summary>
     public static class ManagedReferenceRenderer
     {
+        private const float ObjectFieldButtonWidth = 19f;
+        private static GUIStyle _objectFieldButtonStyle;
+
         public static void Draw(SerializedProperty property, InspectedField field)
         {
             if (property.propertyType != SerializedPropertyType.ManagedReference)
@@ -32,7 +34,7 @@ namespace Valkyrie.Editor
         /// Draws a single managed reference slot with an explicit base type and label.
         /// Used by both <see cref="Draw"/> and <see cref="ManagedReferenceListRenderer"/>.
         /// </summary>
-        public static void DrawElement(SerializedProperty property, Type baseType, string label)
+        public static void DrawElement(SerializedProperty property, System.Type baseType, string label)
         {
             if (property.propertyType != SerializedPropertyType.ManagedReference)
             {
@@ -57,9 +59,85 @@ namespace Valkyrie.Editor
             EditorGUI.indentLevel--;
         }
 
-        private static void DrawHeader(Rect rect, SerializedProperty property, Type baseType, string label, bool hasValue)
+        public static float GetElementHeight(SerializedProperty property, System.Type baseType)
         {
-            float labelWidth = EditorGUIUtility.labelWidth;
+            if (property == null)
+                return EditorGUIUtility.singleLineHeight;
+
+            if (property.propertyType != SerializedPropertyType.ManagedReference)
+                return EditorGUI.GetPropertyHeight(property, true);
+
+            float height = EditorGUIUtility.singleLineHeight;
+            bool hasValue = !string.IsNullOrEmpty(property.managedReferenceFullTypename);
+            if (!hasValue || !property.isExpanded)
+                return height;
+
+            SerializedProperty iterator = property.Copy();
+            SerializedProperty endProperty = iterator.GetEndProperty();
+            if (!iterator.NextVisible(true))
+                return height;
+
+            height += EditorGUIUtility.standardVerticalSpacing;
+
+            bool first = true;
+            while (!SerializedProperty.EqualContents(iterator, endProperty))
+            {
+                if (!first)
+                    height += EditorGUIUtility.standardVerticalSpacing;
+
+                height += ManagedReferencePropertyRouter.GetPropertyHeight(iterator);
+                first = false;
+
+                if (!iterator.NextVisible(false))
+                    break;
+            }
+
+            return height;
+        }
+
+        public static void DrawElement(Rect rect, SerializedProperty property, System.Type baseType, string label, float labelWidthAdjustment = 0f)
+        {
+            if (property.propertyType != SerializedPropertyType.ManagedReference)
+            {
+                EditorGUI.PropertyField(rect, property, true);
+                return;
+            }
+
+            bool hasValue = !string.IsNullOrEmpty(property.managedReferenceFullTypename);
+            float lineHeight = EditorGUIUtility.singleLineHeight;
+            float spacing = EditorGUIUtility.standardVerticalSpacing;
+
+            Rect headerRect = new Rect(rect.x, rect.y, rect.width, lineHeight);
+            DrawHeader(headerRect, property, baseType, label, hasValue, labelWidthAdjustment);
+
+            if (!hasValue || !property.isExpanded)
+                return;
+
+            float y = headerRect.yMax + spacing;
+            EditorGUI.indentLevel++;
+
+            SerializedProperty iterator = property.Copy();
+            SerializedProperty endProperty = iterator.GetEndProperty();
+            if (iterator.NextVisible(true))
+            {
+                while (!SerializedProperty.EqualContents(iterator, endProperty))
+                {
+                    float height = ManagedReferencePropertyRouter.GetPropertyHeight(iterator);
+                    Rect childRect = new Rect(rect.x, y, rect.width, height);
+                    ManagedReferencePropertyRouter.DrawGUI(childRect, iterator);
+
+                    y += height + spacing;
+                    if (!iterator.NextVisible(false))
+                        break;
+                }
+            }
+
+            EditorGUI.indentLevel--;
+        }
+
+        private static void DrawHeader(Rect rect, SerializedProperty property, System.Type baseType, string label, bool hasValue, float labelWidthAdjustment = 0f)
+        {
+            float labelWidth = Mathf.Max(40f, EditorGUIUtility.labelWidth - labelWidthAdjustment);
             Rect labelRect = new Rect(rect.x, rect.y, labelWidth, rect.height);
             Rect dropdownRect = new Rect(rect.x + labelWidth, rect.y, rect.width - labelWidth, rect.height);
 
@@ -82,60 +160,82 @@ namespace Valkyrie.Editor
                 dropdownLabel,
                 hasValue ? EditorGUIUtility.IconContent("cs Script Icon").image : null);
 
-            if (EditorGUI.DropdownButton(dropdownRect, content, FocusType.Keyboard, EditorStyles.objectField))
+            bool clicked = EditorGUI.DropdownButton(dropdownRect, content, FocusType.Keyboard, EditorStyles.objectField);
+            DrawObjectFieldButton(dropdownRect);
+
+            if (clicked)
             {
                 ManagedReferenceTypeDropdown.Show(
                     dropdownRect,
                     baseType,
-                    type => AssignType(property.serializedObject, property.propertyPath, type),
+                    type => ManagedReferenceMutationService.AssignType(
+                        property.serializedObject,
+                        property.propertyPath,
+                        type,
+                        preserveExistingValues: true),
                     includeNoneEntry: hasValue,
                     title: "Select " + FormatBaseType(baseType));
             }
+
+            DrawContextMenu(rect, property, hasValue);
+        }
+
+        private static void DrawObjectFieldButton(Rect dropdownRect)
+        {
+            Rect buttonRect = new Rect(
+                dropdownRect.xMax - ObjectFieldButtonWidth,
+                dropdownRect.y,
+                ObjectFieldButtonWidth,
+                dropdownRect.height);
+
+            _objectFieldButtonStyle ??= GUI.skin.FindStyle("ObjectFieldButton") ?? EditorStyles.objectField;
+            GUI.Label(buttonRect, GUIContent.none, _objectFieldButtonStyle);
         }
 
         private static void DrawChildProperties(SerializedProperty property)
         {
-            var iterator = property.Copy();
-            var endProperty = iterator.GetEndProperty();
+            SerializedProperty iterator = property.Copy();
+            SerializedProperty endProperty = iterator.GetEndProperty();
 
             if (!iterator.NextVisible(true))
                 return;
 
             while (!SerializedProperty.EqualContents(iterator, endProperty))
             {
-                EditorGUILayout.PropertyField(iterator, true);
+                ManagedReferencePropertyRouter.DrawGUILayout(iterator);
                 if (!iterator.NextVisible(false))
                     break;
             }
         }
 
-        private static void AssignType(SerializedObject serializedObject, string propertyPath, Type type)
+        private static void DrawContextMenu(Rect rect, SerializedProperty property, bool hasValue)
         {
-            var prop = serializedObject.FindProperty(propertyPath);
-            if (prop == null) return;
+            if (!hasValue)
+                return;
 
-            if (type == null)
-            {
-                prop.managedReferenceValue = null;
-            }
-            else
-            {
-                try
-                {
-                    prop.managedReferenceValue = Activator.CreateInstance(type);
-                    prop.isExpanded = true;
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"Valkyrie: failed to create instance of {type.Name} — {e.Message}");
-                    return;
-                }
-            }
+            Event current = Event.current;
+            if (current == null || current.type != EventType.ContextClick || !rect.Contains(current.mousePosition))
+                return;
 
-            serializedObject.ApplyModifiedProperties();
+            var menu = new GenericMenu();
+            menu.AddItem(
+                new GUIContent("Reset/New Instance"),
+                false,
+                () => ManagedReferenceMutationService.ResetCurrentType(property.serializedObject, property.propertyPath));
+            menu.AddItem(
+                new GUIContent("Clear"),
+                false,
+                () => ManagedReferenceMutationService.AssignType(
+                    property.serializedObject,
+                    property.propertyPath,
+                    null,
+                    preserveExistingValues: false));
+
+            menu.ShowAsContext();
+            current.Use();
         }
 
-        private static string FormatValueLabel(SerializedProperty property)
+        internal static string FormatValueLabel(SerializedProperty property)
         {
             string fullTypename = property.managedReferenceFullTypename;
             if (string.IsNullOrEmpty(fullTypename)) return "None";
@@ -147,7 +247,7 @@ namespace Valkyrie.Editor
             return ObjectNames.NicifyVariableName(shortName);
         }
 
-        private static string FormatBaseType(Type baseType)
+        internal static string FormatBaseType(System.Type baseType)
         {
             if (baseType == null) return "Object";
             return ObjectNames.NicifyVariableName(baseType.Name);
