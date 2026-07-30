@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Valkyrie.Editor
 {
-    [CustomEditor(typeof(ScriptableObject), true)]
+    [CustomEditor(typeof(ScriptableObject), true, isFallback = true)]
     [CanEditMultipleObjects]
     public sealed class ValkyrieScriptableObjectEditor : ValkyrieEditor { }
 }

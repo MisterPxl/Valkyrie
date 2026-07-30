@@ -39,6 +39,46 @@ the reference header and choose `Reset/New Instance` when you want a fresh
 instance instead. Nested `[SerializeReference]` fields and collections inside a
 polymorphic value are routed through the same renderer.
 
+## Custom editors
+
+A type-specific Unity `[CustomEditor]` takes priority over Valkyrie's global
+fallback editors. Inherit from `ValkyrieEditor` and call
+`base.OnInspectorGUI()` to keep Valkyrie's attributes and polymorphic
+reference rendering:
+
+```csharp
+using UnityEditor;
+using Valkyrie.Editor;
+
+[CustomEditor(typeof(MyComponent))]
+public sealed class MyComponentEditor : ValkyrieEditor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+
+        // Draw type-specific controls before or after the Valkyrie inspector.
+    }
+}
+```
+
+`base.OnInspectorGUI()` handles `SerializedObject.Update()` and
+`ApplyModifiedProperties()`. Do not wrap it in another update/apply cycle. If
+the custom editor overrides `OnEnable()`, it must call `base.OnEnable()`.
+
+When another editor base class is required, use the composition API instead:
+
+```csharp
+public override void OnInspectorGUI()
+{
+    ValkyrieInspectorGUI.Draw(this);
+
+    // Draw additional controls.
+}
+```
+
+The `Usage Examples` sample includes a complete custom-editor integration.
+
 ## Opt out
 
 Valkyrie installs global editors for `MonoBehaviour` and `ScriptableObject`.

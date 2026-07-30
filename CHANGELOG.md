@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.3.0-beta.1 - 2026-07-30
+
+### Added
+
+- Add supported inheritance and composition paths for type-specific custom editors.
+- Add a custom-editor integration sample and EditMode coverage.
+
+### Changed
+
+- Register Valkyrie's global editors as fallbacks so type-specific editors take priority.
+
 ## 1.2.0 - 2026-07-30
 
 ### Added

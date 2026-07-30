@@ -1,6 +1,6 @@
 {
   "name": "com.misterpxl.valkyrie",
-  "version": "1.2.0",
+  "version": "1.3.0-beta.1",
   "displayName": "Valkyrie Inspector",
   "description": "Lightweight inspector attributes, polymorphic rendering and serializable collections for Unity.",
   "unity": "6000.0",
