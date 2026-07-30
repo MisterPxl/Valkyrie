@@ -7,7 +7,7 @@ Valkyrie is a lightweight inspector helper for Unity projects.
 Add the package to the project's `Packages/manifest.json`:
 
 ```json
-"com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.2.0"
+"com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.3.0"
 ```
 
 ## Sample
