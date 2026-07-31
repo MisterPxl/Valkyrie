@@ -61,6 +61,10 @@ namespace Valkyrie.Tests.Editor
     }
 
     [Serializable]
+    [ManagedReferenceCategory("Gameplay/Actions", "Categorized Action", -10)]
+    public sealed class CategorizedAction : ITestAction { }
+
+    [Serializable]
     public sealed class PrivateConstructorAction : ITestAction
     {
         private PrivateConstructorAction() { }

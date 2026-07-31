@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.0 - 2026-08-01
+
+### Added
+
+- Add `[ManagedReferenceCategory]` to group concrete `[SerializeReference]` types in Valkyrie's picker.
+
 ## 1.3.0 - 2026-07-30
 
 ### Added
@@ -35,4 +41,3 @@
 
 - Keep object reference key detection compatible with Unity 6.3.
 - Keep editor state cache keys compatible with Unity 6.0 to 6.2.
-
