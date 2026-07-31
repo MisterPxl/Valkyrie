@@ -117,6 +117,7 @@ namespace Valkyrie.DOTween.Editor
             }
 
             IList<TweenStepDefinition> steps = asset.Steps;
+            int enabledStepCount = 0;
             for (int index = 0; index < steps.Count; index++)
             {
                 TweenStepDefinition step = steps[index];
@@ -130,6 +131,12 @@ namespace Valkyrie.DOTween.Editor
                     continue;
                 }
 
+                if (!step.Enabled)
+                {
+                    continue;
+                }
+
+                enabledStepCount++;
                 TimedTweenStepDefinition timedStep = step as TimedTweenStepDefinition;
                 if (timedStep != null)
                 {
@@ -152,15 +159,18 @@ namespace Valkyrie.DOTween.Editor
                         step));
                 }
 
-                ValidatePlacement(timelineStep != null ? timelineStep.Placement : null, index, step, diagnostics);
+                if (timelineStep != null)
+                {
+                    ValidatePlacement(timelineStep.Placement, index, step, diagnostics);
+                }
             }
 
-            if (steps.Count == 0)
+            if (enabledStepCount == 0)
             {
                 diagnostics.Add(new TweenBuildDiagnostic(
-                    TweenDiagnosticSeverity.Warning,
+                    TweenDiagnosticSeverity.Error,
                     TweenDiagnosticCode.EmptySequence,
-                    "The sequence has no steps.",
+                    "The sequence has no enabled steps.",
                     -1,
                     string.Empty,
                     string.Empty,
@@ -259,6 +269,11 @@ namespace Valkyrie.DOTween.Editor
             for (int index = 0; index < steps.Count; index++)
             {
                 TweenStepDefinition step = steps[index];
+                if (step == null || !step.Enabled)
+                {
+                    continue;
+                }
+
                 TimedTweenStepDefinition timedStep = step as TimedTweenStepDefinition;
                 if (timedStep != null)
                 {
@@ -280,11 +295,6 @@ namespace Valkyrie.DOTween.Editor
                             "Delay must be a finite number.");
                     }
 
-                    continue;
-                }
-
-                if (step == null)
-                {
                     continue;
                 }
 

@@ -126,6 +126,7 @@ namespace Valkyrie.DOTween
                 return false;
             }
 
+            int addedStepCount = 0;
             for (int index = 0; index < _steps.Count; index++)
             {
                 TweenStepDefinition step = _steps[index];
@@ -146,6 +147,11 @@ namespace Valkyrie.DOTween
                 {
                     int diagnosticCount = context.Diagnostics.Count;
                     bool added = step.TryAddTo(sequence, context);
+                    if (added)
+                    {
+                        addedStepCount++;
+                    }
+
                     if (!added && context.Diagnostics.Count == diagnosticCount)
                     {
                         context.ReportError(
@@ -162,6 +168,13 @@ namespace Valkyrie.DOTween
             }
 
             context.SetCurrentStep(-1, null);
+            if (addedStepCount == 0)
+            {
+                context.ReportError(
+                    TweenDiagnosticCode.EmptySequence,
+                    "The sequence has no enabled steps that produce tweens.");
+            }
+
             if (context.HasErrors)
             {
                 sequence.Kill();

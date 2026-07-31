@@ -285,6 +285,33 @@ namespace Valkyrie.DOTween.Tests.PlayMode
             }
         }
 
+        [Test]
+        public void AutoKilledRecyclableSequence_ReleasesPlayerOwnership()
+        {
+            GameObject owner = new GameObject("Owner");
+            TweenSequenceAsset asset = CreateMoveAsset(Vector3.right, 1f);
+            asset.AutoKill = true;
+            asset.Recyclable = true;
+            try
+            {
+                TweenSequencePlayer player = owner.AddComponent<TweenSequencePlayer>();
+                player.Asset = asset;
+                Sequence sequence;
+                Assert.That(player.TryBuildSequence(out sequence), Is.True);
+
+                sequence.Complete();
+
+                Assert.That(sequence.IsActive(), Is.False);
+                Assert.That(player.CurrentSequence, Is.Null);
+                Assert.That(player.RuntimeIdentity, Is.Null);
+            }
+            finally
+            {
+                Object.DestroyImmediate(asset);
+                Object.DestroyImmediate(owner);
+            }
+        }
+
         [UnityTest]
         public IEnumerator DestroyingPlayer_KillsCurrentSequenceEvenWhenNoneWasRequested()
         {

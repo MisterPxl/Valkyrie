@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.1 - 2026-07-31
+
+### Fixed
+
+- Reject sequences without enabled tween-producing steps.
+- Release player ownership when recyclable sequences auto-kill.
+- Align editor validation with disabled and custom non-timeline steps.
+
 ## 1.0.0 - 2026-07-31
 
 ### Added

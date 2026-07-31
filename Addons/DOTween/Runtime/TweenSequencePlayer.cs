@@ -201,6 +201,8 @@ namespace Valkyrie.DOTween
                 object tweenTarget = _targetOverride != null ? (object)_targetOverride : _runtimeIdentity;
                 sequence.SetId(readableId);
                 sequence.SetTarget(tweenTarget);
+                Sequence ownedSequence = sequence;
+                sequence.OnKill(() => ReleaseSequence(ownedSequence));
                 _currentSequence = sequence;
             }
             catch (Exception exception)
@@ -320,6 +322,17 @@ namespace Valkyrie.DOTween
             {
                 handler(_diagnostics);
             }
+        }
+
+        private void ReleaseSequence(Sequence sequence)
+        {
+            if (!ReferenceEquals(_currentSequence, sequence))
+            {
+                return;
+            }
+
+            _currentSequence = null;
+            _runtimeIdentity = null;
         }
     }
 }

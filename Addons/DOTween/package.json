@@ -1,6 +1,6 @@
 {
   "name": "com.misterpxl.valkyrie.dotween",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "displayName": "Valkyrie DOTween",
   "description": "Optional DOTween-powered sequence assets and runtime playback for Valkyrie. DOTween must be installed separately.",
   "unity": "6000.0",

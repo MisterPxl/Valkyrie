@@ -32,7 +32,7 @@ subdirectory, `?path=` must come before `#revision`:
 {
   "dependencies": {
     "com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.3.0",
-    "com.misterpxl.valkyrie.dotween": "https://github.com/misterpxl/Valkyrie.git?path=/Addons/DOTween#dotween-v1.0.0"
+    "com.misterpxl.valkyrie.dotween": "https://github.com/misterpxl/Valkyrie.git?path=/Addons/DOTween#dotween-v1.0.1"
   }
 }
 ```

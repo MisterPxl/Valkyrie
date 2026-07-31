@@ -233,6 +233,53 @@ namespace Valkyrie.DOTween.Tests.EditMode
             }
         }
 
+        [Test]
+        public void AllDisabledSteps_AreRejectedAsEmptySequence()
+        {
+            GameObject owner = new GameObject("Owner");
+            TweenSequenceAsset asset = ScriptableObject.CreateInstance<TweenSequenceAsset>();
+            try
+            {
+                IntervalStepDefinition interval = new IntervalStepDefinition { Duration = 1f };
+                interval.Enabled = false;
+                asset.Steps.Add(interval);
+                TweenBuildContext context = new TweenBuildContext(owner.transform, null);
+                Sequence sequence;
+
+                Assert.That(asset.TryBuildSequence(context, out sequence), Is.False);
+                Assert.That(sequence, Is.Null);
+                AssertDiagnostic(
+                    context.Diagnostics,
+                    TweenDiagnosticCode.EmptySequence,
+                    TweenDiagnosticSeverity.Error,
+                    -1);
+            }
+            finally
+            {
+                Object.DestroyImmediate(asset);
+                Object.DestroyImmediate(owner);
+            }
+        }
+
+        [Test]
+        public void AssetInspectorValidation_AllowsCustomStepWithoutTimelineCapability()
+        {
+            TweenSequenceAsset asset = ScriptableObject.CreateInstance<TweenSequenceAsset>();
+            try
+            {
+                asset.Steps.Add(new CallbackTestStepDefinition());
+
+                IReadOnlyList<TweenBuildDiagnostic> diagnostics =
+                    TweenSequenceEditorValidation.ValidateAsset(asset);
+
+                Assert.That(diagnostics, Is.Empty);
+            }
+            finally
+            {
+                Object.DestroyImmediate(asset);
+            }
+        }
+
         private static void AssertDiagnostic(
             IReadOnlyList<TweenBuildDiagnostic> diagnostics,
             TweenDiagnosticCode code,
@@ -258,6 +305,16 @@ namespace Valkyrie.DOTween.Tests.EditMode
 
             Assert.Fail("Expected diagnostic " + code + ".");
             return null;
+        }
+    }
+
+    [System.Serializable]
+    public sealed class CallbackTestStepDefinition : TweenStepDefinition
+    {
+        public override bool TryAddTo(Sequence sequence, TweenBuildContext context)
+        {
+            sequence.AppendCallback(() => { });
+            return true;
         }
     }
 }
