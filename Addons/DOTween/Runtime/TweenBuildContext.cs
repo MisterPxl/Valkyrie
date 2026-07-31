@@ -10,7 +10,7 @@ namespace Valkyrie.DOTween
         private readonly Dictionary<string, UnityEngine.Object> _bindings;
         private readonly List<TweenBuildDiagnostic> _diagnostics;
         private int _currentStepIndex;
-        private TweenStepDefinition _currentStep;
+        private object _currentStep;
 
         public Transform Self
         {
@@ -153,6 +153,53 @@ namespace Valkyrie.DOTween
             return false;
         }
 
+        public bool TryResolve<T>(TweenTargetReference reference, out T target) where T : UnityEngine.Object
+        {
+            if (reference == null || reference.Mode == TweenTargetMode.Self)
+            {
+                return TryResolve(TweenTargetBinding.SelfKey, out target);
+            }
+
+            if (reference.Mode == TweenTargetMode.Key)
+            {
+                return TryResolve(reference.Key, out target);
+            }
+
+            if (reference.Target == null)
+            {
+                target = null;
+                Report(
+                    TweenDiagnosticSeverity.Error,
+                    TweenDiagnosticCode.MissingTarget,
+                    "The target reference has no object assigned.",
+                    string.Empty,
+                    typeof(T).FullName,
+                    string.Empty);
+                return false;
+            }
+
+            target = reference.Target as T;
+            if (target != null)
+            {
+                return true;
+            }
+
+            target = ResolveComponent<T>(reference.Target);
+            if (target != null)
+            {
+                return true;
+            }
+
+            Report(
+                TweenDiagnosticSeverity.Error,
+                TweenDiagnosticCode.WrongBindingType,
+                "The target reference cannot resolve " + typeof(T).FullName + ".",
+                reference.DisplayName,
+                typeof(T).FullName,
+                reference.Target.GetType().FullName);
+            return false;
+        }
+
         public void ReportError(TweenDiagnosticCode code, string message)
         {
             Report(TweenDiagnosticSeverity.Error, code, message, string.Empty, string.Empty, string.Empty);
@@ -179,7 +226,7 @@ namespace Valkyrie.DOTween
                 actualType != null ? actualType.FullName : string.Empty);
         }
 
-        internal void SetCurrentStep(int stepIndex, TweenStepDefinition step)
+        public void SetCurrentStep(int stepIndex, object step)
         {
             _currentStepIndex = stepIndex;
             _currentStep = step;

@@ -14,11 +14,13 @@ namespace Valkyrie.DOTween
         public string Key
         {
             get { return _key; }
+            set { _key = value; }
         }
 
         public UnityEngine.Object Target
         {
             get { return _target; }
+            set { _target = value; }
         }
 
         public TweenTargetBinding()

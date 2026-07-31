@@ -5,7 +5,8 @@ using UnityEngine;
 namespace Valkyrie.DOTween
 {
     [Serializable]
-    public sealed class IntervalStepDefinition : TweenStepDefinition, ITweenTimelineStepDefinition
+    [ManagedReferenceCategory("Timeline", "Interval", 900)]
+    public sealed class IntervalStepDefinition : TweenStep, ITweenTimelineStepDefinition
     {
         [Min(0f)]
         [SerializeField] private float _duration = 1f;
@@ -32,19 +33,15 @@ namespace Valkyrie.DOTween
             get { return true; }
         }
 
+        public override bool ValidateDefinition(TweenBuildContext context)
+        {
+            return base.ValidateDefinition(context);
+        }
+
         public override bool TryAddTo(Sequence sequence, TweenBuildContext context)
         {
-            if (float.IsNaN(_duration) || float.IsInfinity(_duration) || _duration <= 0f)
+            if (!ValidateDefinition(context))
             {
-                context.ReportError(
-                    TweenDiagnosticCode.InvalidValue,
-                    "Interval duration must be finite and greater than zero.");
-                return false;
-            }
-
-            if (_placement == null)
-            {
-                context.ReportError(TweenDiagnosticCode.InvalidValue, "Timeline placement is missing.");
                 return false;
             }
 

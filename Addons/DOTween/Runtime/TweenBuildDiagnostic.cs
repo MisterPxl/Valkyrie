@@ -18,8 +18,13 @@ namespace Valkyrie.DOTween
         DuplicateBinding,
         MissingBinding,
         WrongBindingType,
+        MissingTarget,
+        InvalidTarget,
         InvalidValue,
-        BuildFailure
+        BuildFailure,
+        UnsupportedInAsset,
+        PreviewFailure,
+        PresetFailure
     }
 
     [Serializable]

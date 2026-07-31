@@ -9,7 +9,7 @@ namespace Valkyrie.DOTween.Samples
 
         [SerializeField] private List<Transform> _playerRoots = new List<Transform>();
 
-        private readonly List<TweenSequencePlayer> _players = new List<TweenSequencePlayer>();
+        private readonly List<TweenPlayer> _players = new List<TweenPlayer>();
         private TweenSequenceAsset _sharedSequence;
 
         private void Start()
@@ -26,12 +26,13 @@ namespace Valkyrie.DOTween.Samples
 
                 EnsureVisibleCube(playerRoot);
 
-                TweenSequencePlayer player = playerRoot.GetComponent<TweenSequencePlayer>();
+                TweenPlayer player = playerRoot.GetComponent<TweenPlayer>();
                 if (player == null)
                 {
-                    player = playerRoot.gameObject.AddComponent<TweenSequencePlayer>();
+                    player = playerRoot.gameObject.AddComponent<TweenPlayer>();
                 }
 
+                player.SourceMode = TweenPlayerSourceMode.Asset;
                 player.Asset = _sharedSequence;
                 player.IdOverride = "ReusableSample/" + playerRoot.name;
                 player.Bindings.Clear();
@@ -47,7 +48,7 @@ namespace Valkyrie.DOTween.Samples
         {
             for (int index = 0; index < _players.Count; index++)
             {
-                TweenSequencePlayer player = _players[index];
+                TweenPlayer player = _players[index];
                 if (player != null)
                 {
                     player.Play();

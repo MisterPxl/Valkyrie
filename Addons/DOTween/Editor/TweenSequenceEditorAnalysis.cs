@@ -167,37 +167,51 @@ namespace Valkyrie.DOTween.Editor
             Ease ease = Ease.Unset;
             int loops = 1;
             TweenPlacement placement = null;
+            float estimatedDuration = 0f;
+
+            ITweenTimelineStepDefinition timelineStep = step as ITweenTimelineStepDefinition;
+            if (timelineStep != null)
+            {
+                hasDuration = true;
+                estimatedDuration = timelineStep.EstimatedDuration;
+                placement = timelineStep.Placement;
+            }
 
             TimedTweenStepDefinition timedStep = step as TimedTweenStepDefinition;
             if (timedStep != null)
             {
-                hasDuration = true;
-                duration = timedStep.Duration;
-                delay = timedStep.Delay;
                 hasEase = true;
                 ease = timedStep.Ease;
                 loops = timedStep.Loops;
-                placement = timedStep.Placement;
             }
             else
             {
-                hasDuration = TryGetPropertyValue(step, "Duration", out duration);
-                TryGetPropertyValue(step, "Delay", out delay);
                 hasEase = TryGetPropertyValue(step, "Ease", out ease);
                 TryGetPropertyValue(step, "Loops", out loops);
-                TryGetPropertyValue(step, "Placement", out placement);
             }
 
-            float estimatedDuration = hasDuration
-                ? delay + (duration * Mathf.Max(1, loops))
-                : 0f;
+            if (timelineStep == null)
+            {
+                hasDuration = TryGetPropertyValue(step, "Duration", out duration);
+                TryGetPropertyValue(step, "Delay", out delay);
+                TryGetPropertyValue(step, "Placement", out placement);
+                estimatedDuration = hasDuration
+                    ? delay + (duration * Mathf.Max(1, loops))
+                    : 0f;
+            }
+
             TweenPlacementMode placementMode = placement != null
                 ? placement.Mode
                 : TweenPlacementMode.Append;
             float insertAt = placement != null ? placement.InsertAt : 0f;
 
             string targetKey;
-            if (!TryGetPropertyValue(step, "TargetKey", out targetKey))
+            ITweenTargetStep targetStep = step as ITweenTargetStep;
+            if (targetStep != null && targetStep.Target != null)
+            {
+                targetKey = targetStep.Target.DisplayName;
+            }
+            else if (!TryGetPropertyValue(step, "TargetKey", out targetKey))
             {
                 targetKey = string.Empty;
             }

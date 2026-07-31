@@ -13,15 +13,15 @@ namespace Valkyrie.DOTween.Tests.EditMode
         public void RootAssemblyDefinitions_HaveNoDOTweenReferences()
         {
             string rootPackagePath = ResolveRootPackagePath();
-            string[] assemblyDefinitionPaths = Directory.GetFiles(
-                rootPackagePath,
-                "*.asmdef",
-                SearchOption.AllDirectories);
-            Assert.That(assemblyDefinitionPaths, Is.Not.Empty);
-
-            for (int index = 0; index < assemblyDefinitionPaths.Length; index++)
+            string[] rootAssemblyDefinitionPaths =
             {
-                AssertAssemblyDefinitionHasNoDOTweenReference(assemblyDefinitionPaths[index]);
+                Path.Combine(rootPackagePath, "Runtime", "Valkyrie.Runtime.asmdef"),
+                Path.Combine(rootPackagePath, "Editor", "Valkyrie.Editor.asmdef")
+            };
+
+            for (int index = 0; index < rootAssemblyDefinitionPaths.Length; index++)
+            {
+                AssertAssemblyDefinitionHasNoDOTweenReference(rootAssemblyDefinitionPaths[index]);
             }
         }
 

@@ -4,6 +4,7 @@
   "references": [
     "UnityEngine.TestRunner",
     "UnityEditor.TestRunner",
+    "Valkyrie.Runtime",
     "Valkyrie.Editor",
     "Valkyrie.DOTween.Runtime",
     "Valkyrie.DOTween.Editor"

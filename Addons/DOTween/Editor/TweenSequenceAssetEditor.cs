@@ -23,15 +23,16 @@ namespace Valkyrie.DOTween.Editor
         protected override void OnEnable()
         {
             base.OnEnable();
-            _stepsProperty = serializedObject.FindProperty("_steps");
-            _easeProperty = serializedObject.FindProperty("_ease");
-            _loopsProperty = serializedObject.FindProperty("_loops");
-            _loopTypeProperty = serializedObject.FindProperty("_loopType");
-            _updateTypeProperty = serializedObject.FindProperty("_updateType");
-            _independentUpdateProperty = serializedObject.FindProperty("_independentUpdate");
-            _timeScaleProperty = serializedObject.FindProperty("_timeScale");
-            _autoKillProperty = serializedObject.FindProperty("_autoKill");
-            _recyclableProperty = serializedObject.FindProperty("_recyclable");
+            SerializedProperty timelineProperty = serializedObject.FindProperty("_timeline");
+            _stepsProperty = timelineProperty.FindPropertyRelative("_steps");
+            _easeProperty = timelineProperty.FindPropertyRelative("_ease");
+            _loopsProperty = timelineProperty.FindPropertyRelative("_loops");
+            _loopTypeProperty = timelineProperty.FindPropertyRelative("_loopType");
+            _updateTypeProperty = timelineProperty.FindPropertyRelative("_updateType");
+            _independentUpdateProperty = timelineProperty.FindPropertyRelative("_independentUpdate");
+            _timeScaleProperty = timelineProperty.FindPropertyRelative("_timeScale");
+            _autoKillProperty = timelineProperty.FindPropertyRelative("_autoKill");
+            _recyclableProperty = timelineProperty.FindPropertyRelative("_recyclable");
         }
 
         public override void OnInspectorGUI()
@@ -106,21 +107,47 @@ namespace Valkyrie.DOTween.Editor
 
         private void DrawSequenceSettings()
         {
+            DrawSequenceSettings(
+                _easeProperty,
+                _loopsProperty,
+                _loopTypeProperty,
+                _updateTypeProperty,
+                _independentUpdateProperty,
+                _timeScaleProperty,
+                _autoKillProperty,
+                _recyclableProperty);
+        }
+
+        internal static void DrawSequenceSettings(
+            SerializedProperty easeProperty,
+            SerializedProperty loopsProperty,
+            SerializedProperty loopTypeProperty,
+            SerializedProperty updateTypeProperty,
+            SerializedProperty independentUpdateProperty,
+            SerializedProperty timeScaleProperty,
+            SerializedProperty autoKillProperty,
+            SerializedProperty recyclableProperty)
+        {
             EditorGUILayout.LabelField("Sequence Settings", EditorStyles.boldLabel);
-            EditorGUILayout.PropertyField(_easeProperty);
-            EditorGUILayout.PropertyField(_loopsProperty);
-            EditorGUILayout.PropertyField(_loopTypeProperty);
-            EditorGUILayout.PropertyField(_updateTypeProperty);
-            EditorGUILayout.PropertyField(_independentUpdateProperty);
-            EditorGUILayout.PropertyField(_timeScaleProperty);
-            EditorGUILayout.PropertyField(_autoKillProperty);
-            EditorGUILayout.PropertyField(_recyclableProperty);
+            EditorGUILayout.PropertyField(easeProperty);
+            EditorGUILayout.PropertyField(loopsProperty);
+            EditorGUILayout.PropertyField(loopTypeProperty);
+            EditorGUILayout.PropertyField(updateTypeProperty);
+            EditorGUILayout.PropertyField(independentUpdateProperty);
+            EditorGUILayout.PropertyField(timeScaleProperty);
+            EditorGUILayout.PropertyField(autoKillProperty);
+            EditorGUILayout.PropertyField(recyclableProperty);
         }
 
         private static void DrawVisualSummary(TweenSequenceAsset sequenceAsset)
         {
+            DrawVisualSummary(sequenceAsset.Steps);
+        }
+
+        internal static void DrawVisualSummary(IList<TweenStepDefinition> steps)
+        {
             IReadOnlyList<TweenStepEditorSummary> summaries =
-                TweenSequenceEditorAnalysis.AnalyzeSteps(sequenceAsset.Steps);
+                TweenSequenceEditorAnalysis.AnalyzeSteps(steps);
 
             EditorGUILayout.LabelField("Sequence Summary", EditorStyles.boldLabel);
             DrawSummaryHeader();
@@ -138,7 +165,7 @@ namespace Valkyrie.DOTween.Editor
             }
 
             EditorGUILayout.Space(3f);
-            DrawTimeline(TweenSequenceEditorAnalysis.BuildTimeline(sequenceAsset.Steps));
+            DrawTimeline(TweenSequenceEditorAnalysis.BuildTimeline(steps));
         }
 
         private static void DrawSummaryHeader()

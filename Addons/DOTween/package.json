@@ -1,16 +1,16 @@
 {
   "name": "com.misterpxl.valkyrie.dotween",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "displayName": "Valkyrie DOTween",
-  "description": "Optional DOTween-powered sequence assets and runtime playback for Valkyrie. DOTween must be installed separately.",
+  "description": "Optional no-code DOTween player, presets, preview, and sequence assets for Valkyrie. DOTween must be installed separately.",
   "unity": "6000.0",
   "dependencies": {
-    "com.misterpxl.valkyrie": "1.3.0"
+    "com.misterpxl.valkyrie": "1.4.0"
   },
   "samples": [
     {
-      "displayName": "Reusable Sequence",
-      "description": "One declarative sequence reused by players with local target bindings.",
+      "displayName": "Designer Showcase",
+      "description": "No-code TweenPlayer and reusable sequence examples.",
       "path": "Samples~/Reusable Sequence"
     }
   ],

@@ -5,17 +5,40 @@ using UnityEngine;
 namespace Valkyrie.DOTween
 {
     [Serializable]
-    public sealed class TransformRotationStepDefinition : TimedTweenStepDefinition, ITweenTargetStepDefinition
+    [ManagedReferenceCategory("Transform", "Rotate", 10)]
+    public sealed class TransformRotationStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenTargetStepDefinition, ITweenCapturableStep
     {
-        [SerializeField] private string _targetKey = TweenTargetBinding.SelfKey;
+        [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
         [SerializeField] private Vector3 _endValue;
         [SerializeField] private RotateMode _rotateMode = RotateMode.Fast;
         [SerializeField] private bool _local;
 
+        public TweenTargetReference Target
+        {
+            get
+            {
+                if (_target == null)
+                {
+                    _target = TweenTargetReference.Self();
+                }
+
+                return _target;
+            }
+        }
+
+        public Type RequiredTargetType
+        {
+            get { return typeof(Transform); }
+        }
+
         public string TargetKey
         {
-            get { return _targetKey; }
-            set { _targetKey = value; }
+            get { return Target.Key; }
+            set
+            {
+                Target.Mode = TweenTargetMode.Key;
+                Target.Key = value;
+            }
         }
 
         public Vector3 EndValue
@@ -36,24 +59,71 @@ namespace Valkyrie.DOTween
             set { _local = value; }
         }
 
+        public override bool ValidateDefinition(TweenBuildContext context)
+        {
+            bool timingValid = base.ValidateDefinition(context);
+            bool valueValid = ValidateVector3(_endValue, "Rotation end value", context);
+            return timingValid && valueValid;
+        }
+
         public override bool TryAddTo(Sequence sequence, TweenBuildContext context)
         {
-            if (!ValidateTiming(context) || !ValidateVector3(_endValue, "Rotation end value", context))
+            if (!ValidateDefinition(context))
             {
                 return false;
             }
 
             Transform target;
-            if (!context.TryResolve(_targetKey, out target))
+            if (!context.TryResolve(Target, out target))
             {
                 return false;
             }
 
-            Tweener tween = _local
-                ? target.DOLocalRotate(_endValue, Duration, _rotateMode)
-                : target.DORotate(_endValue, Duration, _rotateMode);
+            Vector3 currentValue = _local ? target.localEulerAngles : target.eulerAngles;
+            Vector3 endValue = ResolveVector3EndValue(currentValue, _endValue);
+            ApplyVector3StartValue(
+                value =>
+                {
+                    if (_local)
+                    {
+                        target.localEulerAngles = value;
+                    }
+                    else
+                    {
+                        target.eulerAngles = value;
+                    }
+                },
+                _endValue);
+
+            Tweener tween = DG.Tweening.DOTween.To(
+                () => _local ? target.localEulerAngles : target.eulerAngles,
+                value =>
+                {
+                    if (_local)
+                    {
+                        target.localEulerAngles = value;
+                    }
+                    else
+                    {
+                        target.eulerAngles = value;
+                    }
+                },
+                endValue,
+                Duration);
             ConfigureTween(tween);
             return TryPlaceTween(sequence, tween, context);
+        }
+
+        public bool CaptureCurrentValue(TweenBuildContext context)
+        {
+            Transform target;
+            if (!context.TryResolve(Target, out target))
+            {
+                return false;
+            }
+
+            _endValue = _local ? target.localEulerAngles : target.eulerAngles;
+            return true;
         }
     }
 }
