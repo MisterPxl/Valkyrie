@@ -1,0 +1,27 @@
+{
+  "name": "Valkyrie.DOTween.Tests.EditMode",
+  "rootNamespace": "Valkyrie.DOTween.Tests.EditMode",
+  "references": [
+    "UnityEngine.TestRunner",
+    "UnityEditor.TestRunner",
+    "Valkyrie.Editor",
+    "Valkyrie.DOTween.Runtime",
+    "Valkyrie.DOTween.Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "nunit.framework.dll",
+    "DOTween.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

@@ -1,0 +1,21 @@
+{
+  "name": "Valkyrie.DOTween.Editor",
+  "rootNamespace": "Valkyrie.DOTween.Editor",
+  "references": [
+    "Valkyrie.DOTween.Runtime",
+    "Valkyrie.Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "DOTween.dll"
+  ],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
