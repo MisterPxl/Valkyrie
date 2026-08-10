@@ -13,8 +13,9 @@ Add the package to the project's `Packages/manifest.json`:
 ## Optional addons
 
 The DOTween addon (`com.misterpxl.valkyrie.dotween`) is an opt-in bonus and is
-not included when installing this package. See `Addons~/DOTween/README.md` for
-its installation instructions:
+not included when installing this package. It lives on the
+[`addon/dotween` branch](https://github.com/misterpxl/Valkyrie/tree/addon/dotween/Addons~/DOTween);
+see its README for prerequisites and installation instructions:
 
 ```json
 "com.misterpxl.valkyrie.dotween": "https://github.com/misterpxl/Valkyrie.git?path=/Addons~/DOTween#dotween-v2.1.0"

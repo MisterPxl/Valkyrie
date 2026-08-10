@@ -8,9 +8,9 @@
 
 ### Changed
 
-- Move the optional DOTween addon to `Addons~/` so it is no longer imported
-  with the root package; install it separately via
-  `?path=/Addons~/DOTween`.
+- Move the optional DOTween addon to the `addon/dotween` branch
+  (`Addons~/DOTween`) so it is no longer imported with the root package;
+  install it separately via `?path=/Addons~/DOTween#dotween-v2.1.0`.
 - Evaluate `[ShowIf]`/`[HideIf]` conditions on every selected object during
   multi-editing, and show a mixed-value dash on managed-reference headers.
 - Support enum and numeric compare values in `[ShowIf]`/`[HideIf]`
