@@ -7,7 +7,7 @@ Valkyrie is a lightweight inspector helper for Unity projects.
 Add the package to the project's `Packages/manifest.json`:
 
 ```json
-"com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.3.0"
+"com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.4.0"
 ```
 
 ## Sample
@@ -24,6 +24,7 @@ the configured attributes, dictionaries, and polymorphic references.
 - `[ShowIf]`, `[HideIf]`
 - `[FoldoutGroup]`
 - `[Button]`
+- `[ManagedReferenceCategory]`
 - `[SerializeReference]` type dropdowns and lists
 - `SerializableDictionary<TKey, TValue>`
 
@@ -38,6 +39,10 @@ serialized fields with matching names through Unity's `JsonUtility`. Right-click
 the reference header and choose `Reset/New Instance` when you want a fresh
 instance instead. Nested `[SerializeReference]` fields and collections inside a
 polymorphic value are routed through the same renderer.
+
+Use `[ManagedReferenceCategory("Gameplay/Actions", "Display Name", order)]` on
+concrete serializable types to group the dropdown by designer-facing categories
+instead of namespaces.
 
 ## Custom editors
 
