@@ -23,6 +23,11 @@ namespace Valkyrie.Editor
             return string.Concat(objectId.ToString(), ":", identifier);
         }
 
+        public static string MakeKey(string objectId, string identifier)
+        {
+            return string.Concat(objectId, ":", identifier);
+        }
+
         public static void Remove(string key)
         {
             States.Remove(key);

@@ -38,6 +38,11 @@ namespace Valkyrie.Editor
                         Undo.RecordObject(target, method.DisplayName);
                         method.Invoke(target);
                         EditorUtility.SetDirty(target);
+
+                        // Without this, changes made by the button on a prefab
+                        // instance are not persisted as overrides.
+                        if (PrefabUtility.IsPartOfPrefabInstance(target))
+                            PrefabUtility.RecordPrefabInstancePropertyModifications(target);
                     }
                     catch (Exception e)
                     {

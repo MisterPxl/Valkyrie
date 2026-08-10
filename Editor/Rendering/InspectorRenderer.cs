@@ -10,7 +10,7 @@ namespace Valkyrie.Editor
             serializedObject.Update();
 
             DrawScriptField(serializedObject);
-            DrawLayout(serializedObject, targets[0], typeData);
+            DrawLayout(serializedObject, targets, typeData);
             ButtonRenderer.DrawButtons(targets, typeData);
 
             serializedObject.ApplyModifiedProperties();
@@ -26,9 +26,9 @@ namespace Valkyrie.Editor
                 EditorGUILayout.PropertyField(scriptProp);
         }
 
-        private static void DrawLayout(SerializedObject serializedObject, Object target, TypeData typeData)
+        private static void DrawLayout(SerializedObject serializedObject, Object[] targets, TypeData typeData)
         {
-            int objectId = GetStableObjectKey(target);
+            string objectId = GetStableObjectKey(targets[0]);
 
             foreach (var slot in typeData.Layout)
             {
@@ -36,26 +36,27 @@ namespace Valkyrie.Editor
                 {
                     var prop = serializedObject.FindProperty(slot.Field.Name);
                     if (prop != null)
-                        PropertyRenderer.DrawField(prop, target, slot.Field);
+                        PropertyRenderer.DrawField(prop, targets, slot.Field);
                 }
                 else
                 {
-                    FoldoutRenderer.Draw(serializedObject, target, objectId, slot);
+                    FoldoutRenderer.Draw(serializedObject, targets, objectId, slot);
                 }
             }
         }
 
         /// <summary>
         /// Returns a stable per-target id usable as a key for editor-state caches
-        /// (foldouts, expansion, etc.). Uses the modern EntityId when available
-        /// and falls back to GetInstanceID on older editors.
+        /// (foldouts, expansion, etc.). Uses the full modern EntityId when available
+        /// (not its 32-bit hash, which can collide) and falls back to GetInstanceID
+        /// on older editors.
         /// </summary>
-        private static int GetStableObjectKey(Object target)
+        private static string GetStableObjectKey(Object target)
         {
 #if UNITY_6000_3_OR_NEWER
-            return target.GetEntityId().GetHashCode();
+            return target.GetEntityId().ToString();
 #else
-            return target.GetInstanceID();
+            return target.GetInstanceID().ToString();
 #endif
         }
     }

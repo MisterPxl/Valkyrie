@@ -6,7 +6,7 @@ namespace Valkyrie
     /// Groups a concrete <c>[SerializeReference]</c> type inside Valkyrie's managed-reference picker.
     /// Use slash-separated paths to create submenus, for example <c>"Animation/Punch"</c>.
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public sealed class ManagedReferenceCategoryAttribute : Attribute
     {
         public string Path { get; }

@@ -34,6 +34,8 @@ namespace Valkyrie.Editor
         }
 
         private static readonly Dictionary<string, CacheEntry> _cache = new Dictionary<string, CacheEntry>();
+        private static readonly Dictionary<Type, string> _typeKeyCache = new Dictionary<Type, string>();
+        private static readonly List<string> _elementLabels = new List<string>();
 
         public static void Draw(SerializedProperty listProperty, InspectedField field)
         {
@@ -77,18 +79,27 @@ namespace Valkyrie.Editor
         {
             string key = BuildCacheKey(listProperty, baseType);
 
-            if (_cache.TryGetValue(key, out CacheEntry entry) && IsEntryValid(entry, listProperty))
+            if (key != null && _cache.TryGetValue(key, out CacheEntry entry) && IsEntryValid(entry, listProperty))
             {
                 return entry.List;
             }
 
-            ReorderableList list = BuildList(listProperty, baseType);
-            _cache[key] = new CacheEntry
+            // Build against a stable copy: `listProperty` may be a shared iterator that
+            // advances after this call, while the ReorderableList and its callbacks keep
+            // referencing the property across frames and deferred events.
+            SerializedProperty stableProperty = listProperty.Copy();
+            ReorderableList list = BuildList(stableProperty, baseType);
+
+            if (key != null)
             {
-                List = list,
-                SerializedObjectRef = new WeakReference<SerializedObject>(listProperty.serializedObject),
-                PropertyPath = listProperty.propertyPath
-            };
+                _cache[key] = new CacheEntry
+                {
+                    List = list,
+                    SerializedObjectRef = new WeakReference<SerializedObject>(stableProperty.serializedObject),
+                    PropertyPath = stableProperty.propertyPath
+                };
+            }
+
             return list;
         }
 
@@ -114,34 +125,57 @@ namespace Valkyrie.Editor
             }
         }
 
+        /// <summary>
+        /// Stable key per (target instances + property path + base type), or
+        /// <c>null</c> when the underlying object has been destroyed — in which
+        /// case the caller builds a throwaway list without polluting the cache.
+        /// </summary>
         private static string BuildCacheKey(SerializedProperty property, Type baseType)
         {
-            // Stable per (target instance + property path). Wrap the target lookup
-            // in a try/catch in case the underlying object has been destroyed since
-            // the property was created.
             try
             {
                 UnityEngine.Object[] targets = property.serializedObject.targetObjects;
-                int hash = 17;
+                string ids = string.Empty;
                 for (int i = 0; i < targets.Length; i++)
                 {
-                    if (targets[i] != null) hash = hash * 31 + GetStableObjectKey(targets[i]);
+                    if (targets[i] != null) ids += GetStableObjectKey(targets[i]) + "|";
                 }
-                return hash + "::" + property.propertyPath + "::" + (baseType != null ? baseType.AssemblyQualifiedName : "");
+                return ids + "::" + property.propertyPath + "::" + GetTypeKey(baseType);
             }
             catch
             {
-                return Guid.NewGuid().ToString();
+                return null;
             }
         }
 
-        private static int GetStableObjectKey(UnityEngine.Object target)
+        private static string GetTypeKey(Type baseType)
+        {
+            if (baseType == null)
+                return string.Empty;
+
+            if (!_typeKeyCache.TryGetValue(baseType, out string key))
+            {
+                key = baseType.AssemblyQualifiedName;
+                _typeKeyCache[baseType] = key;
+            }
+            return key;
+        }
+
+        private static string GetStableObjectKey(UnityEngine.Object target)
         {
 #if UNITY_6000_3_OR_NEWER
-            return target.GetEntityId().GetHashCode();
+            // Full EntityId (not its 32-bit hash) so distinct objects cannot collide.
+            return target.GetEntityId().ToString();
 #else
-            return target.GetInstanceID();
+            return target.GetInstanceID().ToString();
 #endif
+        }
+
+        private static string GetElementLabel(int index)
+        {
+            while (_elementLabels.Count <= index)
+                _elementLabels.Add("Element " + _elementLabels.Count);
+            return _elementLabels[index];
         }
 
         private static ReorderableList BuildList(SerializedProperty listProperty, Type baseType)
@@ -175,7 +209,7 @@ namespace Valkyrie.Editor
             {
                 if (index < 0 || index >= listProperty.arraySize) return;
                 SerializedProperty element = listProperty.GetArrayElementAtIndex(index);
-                DrawElementInRect(rect, element, baseType, $"Element {index}");
+                DrawElementInRect(rect, element, baseType, GetElementLabel(index));
             };
 
             list.onAddDropdownCallback = (rect, _) =>

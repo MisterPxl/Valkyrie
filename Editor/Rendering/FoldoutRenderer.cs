@@ -4,7 +4,7 @@ namespace Valkyrie.Editor
 {
     public static class FoldoutRenderer
     {
-        public static void Draw(SerializedObject serializedObject, object target, int objectId, LayoutSlot slot)
+        public static void Draw(SerializedObject serializedObject, UnityEngine.Object[] targets, string objectId, LayoutSlot slot)
         {
             string stateKey = EditorStateCache.MakeKey(objectId, slot.GroupName);
             bool isExpanded = EditorStateCache.Get(stateKey, false);
@@ -13,21 +13,33 @@ namespace Valkyrie.Editor
             if (newExpanded != isExpanded)
                 EditorStateCache.Set(stateKey, newExpanded);
 
-            if (newExpanded)
+            // try/finally: an exception while drawing a grouped field must not skip
+            // EndFoldoutHeaderGroup, or the whole inspector cascades layout errors.
+            try
             {
-                EditorGUI.indentLevel++;
-
-                foreach (var field in slot.GroupFields)
+                if (newExpanded)
                 {
-                    var prop = serializedObject.FindProperty(field.Name);
-                    if (prop != null)
-                        PropertyRenderer.DrawField(prop, target, field);
+                    EditorGUI.indentLevel++;
+
+                    try
+                    {
+                        foreach (var field in slot.GroupFields)
+                        {
+                            var prop = serializedObject.FindProperty(field.Name);
+                            if (prop != null)
+                                PropertyRenderer.DrawField(prop, targets, field);
+                        }
+                    }
+                    finally
+                    {
+                        EditorGUI.indentLevel--;
+                    }
                 }
-
-                EditorGUI.indentLevel--;
             }
-
-            EditorGUILayout.EndFoldoutHeaderGroup();
+            finally
+            {
+                EditorGUILayout.EndFoldoutHeaderGroup();
+            }
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Valkyrie.Tests.Editor
             Assert.That(types, !Does.Contain(typeof(AbstractAction)));
             Assert.That(types, !Does.Contain(typeof(NonSerializableAction)));
             Assert.That(types, !Does.Contain(typeof(OpenGenericAction<>)));
+            Assert.That(types, !Does.Contain(typeof(StructAction)));
             Assert.That(types, !Does.Contain(typeof(UnityObjectAction)));
             Assert.That(types.Length, Is.EqualTo(types.Distinct().Count()));
         }

@@ -79,6 +79,9 @@ namespace Valkyrie.Tests.Editor
     public sealed class OpenGenericAction<T> : ITestAction { }
 
     [Serializable]
+    public struct StructAction : ITestAction { }
+
+    [Serializable]
     public sealed class UnityObjectAction : ScriptableObject, ITestAction { }
 
     [Serializable]

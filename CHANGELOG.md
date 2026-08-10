@@ -1,5 +1,41 @@
 # Changelog
 
+## 1.5.0 - 2026-08-10
+
+### Added
+
+- Add a root MIT license and the `license` field in `package.json`.
+
+### Changed
+
+- Move the optional DOTween addon to `Addons~/` so it is no longer imported
+  with the root package; install it separately via
+  `?path=/Addons~/DOTween`.
+- Evaluate `[ShowIf]`/`[HideIf]` conditions on every selected object during
+  multi-editing, and show a mixed-value dash on managed-reference headers.
+- Support enum and numeric compare values in `[ShowIf]`/`[HideIf]`
+  (e.g. `[ShowIf("mode", 1)]` against an enum member).
+
+### Fixed
+
+- Fix nested `[SerializeReference]` type selection and Reset/Clear targeting
+  the wrong slot when triggered from deferred dropdown or context-menu
+  callbacks.
+- Fix nested managed-reference lists rebuilding their `ReorderableList` every
+  frame, which broke drag-reorder and selection state.
+- Exclude value types from the `[SerializeReference]` type picker; Unity
+  cannot assign them and the selection failed silently.
+- Cache managed-reference type-name and field lookups that previously ran
+  reflection and `Assembly.Load` per child per frame.
+- Align the duplicate-key highlight of `SerializableDictionary` with Unity 6's
+  array drawer geometry.
+- Record prefab-instance overrides after `[Button]` invocations.
+- Dispose per-target `SerializedObject` instances in mutation operations.
+- Keep foldout state keys collision-free by using the full `EntityId`.
+- Warn and deduplicate shadowed serialized fields with the same name instead
+  of rendering the same property twice.
+- Keep `EndFoldoutHeaderGroup` balanced when drawing a grouped field throws.
+
 ## 1.4.0 - 2026-08-01
 
 ### Added

@@ -1,7 +1,7 @@
 !/Samples~/
 !/Samples~/**
-!/Addons/DOTween/Samples~/
-!/Addons/DOTween/Samples~/**
+!/Addons~/
+!/Addons~/**
 !/UnityProject~/
 !/UnityProject~/Assets/
 !/UnityProject~/Assets/**
@@ -24,6 +24,15 @@
 /UnityProject~/Obj/
 /UnityProject~/Temp/
 /UnityProject~/UserSettings/
+
+# Third-party DOTween files and imported samples in the dev project
+# must never be committed (Asset Store license / generated content).
+/UnityProject~/Assets/DOTween/
+/UnityProject~/Assets/DOTween.meta
+/UnityProject~/Assets/Resources/DOTweenSettings.asset
+/UnityProject~/Assets/Resources/DOTweenSettings.asset.meta
+/UnityProject~/Assets/Samples/
+/UnityProject~/Assets/Samples.meta
 
 *.csproj
 *.sln

@@ -111,6 +111,11 @@ namespace Valkyrie.Editor
                 if (type.IsAbstract || type.IsInterface || type.IsGenericTypeDefinition || type.ContainsGenericParameters)
                     return false;
 
+                // [SerializeReference] only supports reference types; assigning a boxed
+                // struct to managedReferenceValue throws at selection time.
+                if (type.IsValueType)
+                    return false;
+
                 if (typeof(UnityEngine.Object).IsAssignableFrom(type))
                     return false;
 
@@ -122,9 +127,6 @@ namespace Valkyrie.Editor
 
             private static bool HasParameterlessConstructor(Type type)
             {
-                if (type.IsValueType)
-                    return true;
-
                 ConstructorInfo constructor = type.GetConstructor(
                     BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
                     null, Type.EmptyTypes, null);

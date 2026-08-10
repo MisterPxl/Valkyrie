@@ -84,11 +84,19 @@ namespace Valkyrie.Editor
             return duplicates != null;
         }
 
+        // Geometry of Unity's default array drawer (ReorderableListWrapper + ReorderableList
+        // internals, UnityCsReference 6000.x): foldout header, header padding, inner list
+        // header (minHeaderHeight), top padding, then each element occupies its property
+        // height plus a fixed padding — with no extra spacing between elements.
+        private const float FoldoutHeaderHeight = 18f;   // ReorderableListWrapper.Constants.kDefaultFoldoutHeaderHeight
+        private const float HeaderPadding = 3f;          // ReorderableListWrapper.Constants.kHeaderPadding
+        private const float InnerListHeaderHeight = 2f;  // ReorderableList.Defaults.minHeaderHeight (header hidden)
+        private const float ListElementTopPadding = 1f;  // ReorderableList.listElementTopPadding when headerHeight <= 5
+        private const float ElementPadding = 2f;         // ReorderableList.Defaults.elementPadding
+
         private static void HighlightDuplicates(SerializedProperty entries, Rect listRect, HashSet<int> duplicates)
         {
-            // Highlight each duplicate entry with a colored overlay.
-            // The list header takes ~2 lines, then each element has its own height.
-            float y = listRect.y + EditorGUIUtility.singleLineHeight + 2;
+            float y = listRect.y + FoldoutHeaderHeight + HeaderPadding + InnerListHeaderHeight + ListElementTopPadding;
 
             for (int i = 0; i < entries.arraySize; i++)
             {
@@ -97,11 +105,12 @@ namespace Valkyrie.Editor
 
                 if (duplicates.Contains(i))
                 {
-                    Rect highlight = new(listRect.x, y, listRect.width, elementHeight);
+                    // +1/-1 horizontal: the list box insets its content by one pixel.
+                    Rect highlight = new(listRect.x + 1, y + ElementPadding / 2f, listRect.width - 2, elementHeight);
                     EditorGUI.DrawRect(highlight, DuplicateKeyColor);
                 }
 
-                y += elementHeight + EditorGUIUtility.standardVerticalSpacing;
+                y += elementHeight + ElementPadding;
             }
         }
 

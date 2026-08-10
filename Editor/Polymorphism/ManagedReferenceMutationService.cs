@@ -18,7 +18,7 @@ namespace Valkyrie.Editor
                 if (target == null)
                     continue;
 
-                SerializedObject individualObject = new SerializedObject(target);
+                using SerializedObject individualObject = new SerializedObject(target);
                 individualObject.Update();
 
                 SerializedProperty property = individualObject.FindProperty(propertyPath);
@@ -57,7 +57,7 @@ namespace Valkyrie.Editor
                 if (target == null)
                     continue;
 
-                SerializedObject individualObject = new SerializedObject(target);
+                using SerializedObject individualObject = new SerializedObject(target);
                 individualObject.Update();
 
                 SerializedProperty listProperty = individualObject.FindProperty(propertyPath);
@@ -90,7 +90,7 @@ namespace Valkyrie.Editor
                 if (target == null)
                     continue;
 
-                SerializedObject individualObject = new SerializedObject(target);
+                using SerializedObject individualObject = new SerializedObject(target);
                 individualObject.Update();
 
                 SerializedProperty listProperty = individualObject.FindProperty(propertyPath);

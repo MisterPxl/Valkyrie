@@ -8,9 +8,9 @@ namespace Valkyrie.Editor
         private static readonly Color SeparatorColor = new(0.35f, 0.35f, 0.35f, 0.8f);
         private static GUIStyle _subtitleStyle;
 
-        public static void DrawField(SerializedProperty property, object target, InspectedField field)
+        public static void DrawField(SerializedProperty property, UnityEngine.Object[] targets, InspectedField field)
         {
-            if (!ConditionResolver.ShouldDraw(target, field, out string conditionWarning))
+            if (!ConditionResolver.ShouldDraw(targets, field, out string conditionWarning))
                 return;
 
             if (conditionWarning != null)

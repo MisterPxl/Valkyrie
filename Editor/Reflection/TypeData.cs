@@ -58,10 +58,11 @@ namespace Valkyrie.Editor
         {
             const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
-            var fields = CollectFields(type, flags)
-                .Where(IsSerializableField)
-                .Select(f => new InspectedField(f))
-                .ToArray();
+            var fields = DeduplicateByName(
+                CollectFields(type, flags)
+                    .Where(IsSerializableField)
+                    .Select(f => new InspectedField(f)),
+                type);
 
             var methods = CollectMethods(type, flags)
                 .Select(m => new InspectedMethod(m))
@@ -71,6 +72,34 @@ namespace Valkyrie.Editor
             var layout = BuildLayout(fields);
 
             return new TypeData(fields, methods, layout);
+        }
+
+        /// <summary>
+        /// A derived class can shadow a base private serialized field with the same
+        /// name. SerializedObject.FindProperty(name) can only ever address one of
+        /// them, so rendering both slots would draw the same property twice. Keep
+        /// the first (base-most, matching Unity's ordering) and warn once per type.
+        /// </summary>
+        private static InspectedField[] DeduplicateByName(IEnumerable<InspectedField> fields, Type type)
+        {
+            var result = new List<InspectedField>();
+            var seen = new HashSet<string>();
+
+            foreach (var field in fields)
+            {
+                if (seen.Add(field.Name))
+                {
+                    result.Add(field);
+                }
+                else
+                {
+                    Debug.LogWarning(
+                        $"Valkyrie: {type.Name} declares the serialized field \"{field.Name}\" more than once " +
+                        "in its hierarchy; only the base-most declaration is rendered.");
+                }
+            }
+
+            return result.ToArray();
         }
 
         private static LayoutSlot[] BuildLayout(InspectedField[] fields)

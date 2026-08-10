@@ -18,6 +18,10 @@ namespace Valkyrie.Editor
     {
         private const float ObjectFieldButtonWidth = 19f;
         private static GUIStyle _objectFieldButtonStyle;
+        private static Texture _scriptIcon;
+        private static readonly GUIContent DropdownContent = new GUIContent();
+
+        private static Texture ScriptIcon => _scriptIcon ??= EditorGUIUtility.IconContent("cs Script Icon").image;
 
         public static void Draw(SerializedProperty property, InspectedField field)
         {
@@ -152,25 +156,35 @@ namespace Valkyrie.Editor
             }
 
             // Object-field-styled dropdown matching Unity's native look (image 1 in the spec).
-            string dropdownLabel = hasValue
-                ? FormatValueLabel(property)
-                : $"None ({FormatBaseType(baseType)})";
+            bool mixedValues = property.hasMultipleDifferentValues;
+            string dropdownLabel = mixedValues
+                ? "\u2014"
+                : hasValue
+                    ? FormatValueLabel(property)
+                    : $"None ({FormatBaseType(baseType)})";
 
-            GUIContent content = new GUIContent(
-                dropdownLabel,
-                hasValue ? EditorGUIUtility.IconContent("cs Script Icon").image : null);
+            // Reused GUIContent: DropdownButton consumes it synchronously, so mutating
+            // a shared instance avoids a per-frame allocation.
+            DropdownContent.text = dropdownLabel;
+            DropdownContent.image = hasValue && !mixedValues ? ScriptIcon : null;
 
-            bool clicked = EditorGUI.DropdownButton(dropdownRect, content, FocusType.Keyboard, EditorStyles.objectField);
+            bool clicked = EditorGUI.DropdownButton(dropdownRect, DropdownContent, FocusType.Keyboard, EditorStyles.objectField);
             DrawObjectFieldButton(dropdownRect);
 
             if (clicked)
             {
+                // The dropdown callback fires frames later. `property` may be a shared
+                // iterator that has advanced since, so capture the owner and path now
+                // instead of reading them from the property inside the closure.
+                SerializedObject owner = property.serializedObject;
+                string propertyPath = property.propertyPath;
+
                 ManagedReferenceTypeDropdown.Show(
                     dropdownRect,
                     baseType,
                     type => ManagedReferenceMutationService.AssignType(
-                        property.serializedObject,
-                        property.propertyPath,
+                        owner,
+                        propertyPath,
                         type,
                         preserveExistingValues: true),
                     includeNoneEntry: hasValue,
@@ -217,17 +231,22 @@ namespace Valkyrie.Editor
             if (current == null || current.type != EventType.ContextClick || !rect.Contains(current.mousePosition))
                 return;
 
+            // Same deferred-callback hazard as the type dropdown: capture the owner
+            // and path before the menu closures run, `property` may have moved on.
+            SerializedObject owner = property.serializedObject;
+            string propertyPath = property.propertyPath;
+
             var menu = new GenericMenu();
             menu.AddItem(
                 new GUIContent("Reset/New Instance"),
                 false,
-                () => ManagedReferenceMutationService.ResetCurrentType(property.serializedObject, property.propertyPath));
+                () => ManagedReferenceMutationService.ResetCurrentType(owner, propertyPath));
             menu.AddItem(
                 new GUIContent("Clear"),
                 false,
                 () => ManagedReferenceMutationService.AssignType(
-                    property.serializedObject,
-                    property.propertyPath,
+                    owner,
+                    propertyPath,
                     null,
                     preserveExistingValues: false));
 

@@ -9,6 +9,11 @@ namespace Valkyrie.Editor
     {
         private const BindingFlags FieldLookupFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
 
+        // FindField walks the inheritance chain with reflection for every path
+        // segment, twice per frame (height + draw). Memoize per (type, name),
+        // negative results included; domain reload clears the cache.
+        private static readonly System.Collections.Generic.Dictionary<(Type, string), FieldInfo> FieldCache = new();
+
         public static void DrawGUILayout(SerializedProperty property)
         {
             if (property == null)
@@ -153,14 +158,23 @@ namespace Valkyrie.Editor
 
         private static FieldInfo FindField(Type type, string fieldName)
         {
+            var key = (type, fieldName);
+            if (FieldCache.TryGetValue(key, out FieldInfo cached))
+                return cached;
+
+            FieldInfo found = null;
             for (Type current = type; current != null && current != typeof(UnityEngine.Object); current = current.BaseType)
             {
                 FieldInfo field = current.GetField(fieldName, FieldLookupFlags | BindingFlags.DeclaredOnly);
                 if (field != null)
-                    return field;
+                {
+                    found = field;
+                    break;
+                }
             }
 
-            return null;
+            FieldCache[key] = found;
+            return found;
         }
 
         private static Type GetCollectionElementType(Type type)
