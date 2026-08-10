@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "com.misterpxl.valkyrie": "file:../..",
+    "com.misterpxl.valkyrie.dotween": "file:../../Addons~/DOTween",
     "com.unity.multiplayer.center": "1.0.1",
     "com.unity.test-framework": "1.6.0",
     "com.unity.ugui": "2.0.0",
@@ -40,6 +41,7 @@
     "com.unity.modules.xr": "1.0.0"
   },
   "testables": [
-    "com.misterpxl.valkyrie"
+    "com.misterpxl.valkyrie",
+    "com.misterpxl.valkyrie.dotween"
   ]
 }

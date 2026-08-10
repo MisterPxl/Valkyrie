@@ -1,0 +1,21 @@
+{
+  "name": "com.misterpxl.valkyrie.dotween",
+  "version": "2.1.0",
+  "license": "MIT",
+  "displayName": "Valkyrie DOTween",
+  "description": "Optional no-code DOTween player, presets, preview, and sequence assets for Valkyrie. DOTween must be installed separately.",
+  "unity": "6000.0",
+  "dependencies": {
+    "com.misterpxl.valkyrie": "1.5.0"
+  },
+  "samples": [
+    {
+      "displayName": "Designer Showcase",
+      "description": "No-code TweenPlayer and reusable sequence examples.",
+      "path": "Samples~/Reusable Sequence"
+    }
+  ],
+  "author": {
+    "name": "Alexis Gomes"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Valkyrie.DOTween.Sample.ReusableSequence",
+  "rootNamespace": "Valkyrie.DOTween.Samples",
+  "references": [
+    "Valkyrie.DOTween.Runtime"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

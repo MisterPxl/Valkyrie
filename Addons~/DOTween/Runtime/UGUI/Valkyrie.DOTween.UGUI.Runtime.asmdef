@@ -1,0 +1,28 @@
+{
+  "name": "Valkyrie.DOTween.UGUI.Runtime",
+  "rootNamespace": "Valkyrie.DOTween",
+  "references": [
+    "Valkyrie.DOTween.Runtime",
+    "Valkyrie.Runtime",
+    "Unity.ugui"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "DOTween.dll"
+  ],
+  "autoReferenced": true,
+  "defineConstraints": [
+    "VALKYRIE_DOTWEEN_UGUI"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.unity.ugui",
+      "expression": "0.0.0",
+      "define": "VALKYRIE_DOTWEEN_UGUI"
+    }
+  ],
+  "noEngineReferences": false
+}

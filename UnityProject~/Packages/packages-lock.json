@@ -6,6 +6,14 @@
       "source": "local",
       "dependencies": {}
     },
+    "com.misterpxl.valkyrie.dotween": {
+      "version": "file:../../Addons~/DOTween",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.misterpxl.valkyrie": "1.4.0"
+      }
+    },
     "com.unity.ext.nunit": {
       "version": "2.0.5",
       "depth": 1,
