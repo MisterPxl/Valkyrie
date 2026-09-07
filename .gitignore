@@ -38,3 +38,7 @@
 *.sln
 *.slnx
 *.user
+
+# Package documentation is shipped with Astra releases.
+!/Documentation~/
+!/Documentation~/**

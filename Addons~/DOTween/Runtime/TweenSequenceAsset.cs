@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Valkyrie.DOTween
 {
-    [CreateAssetMenu(fileName = "TweenSequence", menuName = "Valkyrie/DOTween/Tween Sequence")]
+    [CreateAssetMenu(fileName = "TweenSequence", menuName = "Astra/Valkyrie/DOTween/Tween Sequence")]
     public sealed class TweenSequenceAsset : ScriptableObject
     {
         [SerializeField] private TweenTimeline _timeline = new TweenTimeline();

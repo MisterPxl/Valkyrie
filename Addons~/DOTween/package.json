@@ -2,7 +2,7 @@
   "name": "com.misterpxl.valkyrie.dotween",
   "version": "2.1.0",
   "license": "MIT",
-  "displayName": "Valkyrie DOTween",
+  "displayName": "Astra Valkyrie — DOTween Integration",
   "description": "Optional no-code DOTween player, presets, preview, and sequence assets for Valkyrie. DOTween must be installed separately.",
   "unity": "6000.0",
   "dependencies": {
@@ -17,5 +17,8 @@
   ],
   "author": {
     "name": "Alexis Gomes"
-  }
+  },
+  "documentationUrl": "https://github.com/MisterPxl/Valkyrie/blob/addon/dotween/Addons~/DOTween/README.md",
+  "changelogUrl": "https://github.com/MisterPxl/Valkyrie/blob/addon/dotween/Addons~/DOTween/CHANGELOG.md",
+  "licensesUrl": "https://github.com/MisterPxl/Valkyrie/blob/addon/dotween/Addons~/DOTween/LICENSE.md"
 }

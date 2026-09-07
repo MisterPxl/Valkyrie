@@ -38,7 +38,7 @@ namespace Valkyrie.DOTween
         }
     }
 
-    [AddComponentMenu("Valkyrie/DOTween/Tween Player")]
+    [AddComponentMenu("Astra/Valkyrie/DOTween/Tween Player")]
     [DisallowMultipleComponent]
     public class TweenPlayer : MonoBehaviour
     {

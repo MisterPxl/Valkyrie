@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changed
+
+- Adopt Astra display names, menus, integration terminology and shared documentation conventions. Package IDs and C# APIs remain unchanged.
+
 ### Added
 
 - Render field attributes and foldout groups inside nested serializable objects, lists and managed references, using the nested owner for conditions.

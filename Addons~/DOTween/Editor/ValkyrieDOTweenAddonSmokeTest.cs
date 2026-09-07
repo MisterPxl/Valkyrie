@@ -14,7 +14,7 @@ namespace Valkyrie.DOTween.Editor
         private const string InvalidAssetPath = PlaygroundFolder + "/InvalidTweenSequence.asset";
         private const string MissingBindingAssetPath = PlaygroundFolder + "/MissingBindingTweenSequence.asset";
 
-        [MenuItem("Tools/Valkyrie/DOTween/Create Addon Playground")]
+        [MenuItem("Tools/Astra/Valkyrie/DOTween/Create Integration Playground")]
         public static void CreatePlayground()
         {
             bool shouldCreate = EditorUtility.DisplayDialog(
@@ -49,7 +49,7 @@ namespace Valkyrie.DOTween.Editor
             Debug.Log(BuildCreatedMessage());
         }
 
-        [MenuItem("Tools/Valkyrie/DOTween/Delete Addon Playground")]
+        [MenuItem("Tools/Astra/Valkyrie/DOTween/Delete Integration Playground")]
         public static void DeletePlayground()
         {
             DeleteGeneratedContent(true);
@@ -246,12 +246,12 @@ namespace Valkyrie.DOTween.Editor
             GameObject notes = CreateChild(root, "How to use", new Vector3(0f, 3.5f, 0f));
             TextMesh textMesh = notes.AddComponent<TextMesh>();
             textMesh.text =
-                "Temporary Valkyrie DOTween addon playground\n\n" +
+                "Temporary Astra Valkyrie DOTween integration playground\n\n" +
                 "1. Select AllFeaturesTweenSequence to inspect the managed-reference step list and timeline summary.\n" +
                 "2. Select Player - inline all features to inspect inline steps, bindings, target root, id override, target override and cleanup.\n" +
                 "3. Enable Play On Enable on the valid player, then enter Play Mode to see it run.\n" +
                 "4. Select the invalid/missing/duplicate examples to inspect validation diagnostics.\n" +
-                "5. Use Tools > Valkyrie > DOTween > Delete Addon Playground when finished.";
+                "5. Use Tools > Astra > Valkyrie > DOTween > Delete Integration Playground when finished.";
             textMesh.characterSize = 0.18f;
             textMesh.anchor = TextAnchor.MiddleCenter;
             textMesh.alignment = TextAlignment.Center;

@@ -3,9 +3,9 @@ using Valkyrie;
 
 /// <summary>
 /// Demonstrates all Valkyrie V1 attributes on a ScriptableObject.
-/// Create via Assets > Create > Valkyrie > Example Config.
+/// Create via Assets > Create > Astra > Valkyrie > Example Config.
 /// </summary>
-[CreateAssetMenu(fileName = "ValkyrieExampleConfig", menuName = "Valkyrie/Example Config")]
+[CreateAssetMenu(fileName = "ValkyrieExampleConfig", menuName = "Astra/Valkyrie/Example Config")]
 public class ValkyrieExampleSO : ScriptableObject
 {
     // ── Title + Required ─────────────────────────────────

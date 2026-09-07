@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changed
+
+- Adopt Astra display names, menus, integration terminology and shared documentation conventions. Package IDs and C# APIs remain unchanged.
+
 ### Fixed
 
 - Validate definitions and target bindings without building or executing tweens in the inspector.

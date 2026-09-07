@@ -2,7 +2,7 @@
   "name": "com.misterpxl.valkyrie",
   "version": "1.5.0",
   "license": "MIT",
-  "displayName": "Valkyrie Inspector",
+  "displayName": "Astra Valkyrie — Inspector",
   "description": "Lightweight inspector attributes, polymorphic rendering and serializable collections for Unity.",
   "unity": "6000.0",
   "samples": [
@@ -14,5 +14,8 @@
   ],
   "author": {
     "name": "Alexis Gomes"
-  }
+  },
+  "documentationUrl": "https://github.com/MisterPxl/Valkyrie/blob/addon/dotween/README.md",
+  "changelogUrl": "https://github.com/MisterPxl/Valkyrie/blob/addon/dotween/CHANGELOG.md",
+  "licensesUrl": "https://github.com/MisterPxl/Valkyrie/blob/addon/dotween/LICENSE.md"
 }

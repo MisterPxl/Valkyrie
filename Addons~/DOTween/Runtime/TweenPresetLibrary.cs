@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Valkyrie.DOTween
 {
-    [CreateAssetMenu(fileName = "TweenPresetLibrary", menuName = "Valkyrie/DOTween/Tween Preset Library")]
+    [CreateAssetMenu(fileName = "TweenPresetLibrary", menuName = "Astra/Valkyrie/DOTween/Tween Preset Library")]
     public sealed class TweenPresetLibrary : ScriptableObject
     {
         [SerializeField] private List<TweenPreset> _presets = new List<TweenPreset>();

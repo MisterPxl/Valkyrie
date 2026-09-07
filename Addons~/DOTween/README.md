@@ -1,6 +1,10 @@
-# Valkyrie DOTween
+# Astra Valkyrie — DOTween Integration
 
-Optional no-code DOTween addon for Valkyrie Inspector.
+An optional **Astra integration**. Install its prerequisites explicitly; the base
+packages remain usable independently. Astra labels in this working copy will ship
+with the next release; existing published tags retain their earlier labels.
+
+Optional no-code DOTween integration for Valkyrie Inspector.
 
 ## Prerequisites
 
@@ -9,7 +13,7 @@ Optional no-code DOTween addon for Valkyrie Inspector.
 - DOTween Free installed separately. DOTween Pro is not required.
 
 Install DOTween in the consuming Unity project and run DOTween setup before
-installing this addon.
+installing this integration.
 
 ## Installation
 
@@ -49,7 +53,7 @@ The optional `Valkyrie.DOTween.UGUI.Runtime` assembly adds uGUI steps when
 
 ## Basic Usage
 
-1. Add **Valkyrie/DOTween/Tween Player** to a GameObject.
+1. Add **Astra/Valkyrie/DOTween/Tween Player** to a GameObject.
 2. Keep `Mode = Single` for one animation, or switch to `Sequence` for a list.
 3. Add a step from the categorized picker.
 4. Use `Self` for the current GameObject, assign an object directly, or use a
@@ -106,10 +110,10 @@ and `CaptureSpawnPoint`. The uGUI steps provide examples while keeping uGUI opti
 
 ## Tests
 
-The addon ships EditMode and PlayMode tests guarded by `UNITY_INCLUDE_TESTS`.
+The integration ships EditMode and PlayMode tests guarded by `UNITY_INCLUDE_TESTS`.
 The core package's GUI integration test requires a graphics device (omit
 `-nographics`); it is skipped in runs without a graphics device.
-Add the addon package to `testables` when running them from a consuming project:
+Add the integration package to `testables` when running them from a consuming project:
 
 ```json
 "testables": [
@@ -117,3 +121,21 @@ Add the addon package to `testables` when running them from a consuming project:
   "com.misterpxl.valkyrie.dotween"
 ]
 ```
+
+## Prerequisites and tests
+
+The manifest declares these package versions:
+
+- `com.misterpxl.valkyrie`: `1.5.0`.
+
+Install the Astra base packages explicitly in the consumer manifest, using the
+Git URLs from their READMEs. Git packages are not fetched transitively from
+version-only dependencies. Unity registry dependencies resolve normally.
+
+Add `com.misterpxl.valkyrie.dotween` to the consumer manifest’s `testables` and run
+its suites in Unity Test Runner. Keep DOTween installed while running these tests.
+
+## Removal
+
+Remove project components, assets or code that reference this integration before
+removing it through Package Manager. The base packages can remain installed.

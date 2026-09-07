@@ -1,4 +1,9 @@
-# Valkyrie Inspector
+# Astra Valkyrie — Inspector
+
+Part of the **Astra** family. This package works independently of the Astra framework.
+
+The Astra menu labels described here are unreleased. Existing published tags keep
+their previous labels until the next release; package IDs and C# APIs are unchanged.
 
 Valkyrie is a lightweight inspector helper for Unity projects.
 
@@ -10,9 +15,9 @@ Add the package to the project's `Packages/manifest.json`:
 "com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.5.0"
 ```
 
-## Optional addons
+## Optional integrations
 
-The DOTween addon (`com.misterpxl.valkyrie.dotween`) is an opt-in bonus and is
+The DOTween integration (`com.misterpxl.valkyrie.dotween`) is an opt-in bonus and is
 not included when installing this package. It lives on the
 [`addon/dotween` branch](https://github.com/misterpxl/Valkyrie/tree/addon/dotween/Addons~/DOTween);
 see its README for prerequisites and installation instructions:
@@ -84,7 +89,7 @@ Edits support Undo/Redo through SerializedObject. Nonserialized fields and runti
 UnityEvent listeners are not part of the copied configuration.
 
 Editor integrations can subscribe to `ManagedReferenceClipboard.CloneCreated`
-to refresh a cloned root's identity. The DOTween addon uses this to generate a
+to refresh a cloned root's identity. The DOTween integration uses this to generate a
 new step ID, preserving bindings to the original step.
 
 ## Custom editors
@@ -147,3 +152,21 @@ public sealed class ThirdPartyAdapter : MonoBehaviour
 ```
 
 Unity's `[HideInInspector]` is respected and hidden fields are not rendered.
+
+## Astra conventions
+
+See [Astra conventions](Documentation~/AstraConventions.md) for product identity,
+menu paths, terminology and the staged API migration policy.
+
+## Tests
+
+Add `com.misterpxl.valkyrie` to the consumer manifest’s `testables` and run its
+EditMode suite. GUI integration coverage requires a graphics device; do not use
+`-nographics` for that test.
+
+## Removal
+
+Remove dependent integrations first. Replace attributes, custom-editor inheritance
+and serializable collections used by project code before removing the package.
+Migrate serialized dictionary data before replacing its type. To keep the data
+types while disabling the inspector, use the opt-out described above.
