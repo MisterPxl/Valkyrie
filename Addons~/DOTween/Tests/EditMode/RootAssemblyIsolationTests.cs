@@ -3,8 +3,9 @@ using System.Reflection;
 using NUnit.Framework;
 using UnityEditor.PackageManager;
 
-namespace Valkyrie.DOTween.Tests.EditMode
+namespace Astra.Valkyrie.Integrations.DOTween.Tests.EditMode
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Tests.EditMode", "Valkyrie.DOTween.Tests.EditMode")]
     public sealed class RootAssemblyIsolationTests
     {
         private const string RootPackageName = "com.misterpxl.valkyrie";
@@ -15,8 +16,8 @@ namespace Valkyrie.DOTween.Tests.EditMode
             string rootPackagePath = ResolveRootPackagePath();
             string[] rootAssemblyDefinitionPaths =
             {
-                Path.Combine(rootPackagePath, "Runtime", "Valkyrie.Runtime.asmdef"),
-                Path.Combine(rootPackagePath, "Editor", "Valkyrie.Editor.asmdef")
+                Path.Combine(rootPackagePath, "Runtime", "Astra.Valkyrie.Annotations.asmdef"),
+                Path.Combine(rootPackagePath, "Editor", "Astra.Valkyrie.Editor.asmdef")
             };
 
             for (int index = 0; index < rootAssemblyDefinitionPaths.Length; index++)
@@ -50,11 +51,11 @@ namespace Valkyrie.DOTween.Tests.EditMode
                 string runtimeAssemblyDefinition = Path.Combine(
                     candidate.FullName,
                     "Runtime",
-                    "Valkyrie.Runtime.asmdef");
+                    "Astra.Valkyrie.Annotations.asmdef");
                 string editorAssemblyDefinition = Path.Combine(
                     candidate.FullName,
                     "Editor",
-                    "Valkyrie.Editor.asmdef");
+                    "Astra.Valkyrie.Editor.asmdef");
                 if (File.Exists(runtimeAssemblyDefinition) && File.Exists(editorAssemblyDefinition))
                 {
                     return candidate.FullName;

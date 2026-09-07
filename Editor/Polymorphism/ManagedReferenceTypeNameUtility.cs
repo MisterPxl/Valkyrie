@@ -2,7 +2,7 @@ using System;
 using System.Reflection;
 using UnityEditor;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
     internal static class ManagedReferenceTypeNameUtility
     {

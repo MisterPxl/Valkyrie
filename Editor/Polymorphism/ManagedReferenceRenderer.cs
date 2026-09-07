@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
     /// <summary>
     /// Renderer for a single <c>[SerializeReference]</c> slot.
@@ -14,6 +14,7 @@ namespace Valkyrie.Editor
     ///   <item>When a value is set, child properties render below in a foldable section.</item>
     /// </list>
     /// </summary>
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class ManagedReferenceRenderer
     {
         private const float ObjectFieldButtonWidth = 19f;

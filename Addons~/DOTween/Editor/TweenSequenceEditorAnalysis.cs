@@ -4,8 +4,9 @@ using System.Reflection;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Valkyrie.DOTween.Editor
+namespace Astra.Valkyrie.Integrations.DOTween.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Editor", "Valkyrie.DOTween.Editor")]
     public sealed class TweenStepEditorSummary
     {
         public int Index { get; }
@@ -53,6 +54,7 @@ namespace Valkyrie.DOTween.Editor
         }
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Editor", "Valkyrie.DOTween.Editor")]
     public sealed class TweenTimelineEntry
     {
         public TweenStepEditorSummary Summary { get; }
@@ -67,6 +69,7 @@ namespace Valkyrie.DOTween.Editor
         }
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Editor", "Valkyrie.DOTween.Editor")]
     public sealed class TweenTimelineModel
     {
         public IReadOnlyList<TweenTimelineEntry> Entries { get; }
@@ -79,6 +82,7 @@ namespace Valkyrie.DOTween.Editor
         }
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Editor", "Valkyrie.DOTween.Editor")]
     public static class TweenSequenceEditorAnalysis
     {
         public static IReadOnlyList<TweenStepEditorSummary> AnalyzeSteps(IList<TweenStepDefinition> steps)

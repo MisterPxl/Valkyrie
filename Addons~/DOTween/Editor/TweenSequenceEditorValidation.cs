@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Valkyrie.DOTween.Editor
+namespace Astra.Valkyrie.Integrations.DOTween.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Editor", "Valkyrie.DOTween.Editor")]
     public static class TweenSequenceEditorValidation
     {
         public static IReadOnlyList<TweenBuildDiagnostic> Validate(TweenPlayer player)

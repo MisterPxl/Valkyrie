@@ -4,8 +4,9 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public sealed class InspectedField
     {
         public FieldInfo FieldInfo { get; }

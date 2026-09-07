@@ -3,10 +3,11 @@ using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 
-namespace Valkyrie.DOTween.Editor
+namespace Astra.Valkyrie.Integrations.DOTween.Editor
 {
     [CustomEditor(typeof(TweenPlayer), true)]
-    public sealed class TweenPlayerEditor : Valkyrie.Editor.ValkyrieEditor
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Editor", "Valkyrie.DOTween.Editor")]
+    public sealed class TweenPlayerEditor : Astra.Valkyrie.Editor.ValkyrieEditor
     {
         private readonly List<TweenBuildDiagnostic> _diagnostics = new List<TweenBuildDiagnostic>();
 
@@ -237,7 +238,7 @@ namespace Valkyrie.DOTween.Editor
                 EditorGUILayout.HelpBox("Single mode uses the first step. Switch to Sequence to edit the whole list.", MessageType.Warning);
             }
 
-            Valkyrie.Editor.ManagedReferenceListRenderer.Draw(_stepsProperty, typeof(TweenStepDefinition));
+            Astra.Valkyrie.Editor.ManagedReferenceListRenderer.Draw(_stepsProperty, typeof(TweenStepDefinition));
             DrawTimelineEditButtons(mode);
         }
 
@@ -285,7 +286,7 @@ namespace Valkyrie.DOTween.Editor
                 true);
             if (_showAdditionalTriggers)
             {
-                Valkyrie.Editor.ManagedReferenceListRenderer.Draw(_triggersProperty, typeof(TweenTrigger));
+                Astra.Valkyrie.Editor.ManagedReferenceListRenderer.Draw(_triggersProperty, typeof(TweenTrigger));
             }
 
             EditorGUILayout.Space(2f);

@@ -1,6 +1,6 @@
 using System;
 
-namespace Valkyrie
+namespace Astra.Valkyrie
 {
     public enum InfoBoxType
     {

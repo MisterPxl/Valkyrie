@@ -1,0 +1,1551 @@
+{
+  "sourceRevision": "7f643420d29785e46a0c72410711f0db8096bdb8",
+  "assemblies": {
+    "Valkyrie.DOTween.Editor": "Astra.Valkyrie.Integrations.DOTween.Editor",
+    "Valkyrie.DOTween.UGUI.Runtime": "Astra.Valkyrie.Integrations.DOTween.UGUI.Runtime",
+    "Valkyrie.DOTween.Runtime": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+    "Valkyrie.DOTween.Sample.ReusableSequence": "Astra.Valkyrie.Integrations.DOTween.Samples.ReusableSequence.Runtime",
+    "Valkyrie.DOTween.Tests.EditMode": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+    "Valkyrie.DOTween.Tests.PlayMode": "Astra.Valkyrie.Integrations.DOTween.Tests.PlayMode",
+    "Valkyrie.DOTween.Tests.UGUI": "Astra.Valkyrie.Integrations.DOTween.UGUI.Tests.EditMode",
+    "Valkyrie.Editor": "Astra.Valkyrie.Editor",
+    "Valkyrie.Collections": "Astra.Valkyrie.Collections.Runtime",
+    "Valkyrie.Runtime": "Astra.Valkyrie.Annotations",
+    "Valkyrie.Tests.Editor": "Astra.Valkyrie.Tests.EditMode"
+  },
+  "types": [
+    {
+      "type": "TweenEditModePreview",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenEditModePreview.cs"
+    },
+    {
+      "type": "TweenPlayerEditor",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenPlayerEditor.cs"
+    },
+    {
+      "type": "TweenPresetOption",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenPresetEditorUtility.cs"
+    },
+    {
+      "type": "TweenPresetEditorUtility",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenPresetEditorUtility.cs"
+    },
+    {
+      "type": "TweenSequenceAssetEditor",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenSequenceAssetEditor.cs"
+    },
+    {
+      "type": "TweenStepEditorSummary",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenSequenceEditorAnalysis.cs"
+    },
+    {
+      "type": "TweenTimelineEntry",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenSequenceEditorAnalysis.cs"
+    },
+    {
+      "type": "TweenTimelineModel",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenSequenceEditorAnalysis.cs"
+    },
+    {
+      "type": "TweenSequenceEditorAnalysis",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenSequenceEditorAnalysis.cs"
+    },
+    {
+      "type": "TweenSequenceEditorValidation",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenSequenceEditorValidation.cs"
+    },
+    {
+      "type": "TweenStepEventOptions",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenStepEventBindingDrawer.cs"
+    },
+    {
+      "type": "TweenStepEventBindingDrawer",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenStepEventBindingDrawer.cs"
+    },
+    {
+      "type": "TweenTimelineClipboard",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenTimelineClipboard.cs"
+    },
+    {
+      "type": "TweenTimelineCloneUtility",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/TweenTimelineCloneUtility.cs"
+    },
+    {
+      "type": "ValkyrieDOTweenAddonPlayground",
+      "oldNamespace": "Valkyrie.DOTween.Editor",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "oldAssembly": "Valkyrie.DOTween.Editor",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Editor",
+      "path": "Addons~/DOTween/Editor/ValkyrieDOTweenAddonSmokeTest.cs"
+    },
+    {
+      "type": "TweenVectorAxis",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "TransformPunchPositionStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "TransformPunchRotationStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "TransformPunchScaleStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "TransformShakePositionStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "TransformShakeRotationStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "TransformShakeScaleStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "CameraFieldOfViewStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "CameraOrthographicSizeStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "CameraBackgroundColorStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "MaterialColorStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "SpriteRendererColorStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "CallbackStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/BuiltInTweenSteps.cs"
+    },
+    {
+      "type": "CanvasGroupFadeStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/CanvasGroupFadeStepDefinition.cs"
+    },
+    {
+      "type": "IntervalStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/IntervalStepDefinition.cs"
+    },
+    {
+      "type": "TransformMoveStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/TransformMoveStepDefinition.cs"
+    },
+    {
+      "type": "TransformRotationStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/TransformRotationStepDefinition.cs"
+    },
+    {
+      "type": "TransformScaleStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/Steps/TransformScaleStepDefinition.cs"
+    },
+    {
+      "type": "TweenBuildContext",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenBuildContext.cs"
+    },
+    {
+      "type": "TweenDiagnosticSeverity",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenBuildDiagnostic.cs"
+    },
+    {
+      "type": "TweenDiagnosticCode",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenBuildDiagnostic.cs"
+    },
+    {
+      "type": "TweenBuildDiagnostic",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenBuildDiagnostic.cs"
+    },
+    {
+      "type": "TweenCleanupMode",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenPlayer.cs"
+    },
+    {
+      "type": "TweenPlayerSourceMode",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenPlayer.cs"
+    },
+    {
+      "type": "TweenSequenceRuntimeIdentity",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenPlayer.cs"
+    },
+    {
+      "type": "TweenPlayer",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenPlayer.cs"
+    },
+    {
+      "type": "TweenPlayerEvents",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenPlayerEvents.cs"
+    },
+    {
+      "type": "TweenStepEventBinding",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenPlayerEvents.cs"
+    },
+    {
+      "type": "TweenStepEvent",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenPlayerEvents.cs"
+    },
+    {
+      "type": "TweenPresetLibrary",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenPresetLibrary.cs"
+    },
+    {
+      "type": "TweenPreset",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenPresetLibrary.cs"
+    },
+    {
+      "type": "TweenSequenceAsset",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenSequenceAsset.cs"
+    },
+    {
+      "type": "TweenSequenceDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenSequenceDefinition.cs"
+    },
+    {
+      "type": "TweenStateSnapshot",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStateSnapshot.cs"
+    },
+    {
+      "type": "ITweenTargetStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStepDefinition.cs"
+    },
+    {
+      "type": "ITweenTargetStep",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStepDefinition.cs"
+    },
+    {
+      "type": "ITweenCapturableStep",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStepDefinition.cs"
+    },
+    {
+      "type": "ITweenTimelineStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStepDefinition.cs"
+    },
+    {
+      "type": "TweenPlacementMode",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStepDefinition.cs"
+    },
+    {
+      "type": "TweenValueMode",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStepDefinition.cs"
+    },
+    {
+      "type": "TweenPlacement",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStepDefinition.cs"
+    },
+    {
+      "type": "TweenStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStepDefinition.cs"
+    },
+    {
+      "type": "TweenStep",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStepDefinition.cs"
+    },
+    {
+      "type": "TimedTweenStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStepDefinition.cs"
+    },
+    {
+      "type": "TimedTweenStep",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenStepDefinition.cs"
+    },
+    {
+      "type": "TweenTargetBinding",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenTargetBinding.cs"
+    },
+    {
+      "type": "TweenTargetMode",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenTargetReference.cs"
+    },
+    {
+      "type": "TweenTargetReference",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenTargetReference.cs"
+    },
+    {
+      "type": "TweenTimeline",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenTimeline.cs"
+    },
+    {
+      "type": "TweenPlayerAction",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenTrigger.cs"
+    },
+    {
+      "type": "TweenPlayerLifecycleEvent",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenTrigger.cs"
+    },
+    {
+      "type": "TweenTrigger",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenTrigger.cs"
+    },
+    {
+      "type": "OnEnableTweenTrigger",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenTrigger.cs"
+    },
+    {
+      "type": "StartTweenTrigger",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenTrigger.cs"
+    },
+    {
+      "type": "OnDisableTweenTrigger",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenTrigger.cs"
+    },
+    {
+      "type": "OnDestroyTweenTrigger",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+      "path": "Addons~/DOTween/Runtime/TweenTrigger.cs"
+    },
+    {
+      "type": "GraphicColorStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.UGUI.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.UGUI.Runtime",
+      "path": "Addons~/DOTween/Runtime/UGUI/UGUITweenSteps.cs"
+    },
+    {
+      "type": "GraphicFadeStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.UGUI.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.UGUI.Runtime",
+      "path": "Addons~/DOTween/Runtime/UGUI/UGUITweenSteps.cs"
+    },
+    {
+      "type": "ImageFillAmountStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.UGUI.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.UGUI.Runtime",
+      "path": "Addons~/DOTween/Runtime/UGUI/UGUITweenSteps.cs"
+    },
+    {
+      "type": "RectTransformSizeStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.UGUI.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.UGUI.Runtime",
+      "path": "Addons~/DOTween/Runtime/UGUI/UGUITweenSteps.cs"
+    },
+    {
+      "type": "TextTypewriterStepDefinition",
+      "oldNamespace": "Valkyrie.DOTween",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween",
+      "oldAssembly": "Valkyrie.DOTween.UGUI.Runtime",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.UGUI.Runtime",
+      "path": "Addons~/DOTween/Runtime/UGUI/UGUITweenSteps.cs"
+    },
+    {
+      "type": "ReusableTweenSequenceSample",
+      "oldNamespace": "Valkyrie.DOTween.Samples",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Samples",
+      "oldAssembly": "Valkyrie.DOTween.Sample.ReusableSequence",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Samples.ReusableSequence.Runtime",
+      "path": "Addons~/DOTween/Samples~/Reusable Sequence/ReusableTweenSequenceSample.cs"
+    },
+    {
+      "type": "RootAssemblyIsolationTests",
+      "oldNamespace": "Valkyrie.DOTween.Tests.EditMode",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+      "oldAssembly": "Valkyrie.DOTween.Tests.EditMode",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+      "path": "Addons~/DOTween/Tests/EditMode/RootAssemblyIsolationTests.cs"
+    },
+    {
+      "type": "TweenAuditRegressionTests",
+      "oldNamespace": "Valkyrie.DOTween.Tests.EditMode",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+      "oldAssembly": "Valkyrie.DOTween.Tests.EditMode",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+      "path": "Addons~/DOTween/Tests/EditMode/TweenAuditRegressionTests.cs"
+    },
+    {
+      "type": "TweenDiagnosticsTests",
+      "oldNamespace": "Valkyrie.DOTween.Tests.EditMode",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+      "oldAssembly": "Valkyrie.DOTween.Tests.EditMode",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+      "path": "Addons~/DOTween/Tests/EditMode/TweenDiagnosticsTests.cs"
+    },
+    {
+      "type": "TweenSerializationAndInspectorTests",
+      "oldNamespace": "Valkyrie.DOTween.Tests.EditMode",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+      "oldAssembly": "Valkyrie.DOTween.Tests.EditMode",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+      "path": "Addons~/DOTween/Tests/EditMode/TweenSerializationAndInspectorTests.cs"
+    },
+    {
+      "type": "TweenStepEventPickerTests",
+      "oldNamespace": "Valkyrie.DOTween.Tests.EditMode",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+      "oldAssembly": "Valkyrie.DOTween.Tests.EditMode",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+      "path": "Addons~/DOTween/Tests/EditMode/TweenStepEventPickerTests.cs"
+    },
+    {
+      "type": "TweenSequencePlayModeTests",
+      "oldNamespace": "Valkyrie.DOTween.Tests.PlayMode",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Tests.PlayMode",
+      "oldAssembly": "Valkyrie.DOTween.Tests.PlayMode",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.Tests.PlayMode",
+      "path": "Addons~/DOTween/Tests/PlayMode/TweenSequencePlayModeTests.cs"
+    },
+    {
+      "type": "TweenUIRegressionTests",
+      "oldNamespace": "Valkyrie.DOTween.Tests.EditMode",
+      "newNamespace": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
+      "oldAssembly": "Valkyrie.DOTween.Tests.UGUI",
+      "newAssembly": "Astra.Valkyrie.Integrations.DOTween.UGUI.Tests.EditMode",
+      "path": "Addons~/DOTween/Tests/UGUI/TweenUIRegressionTests.cs"
+    },
+    {
+      "type": "SerializableDictionaryDrawer",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Collections/SerializableDictionaryDrawer.cs"
+    },
+    {
+      "type": "ValkyrieEditor",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Core/ValkyrieEditor.cs"
+    },
+    {
+      "type": "ValkyrieInspectorGUI",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Core/ValkyrieInspectorGUI.cs"
+    },
+    {
+      "type": "ValkyrieMonoBehaviourEditor",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Core/ValkyrieMonoBehaviourEditor.cs"
+    },
+    {
+      "type": "ValkyrieScriptableObjectEditor",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Core/ValkyrieScriptableObjectEditor.cs"
+    },
+    {
+      "type": "ManagedReferenceClipboard",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Polymorphism/ManagedReferenceClipboard.cs"
+    },
+    {
+      "type": "ManagedReferenceListRenderer",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Polymorphism/ManagedReferenceListRenderer.cs"
+    },
+    {
+      "type": "ManagedReferenceMutationService",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Polymorphism/ManagedReferenceMutationService.cs"
+    },
+    {
+      "type": "ManagedReferencePropertyRouter",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Polymorphism/ManagedReferencePropertyRouter.cs"
+    },
+    {
+      "type": "ManagedReferenceRenderer",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Polymorphism/ManagedReferenceRenderer.cs"
+    },
+    {
+      "type": "ManagedReferenceTypeCache",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Polymorphism/ManagedReferenceTypeCache.cs"
+    },
+    {
+      "type": "ManagedReferenceTypeDropdown",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Polymorphism/ManagedReferenceTypeDropdown.cs"
+    },
+    {
+      "type": "InspectedField",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Reflection/InspectedField.cs"
+    },
+    {
+      "type": "InspectedMethod",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Reflection/InspectedMethod.cs"
+    },
+    {
+      "type": "ReflectionCache",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Reflection/ReflectionCache.cs"
+    },
+    {
+      "type": "SerializedPropertyContext",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Reflection/SerializedPropertyContext.cs"
+    },
+    {
+      "type": "LayoutSlot",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Reflection/TypeData.cs"
+    },
+    {
+      "type": "TypeData",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Reflection/TypeData.cs"
+    },
+    {
+      "type": "ButtonRenderer",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Rendering/ButtonRenderer.cs"
+    },
+    {
+      "type": "ConditionResolver",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Rendering/ConditionResolver.cs"
+    },
+    {
+      "type": "FoldoutRenderer",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Rendering/FoldoutRenderer.cs"
+    },
+    {
+      "type": "InspectorRenderer",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Rendering/InspectorRenderer.cs"
+    },
+    {
+      "type": "PropertyRenderer",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Rendering/PropertyRenderer.cs"
+    },
+    {
+      "type": "EditorStateCache",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/State/EditorStateCache.cs"
+    },
+    {
+      "type": "ValkyrieEditorUtils",
+      "oldNamespace": "Valkyrie.Editor",
+      "newNamespace": "Astra.Valkyrie.Editor",
+      "oldAssembly": "Valkyrie.Editor",
+      "newAssembly": "Astra.Valkyrie.Editor",
+      "path": "Editor/Utils/ValkyrieEditorUtils.cs"
+    },
+    {
+      "type": "SerializableDictionaryBase",
+      "oldNamespace": "Valkyrie.Collections",
+      "newNamespace": "Astra.Valkyrie.Collections",
+      "oldAssembly": "Valkyrie.Collections",
+      "newAssembly": "Astra.Valkyrie.Collections.Runtime",
+      "path": "Runtime/Collections/SerializableDictionary.cs"
+    },
+    {
+      "type": "SerializableDictionary",
+      "oldNamespace": "Valkyrie.Collections",
+      "newNamespace": "Astra.Valkyrie.Collections",
+      "oldAssembly": "Valkyrie.Collections",
+      "newAssembly": "Astra.Valkyrie.Collections.Runtime",
+      "path": "Runtime/Collections/SerializableDictionary.cs"
+    },
+    {
+      "type": "SerializableKeyValuePair",
+      "oldNamespace": "Valkyrie.Collections",
+      "newNamespace": "Astra.Valkyrie.Collections",
+      "oldAssembly": "Valkyrie.Collections",
+      "newAssembly": "Astra.Valkyrie.Collections.Runtime",
+      "path": "Runtime/Collections/SerializableKeyValuePair.cs"
+    },
+    {
+      "type": "ValkyrieCustomEditorExample",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/Editor/ValkyrieCustomEditorExample.cs"
+    },
+    {
+      "type": "ItemRarity",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyrieDictionaryExample.cs"
+    },
+    {
+      "type": "ItemConfig",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyrieDictionaryExample.cs"
+    },
+    {
+      "type": "ValkyrieDictionaryExample",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyrieDictionaryExample.cs"
+    },
+    {
+      "type": "ValkyrieExample",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyrieExample.cs"
+    },
+    {
+      "type": "ValkyrieExampleSO",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyrieExampleSO.cs"
+    },
+    {
+      "type": "ValkyrieNestedInspectorExample",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyrieNestedInspectorExample.cs"
+    },
+    {
+      "type": "NestedExampleSettings",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyrieNestedInspectorExample.cs"
+    },
+    {
+      "type": "INestedExampleAction",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyrieNestedInspectorExample.cs"
+    },
+    {
+      "type": "NestedExampleAction",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyrieNestedInspectorExample.cs"
+    },
+    {
+      "type": "ValkyriePolymorphicCollectionExample",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyriePolymorphicCollectionExample.cs"
+    },
+    {
+      "type": "ICondition",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyriePolymorphicExample.cs"
+    },
+    {
+      "type": "HealthCondition",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyriePolymorphicExample.cs"
+    },
+    {
+      "type": "TagCondition",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyriePolymorphicExample.cs"
+    },
+    {
+      "type": "DistanceCondition",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyriePolymorphicExample.cs"
+    },
+    {
+      "type": "RewardBase",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyriePolymorphicExample.cs"
+    },
+    {
+      "type": "GoldReward",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyriePolymorphicExample.cs"
+    },
+    {
+      "type": "ItemReward",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyriePolymorphicExample.cs"
+    },
+    {
+      "type": "ExperienceReward",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyriePolymorphicExample.cs"
+    },
+    {
+      "type": "ValkyriePolymorphicExample",
+      "oldNamespace": "",
+      "newNamespace": "Astra.Valkyrie.Samples",
+      "oldAssembly": null,
+      "newAssembly": null,
+      "path": "Samples~/ValkyriePolymorphicExample.cs"
+    },
+    {
+      "type": "IAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/AuditRegressionTests.cs"
+    },
+    {
+      "type": "Holder",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/AuditRegressionTests.cs"
+    },
+    {
+      "type": "BaseConditions",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/AuditRegressionTests.cs"
+    },
+    {
+      "type": "DerivedConditions",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/AuditRegressionTests.cs"
+    },
+    {
+      "type": "AuditRegressionTests",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/AuditRegressionTests.cs"
+    },
+    {
+      "type": "CustomEditorIntegrationTests",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/CustomEditorIntegrationTests.cs"
+    },
+    {
+      "type": "FallbackEditorTestObject",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/CustomEditorIntegrationTests.cs"
+    },
+    {
+      "type": "SpecificEditorTestObject",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/CustomEditorIntegrationTests.cs"
+    },
+    {
+      "type": "IntegratedEditorTestObject",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/CustomEditorIntegrationTests.cs"
+    },
+    {
+      "type": "SpecificEditorTestObjectEditor",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/CustomEditorIntegrationTests.cs"
+    },
+    {
+      "type": "IntegratedEditorTestObjectEditor",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/CustomEditorIntegrationTests.cs"
+    },
+    {
+      "type": "ManagedReferenceMutationServiceTests",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceMutationServiceTests.cs"
+    },
+    {
+      "type": "ITestAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "IActor",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "INetworkActor",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "IProducer",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "IConsumer",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "ManagedReferenceTestObject",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "NestedManagedReferenceHolder",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "ConcreteBaseAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "ConcreteDerivedAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "PreserveSourceAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "PreserveTargetAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "CategorizedAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "PrivateConstructorAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "AbstractAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "NonSerializableAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "OpenGenericAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "StructAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "UnityObjectAction",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "ActorProducer",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "NetworkActorProducer",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "ObjectProducer",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "ActorConsumer",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "NetworkActorConsumer",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTestTypes.cs"
+    },
+    {
+      "type": "ManagedReferenceTypeCacheTests",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/ManagedReferenceTypeCacheTests.cs"
+    },
+    {
+      "type": "IClipboardNode",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/NestedInspectorAndClipboardTests.cs"
+    },
+    {
+      "type": "ClipboardNode",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/NestedInspectorAndClipboardTests.cs"
+    },
+    {
+      "type": "NestedInspectorData",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/NestedInspectorAndClipboardTests.cs"
+    },
+    {
+      "type": "TestNestedDrawer",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/NestedInspectorAndClipboardTests.cs"
+    },
+    {
+      "type": "NestedInspectorHost",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/NestedInspectorAndClipboardTests.cs"
+    },
+    {
+      "type": "NestedInspectorTestWindow",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/NestedInspectorAndClipboardTests.cs"
+    },
+    {
+      "type": "NestedInspectorAndClipboardTests",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/NestedInspectorAndClipboardTests.cs"
+    },
+    {
+      "type": "ObjectConsumer",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/AuditRegressionTests.cs"
+    },
+    {
+      "type": "IntProducer",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/AuditRegressionTests.cs"
+    },
+    {
+      "type": "ActionB",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/AuditRegressionTests.cs"
+    },
+    {
+      "type": "ActionA",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/AuditRegressionTests.cs"
+    },
+    {
+      "type": "DrawerData",
+      "oldNamespace": "Valkyrie.Tests.Editor",
+      "newNamespace": "Astra.Valkyrie.Tests.EditMode",
+      "oldAssembly": "Valkyrie.Tests.Editor",
+      "newAssembly": "Astra.Valkyrie.Tests.EditMode",
+      "path": "Tests/Editor/NestedInspectorAndClipboardTests.cs"
+    }
+  ],
+  "engineFreeAnnotations": [
+    {
+      "type": "ButtonAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/ButtonAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "ConditionalAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/ConditionalAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "DisableValkyrieInspectorAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/DisableValkyrieInspectorAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "FoldoutGroupAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/FoldoutGroupAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "HideIfAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/HideIfAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "InfoBoxType",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/InfoBoxAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "InfoBoxAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/InfoBoxAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "ManagedReferenceCategoryAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/ManagedReferenceCategoryAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "ReadOnlyAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/ReadOnlyAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "RequiredAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/RequiredAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "ShowIfAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/ShowIfAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "TitleAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/TitleAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    },
+    {
+      "type": "ValkyrieAttribute",
+      "oldNamespace": "Valkyrie",
+      "oldAssembly": "Valkyrie.Runtime",
+      "path": "Runtime/Attributes/ValkyrieAttribute.cs",
+      "reason": "Annotation assembly remains engine-free; attributes are not serialized Unity objects"
+    }
+  ]
+}

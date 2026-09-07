@@ -3,8 +3,9 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class ManagedReferencePropertyRouter
     {
         private const BindingFlags FieldLookupFlags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;

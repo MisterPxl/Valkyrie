@@ -2,9 +2,10 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenPlayerEvents
     {
         [SerializeField] private UnityEvent _onCreated = new UnityEvent();
@@ -25,6 +26,7 @@ namespace Valkyrie.DOTween
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenStepEventBinding
     {
         [SerializeField] private string _stepId;
@@ -51,5 +53,6 @@ namespace Valkyrie.DOTween
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenStepEvent : UnityEvent<string> { }
 }

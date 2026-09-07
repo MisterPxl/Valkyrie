@@ -1,0 +1,24 @@
+{
+  "name": "Astra.Valkyrie.Integrations.DOTween.Samples.ReusableSequence.Runtime",
+  "rootNamespace": "Astra.Valkyrie.Integrations.DOTween.Samples",
+  "references": [
+    "Astra.Valkyrie.Integrations.DOTween.Runtime"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [
+    "ASTRA_VALKYRIE_V2"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.misterpxl.valkyrie",
+      "expression": "[2.0.0,3.0.0)",
+      "define": "ASTRA_VALKYRIE_V2"
+    }
+  ],
+  "noEngineReferences": false
+}

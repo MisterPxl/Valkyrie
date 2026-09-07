@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
     internal static class NestedObjectListRenderer
     {

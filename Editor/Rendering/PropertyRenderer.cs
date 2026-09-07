@@ -1,9 +1,10 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
     /// <summary>Shared layout and fixed-rect rendering for root and nested fields.</summary>
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class PropertyRenderer
     {
         private static float Line => EditorGUIUtility.singleLineHeight;

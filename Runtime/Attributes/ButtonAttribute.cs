@@ -1,6 +1,6 @@
 using System;
 
-namespace Valkyrie
+namespace Astra.Valkyrie
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
     public sealed class ButtonAttribute : ValkyrieAttribute

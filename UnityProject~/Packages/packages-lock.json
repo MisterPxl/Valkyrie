@@ -11,7 +11,7 @@
       "depth": 0,
       "source": "local",
       "dependencies": {
-        "com.misterpxl.valkyrie": "1.4.0"
+        "com.misterpxl.valkyrie": "2.0.0"
       }
     },
     "com.unity.ext.nunit": {

@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class ReflectionCache
     {
         private static readonly Dictionary<Type, TypeData> Cache = new();

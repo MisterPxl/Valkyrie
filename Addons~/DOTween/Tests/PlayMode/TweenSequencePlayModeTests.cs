@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using System.Collections;
 
-namespace Valkyrie.DOTween.Tests.PlayMode
+namespace Astra.Valkyrie.Integrations.DOTween.Tests.PlayMode
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Tests.PlayMode", "Valkyrie.DOTween.Tests.PlayMode")]
     public sealed class TweenSequencePlayModeTests
     {
         [UnityTest]

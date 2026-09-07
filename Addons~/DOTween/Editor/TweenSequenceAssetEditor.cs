@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Valkyrie.DOTween.Editor
+namespace Astra.Valkyrie.Integrations.DOTween.Editor
 {
     [CustomEditor(typeof(TweenSequenceAsset))]
-    public sealed class TweenSequenceAssetEditor : Valkyrie.Editor.ValkyrieEditor
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Editor", "Valkyrie.DOTween.Editor")]
+    public sealed class TweenSequenceAssetEditor : Astra.Valkyrie.Editor.ValkyrieEditor
     {
         private const float TimelineRowHeight = 20f;
         private const float TimelineLabelWidth = 150f;
@@ -43,7 +44,7 @@ namespace Valkyrie.DOTween.Editor
             DrawSequenceSettings();
 
             EditorGUILayout.Space();
-            Valkyrie.Editor.ManagedReferenceListRenderer.Draw(
+            Astra.Valkyrie.Editor.ManagedReferenceListRenderer.Draw(
                 _stepsProperty,
                 typeof(TweenStepDefinition));
 

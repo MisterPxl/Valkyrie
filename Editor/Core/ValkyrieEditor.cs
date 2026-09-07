@@ -1,7 +1,8 @@
 using UnityEditor;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public abstract class ValkyrieEditor : UnityEditor.Editor
     {
         private TypeData _typeData;

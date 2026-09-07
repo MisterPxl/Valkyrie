@@ -1,8 +1,9 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class InspectorRenderer
     {
         public static void Draw(SerializedObject serializedObject, Object[] targets, TypeData typeData)

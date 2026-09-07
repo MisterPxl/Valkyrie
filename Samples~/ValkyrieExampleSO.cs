@@ -1,11 +1,15 @@
 using UnityEngine;
-using Valkyrie;
+using Astra.Valkyrie;
+
+namespace Astra.Valkyrie.Samples
+{
 
 /// <summary>
 /// Demonstrates all Valkyrie V1 attributes on a ScriptableObject.
 /// Create via Assets > Create > Astra > Valkyrie > Example Config.
 /// </summary>
 [CreateAssetMenu(fileName = "ValkyrieExampleConfig", menuName = "Astra/Valkyrie/Example Config")]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public class ValkyrieExampleSO : ScriptableObject
 {
     // ── Title + Required ─────────────────────────────────
@@ -79,4 +83,6 @@ public class ValkyrieExampleSO : ScriptableObject
     {
         Debug.Log($"[{gameName}] Difficulty: {difficultyLabel} | Cheats: {enableCheats} | God Mode: {godMode}");
     }
+}
+
 }

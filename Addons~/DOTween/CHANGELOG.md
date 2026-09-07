@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.0 — Astra migration candidate (unreleased)
+
+- Migrate namespaces and assemblies to Astra, preserving script and assembly GUIDs.
+- Map serialized type history with `MovedFrom`; retain fields, tween IDs, bindings and preferences.
+- Update samples and consumer contracts; provide legacy fixtures and an upgrade/rollback guide.
+
+
 ## Unreleased
 
 ### Changed

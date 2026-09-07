@@ -1,15 +1,15 @@
 {
-  "name": "Valkyrie.DOTween.Tests.UGUI",
-  "rootNamespace": "Valkyrie.DOTween.Tests.EditMode",
+  "name": "Astra.Valkyrie.Integrations.DOTween.UGUI.Tests.EditMode",
+  "rootNamespace": "Astra.Valkyrie.Integrations.DOTween.Tests.EditMode",
   "references": [
     "UnityEngine.TestRunner",
     "UnityEditor.TestRunner",
-    "Valkyrie.Runtime",
-    "Valkyrie.Editor",
-    "Valkyrie.DOTween.Runtime",
-    "Valkyrie.DOTween.Editor",
+    "Astra.Valkyrie.Annotations",
+    "Astra.Valkyrie.Editor",
+    "Astra.Valkyrie.Integrations.DOTween.Runtime",
+    "Astra.Valkyrie.Integrations.DOTween.Editor",
     "Unity.ugui",
-    "Valkyrie.DOTween.UGUI.Runtime"
+    "Astra.Valkyrie.Integrations.DOTween.UGUI.Runtime"
   ],
   "includePlatforms": [
     "Editor"
@@ -24,13 +24,19 @@
   "autoReferenced": false,
   "defineConstraints": [
     "UNITY_INCLUDE_TESTS",
-    "VALKYRIE_DOTWEEN_UGUI"
+    "VALKYRIE_DOTWEEN_UGUI",
+    "ASTRA_VALKYRIE_V2"
   ],
   "versionDefines": [
     {
       "name": "com.unity.ugui",
       "expression": "0.0.0",
       "define": "VALKYRIE_DOTWEEN_UGUI"
+    },
+    {
+      "name": "com.misterpxl.valkyrie",
+      "expression": "[2.0.0,3.0.0)",
+      "define": "ASTRA_VALKYRIE_V2"
     }
   ],
   "noEngineReferences": false

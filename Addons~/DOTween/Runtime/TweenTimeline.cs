@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenTimeline
     {
         [SerializeReference] private List<TweenStepDefinition> _steps = new List<TweenStepDefinition>();

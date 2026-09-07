@@ -1,19 +1,17 @@
 {
-  "name": "Valkyrie.DOTween.Editor",
-  "rootNamespace": "Valkyrie.DOTween.Editor",
+  "name": "Astra.Valkyrie.Editor",
+  "rootNamespace": "Astra.Valkyrie.Editor",
   "references": [
-    "Valkyrie.DOTween.Runtime",
-    "Valkyrie.Editor"
+    "Astra.Valkyrie.Annotations",
+    "Astra.Valkyrie.Collections.Runtime"
   ],
   "includePlatforms": [
     "Editor"
   ],
   "excludePlatforms": [],
   "allowUnsafeCode": false,
-  "overrideReferences": true,
-  "precompiledReferences": [
-    "DOTween.dll"
-  ],
+  "overrideReferences": false,
+  "precompiledReferences": [],
   "autoReferenced": true,
   "defineConstraints": [],
   "versionDefines": [],

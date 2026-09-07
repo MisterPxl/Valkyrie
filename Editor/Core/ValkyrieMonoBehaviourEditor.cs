@@ -6,10 +6,11 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
     [CustomEditor(typeof(MonoBehaviour), true, isFallback = true)]
     [CanEditMultipleObjects]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public sealed class ValkyrieMonoBehaviourEditor : ValkyrieEditor { }
 }
 #endif

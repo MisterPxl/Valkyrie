@@ -1,11 +1,15 @@
 using UnityEditor;
 using UnityEngine;
-using Valkyrie.Editor;
+using Astra.Valkyrie.Editor;
+
+namespace Astra.Valkyrie.Samples
+{
 
 /// <summary>
 /// Demonstrates how a type-specific custom editor can keep Valkyrie's rendering.
 /// </summary>
 [CustomEditor(typeof(ValkyrieExampleSO))]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public sealed class ValkyrieCustomEditorExample : ValkyrieEditor
 {
     public override void OnInspectorGUI()
@@ -17,4 +21,6 @@ public sealed class ValkyrieCustomEditorExample : ValkyrieEditor
             "This panel is drawn by a type-specific custom editor.",
             MessageType.Info);
     }
+}
+
 }

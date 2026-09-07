@@ -3,8 +3,9 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public enum TweenVectorAxis
     {
         Position,
@@ -14,6 +15,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Punch", "Position", 200)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TransformPunchPositionStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -47,6 +49,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Punch", "Rotation", 201)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TransformPunchRotationStepDefinition : TimedTweenStep, ITweenTargetStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -74,6 +77,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Punch", "Scale", 202)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TransformPunchScaleStepDefinition : TimedTweenStep, ITweenTargetStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -101,6 +105,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Shake", "Position", 300)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TransformShakePositionStepDefinition : TimedTweenStep, ITweenTargetStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -129,6 +134,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Shake", "Rotation", 301)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TransformShakeRotationStepDefinition : TimedTweenStep, ITweenTargetStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -157,6 +163,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Shake", "Scale", 302)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TransformShakeScaleStepDefinition : TimedTweenStep, ITweenTargetStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -185,6 +192,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Camera", "Field Of View", 400)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class CameraFieldOfViewStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -214,6 +222,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Camera", "Orthographic Size", 401)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class CameraOrthographicSizeStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -243,6 +252,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Camera", "Background Color", 402)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class CameraBackgroundColorStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -272,6 +282,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Renderer", "Material Color", 500)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class MaterialColorStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -316,6 +327,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Renderer", "Sprite Color", 501)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class SpriteRendererColorStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -345,6 +357,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Callbacks", "Callback", 950)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class CallbackStepDefinition : TweenStep, ITweenTimelineStepDefinition
     {
         [SerializeField] private TweenPlacement _placement = new TweenPlacement();

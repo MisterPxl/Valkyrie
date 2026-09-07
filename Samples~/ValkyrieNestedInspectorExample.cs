@@ -1,8 +1,12 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Valkyrie;
+using Astra.Valkyrie;
 
+namespace Astra.Valkyrie.Samples
+{
+
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public sealed class ValkyrieNestedInspectorExample : MonoBehaviour
 {
     [Title("Nested attributes", "Expand Settings and Profiles to try conditions and groups.")]
@@ -15,6 +19,7 @@ public sealed class ValkyrieNestedInspectorExample : MonoBehaviour
 }
 
 [Serializable]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public sealed class NestedExampleSettings
 {
     public bool advanced;
@@ -25,14 +30,18 @@ public sealed class NestedExampleSettings
     [FoldoutGroup("Limits")] public float maximum = 10f;
 }
 
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public interface INestedExampleAction { }
 
 [Serializable]
 [ManagedReferenceCategory("Examples", "Nested action")]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public sealed class NestedExampleAction : INestedExampleAction
 {
     public bool enabled = true;
     [ShowIf(nameof(enabled))] public string message = "Hello";
     public NestedExampleSettings settings = new NestedExampleSettings();
     [SerializeReference] public INestedExampleAction next;
+}
+
 }

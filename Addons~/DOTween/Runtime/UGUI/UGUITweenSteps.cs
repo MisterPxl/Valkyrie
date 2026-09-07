@@ -3,10 +3,11 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
     [Serializable]
     [ManagedReferenceCategory("UI", "Graphic Color", 600)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.UGUI.Runtime")]
     public sealed class GraphicColorStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -43,6 +44,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("UI", "Graphic Fade", 601)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.UGUI.Runtime")]
     public sealed class GraphicFadeStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -87,6 +89,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("UI", "Image Fill Amount", 602)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.UGUI.Runtime")]
     public sealed class ImageFillAmountStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -124,6 +127,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("UI", "RectTransform Width Height", 603)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.UGUI.Runtime")]
     public sealed class RectTransformSizeStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();
@@ -153,6 +157,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("UI", "Text Typewriter", 604)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.UGUI.Runtime")]
     public sealed class TextTypewriterStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();

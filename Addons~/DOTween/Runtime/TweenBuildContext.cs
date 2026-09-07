@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenBuildContext
     {
         private readonly Transform _self;

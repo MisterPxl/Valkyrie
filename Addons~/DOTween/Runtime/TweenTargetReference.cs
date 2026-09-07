@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public enum TweenTargetMode
     {
         Self,
@@ -11,6 +12,7 @@ namespace Valkyrie.DOTween
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenTargetReference
     {
         [SerializeField] private TweenTargetMode _mode = TweenTargetMode.Self;

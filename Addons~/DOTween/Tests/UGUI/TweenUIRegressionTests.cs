@@ -3,11 +3,12 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEditor;
-using Valkyrie.DOTween.Editor;
+using Astra.Valkyrie.Integrations.DOTween.Editor;
 using Object = UnityEngine.Object;
 
-namespace Valkyrie.DOTween.Tests.EditMode
+namespace Astra.Valkyrie.Integrations.DOTween.Tests.EditMode
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Tests.EditMode", "Valkyrie.DOTween.Tests.UGUI")]
     public class TweenUIRegressionTests
     {
         [Test]

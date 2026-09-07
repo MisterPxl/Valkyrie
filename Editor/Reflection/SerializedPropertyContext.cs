@@ -4,9 +4,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
     /// <summary>Finds the owning object of a field, including polymorphic list elements.</summary>
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class SerializedPropertyContext
     {
         private static readonly Dictionary<(Type, string), FieldInfo> Fields = new();

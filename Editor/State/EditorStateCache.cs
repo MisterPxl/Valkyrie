@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class EditorStateCache
     {
         private static readonly Dictionary<string, object> States = new();

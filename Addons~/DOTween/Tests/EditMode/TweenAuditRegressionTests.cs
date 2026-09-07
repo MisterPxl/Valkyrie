@@ -1,11 +1,12 @@
 using NUnit.Framework;
 using UnityEngine;
 using DG.Tweening;
-using Valkyrie.DOTween.Editor;
+using Astra.Valkyrie.Integrations.DOTween.Editor;
 using Object = UnityEngine.Object;
 
-namespace Valkyrie.DOTween.Tests.EditMode
+namespace Astra.Valkyrie.Integrations.DOTween.Tests.EditMode
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Tests.EditMode", "Valkyrie.DOTween.Tests.EditMode")]
     public class TweenAuditRegressionTests
     {
         [Test]

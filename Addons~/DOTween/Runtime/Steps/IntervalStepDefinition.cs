@@ -2,10 +2,11 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
     [Serializable]
     [ManagedReferenceCategory("Timeline", "Interval", 900)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class IntervalStepDefinition : TweenStep, ITweenTimelineStepDefinition
     {
         [Min(0f)]

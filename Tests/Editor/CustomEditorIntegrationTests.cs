@@ -1,10 +1,11 @@
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
-using Valkyrie.Editor;
+using Astra.Valkyrie.Editor;
 
-namespace Valkyrie.Tests.Editor
+namespace Astra.Valkyrie.Tests.EditMode
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public sealed class CustomEditorIntegrationTests
     {
         private FallbackEditorTestObject _fallbackTarget;
@@ -62,15 +63,20 @@ namespace Valkyrie.Tests.Editor
         }
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public sealed class FallbackEditorTestObject : ScriptableObject { }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public sealed class SpecificEditorTestObject : ScriptableObject { }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public sealed class IntegratedEditorTestObject : ScriptableObject { }
 
     [CustomEditor(typeof(SpecificEditorTestObject))]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public sealed class SpecificEditorTestObjectEditor : UnityEditor.Editor { }
 
     [CustomEditor(typeof(IntegratedEditorTestObject))]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public sealed class IntegratedEditorTestObjectEditor : ValkyrieEditor { }
 }

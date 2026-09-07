@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c1e71d7cc82f435392f5fbbc02ff3ba, type: 3}
+  m_Name: Graph
+  m_EditorClassIdentifier: Astra.Valkyrie.MigrationProbe::ValkyrieMigrationFixture
+  Scores:
+    _entries:
+    - key: coins
+      value: 123
+    - key: level
+      value: 7
+  Objects:
+    _entries:
+    - key: a
+      value: {fileID: 11400000, guid: 9f02449167ec24b0f80373f1a7fb0da6, type: 2}
+    - key: b
+      value: {fileID: 11400000, guid: 9f02449167ec24b0f80373f1a7fb0da6, type: 2}
+  First:
+    rid: 5529774003593412631
+  Second:
+    rid: 5529774003593412631
+  Graph:
+    rid: 5529774003593412632
+  references:
+    version: 2
+    RefIds:
+    - rid: 5529774003593412631
+      type: {class: TransformMoveStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: 
+        _name: 
+        _duration: 0.7
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _endValue: {x: 7, y: 8, z: 9}
+        _local: 0
+        _snapping: 0
+    - rid: 5529774003593412632
+      type: {class: ValkyrieMigrationNode, ns: , asm: Astra.Valkyrie.MigrationProbe}
+      data:
+        Next:
+          rid: 5529774003593412632
+        Step:
+          rid: 5529774003593412631

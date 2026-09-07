@@ -3,24 +3,28 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public interface ITweenTargetStepDefinition
     {
         string TargetKey { get; }
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public interface ITweenTargetStep
     {
         TweenTargetReference Target { get; }
         Type RequiredTargetType { get; }
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public interface ITweenCapturableStep
     {
         bool CaptureCurrentValue(TweenBuildContext context);
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public interface ITweenTimelineStepDefinition
     {
         float EstimatedDuration { get; }
@@ -28,6 +32,7 @@ namespace Valkyrie.DOTween
         TweenPlacement Placement { get; }
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public enum TweenPlacementMode
     {
         Append,
@@ -35,6 +40,7 @@ namespace Valkyrie.DOTween
         Insert
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public enum TweenValueMode
     {
         To,
@@ -43,6 +49,7 @@ namespace Valkyrie.DOTween
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenPlacement
     {
         [SerializeField] private TweenPlacementMode _mode = TweenPlacementMode.Append;
@@ -126,6 +133,7 @@ namespace Valkyrie.DOTween
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public abstract class TweenStepDefinition
     {
         [SerializeField] private bool _enabled = true;
@@ -243,11 +251,13 @@ namespace Valkyrie.DOTween
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public abstract class TweenStep : TweenStepDefinition
     {
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public abstract class TimedTweenStepDefinition : TweenStep, ITweenTimelineStepDefinition
     {
         [Min(0f)]
@@ -477,6 +487,7 @@ namespace Valkyrie.DOTween
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public abstract class TimedTweenStep : TimedTweenStepDefinition
     {
     }

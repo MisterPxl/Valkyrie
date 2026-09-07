@@ -1,17 +1,22 @@
 using System;
 using UnityEngine;
-using Valkyrie;
+using Astra.Valkyrie;
+
+namespace Astra.Valkyrie.Samples
+{
 
 // ═══════════════════════════════════════════════════════
 //  Interface-based polymorphism
 // ═══════════════════════════════════════════════════════
 
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public interface ICondition
 {
     bool Evaluate();
 }
 
 [Serializable]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public class HealthCondition : ICondition
 {
     public int minHealth = 50;
@@ -21,6 +26,7 @@ public class HealthCondition : ICondition
 }
 
 [Serializable]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public class TagCondition : ICondition
 {
     public string requiredTag = "Player";
@@ -29,6 +35,7 @@ public class TagCondition : ICondition
 }
 
 [Serializable]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public class DistanceCondition : ICondition
 {
     public float maxDistance = 10f;
@@ -42,18 +49,21 @@ public class DistanceCondition : ICondition
 // ═══════════════════════════════════════════════════════
 
 [Serializable]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public abstract class RewardBase
 {
     public string rewardName = "Reward";
 }
 
 [Serializable]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public class GoldReward : RewardBase
 {
     public int amount = 100;
 }
 
 [Serializable]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public class ItemReward : RewardBase
 {
     public string itemId = "sword_01";
@@ -61,6 +71,7 @@ public class ItemReward : RewardBase
 }
 
 [Serializable]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public class ExperienceReward : RewardBase
 {
     public int xpAmount = 250;
@@ -77,6 +88,7 @@ public class ExperienceReward : RewardBase
 /// </summary>
 // CS0414: sample fields are inspected through the editor only, not read in code.
 #pragma warning disable 0414
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public class ValkyriePolymorphicExample : MonoBehaviour
 {
     // ── Interface field ──────────────────────────────────
@@ -129,3 +141,5 @@ public class ValkyriePolymorphicExample : MonoBehaviour
     }
 }
 #pragma warning restore 0414
+
+}

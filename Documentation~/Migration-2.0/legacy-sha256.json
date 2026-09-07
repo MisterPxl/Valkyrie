@@ -1,0 +1,16 @@
+{
+  "valkyrie-migration-baseline.json": "387f37e434b1a66b4b63461893dabe2c67a7c3a23bbc2f641d5b45a17bc2bdca",
+  "Assets/ValkyrieMigrationFixture.meta": "b71e3e11b2ac039acb5a7bc8639f3afbfda29fb41d0e2263eb6833e7084bf2f8",
+  "Assets/ValkyrieMigrationFixture/Graph.asset": "b0ec5ecc660331029df587520e80e4c4c47a624f4c5763d6c1a5837bfe6a128e",
+  "Assets/ValkyrieMigrationFixture/Player.prefab.meta": "c65cf2a83a8a49025730c7ba0381defdfc266dc44f3d8294b01959f822451e95",
+  "Assets/ValkyrieMigrationFixture/Sequence.asset.meta": "62e4fe67e04b084d7cf7e4b785b72ab46b773ed61dac3b7f3cd801f024a20908",
+  "Assets/ValkyrieMigrationFixture/Player.prefab": "91bfb246848babbcf8cd7b1589c5e64bfa2bd5c9f1db01e28e29899cf7bb036a",
+  "Assets/ValkyrieMigrationFixture/Player.unity": "69e0d65deeb186292710f218b350870ab1ff933a6c2a2cc2c910eec9e7bc89aa",
+  "Assets/ValkyrieMigrationFixture/Graph.asset.meta": "54e6b1e6890ec006578e4be53e92c1cc5806875845f80c7d76c77f845631ceb6",
+  "Assets/ValkyrieMigrationFixture/Player.unity.meta": "5f59669f8ea78a923d41005d7ac6d0fcc77ec3c0e68a6f7ee73b605ccc49bc52",
+  "Assets/ValkyrieMigrationFixture/Presets.asset": "8f5aff29010c6156e87b77919189a2f3f72bf0dc1ad19b3741187b622adff037",
+  "Assets/ValkyrieMigrationFixture/Presets.asset.meta": "69ef014528106b53e5aa02f8a18c4f0849690b3f6840810f7f12aa499ad00b96",
+  "Assets/ValkyrieMigrationFixture/Sequence.asset": "0bd7a6d4061bd122d36b115bb41e560b48fc333fc95911a18773dd2ed2c6f0cc",
+  "Assets/Editor/Migration/Astra.Valkyrie.MigrationProbe.asmdef.meta": "dc9b06121458e694254a5e5ef95998737ec13ffe719c6e41e40024bf34b3c331",
+  "Assets/Editor/Migration/ValkyrieMigrationFixture.cs.meta": "8fb7eae4b83414872c5a2e6d2da9f5c76611242b86bc1ff66a7a36a9bc1c06fd"
+}

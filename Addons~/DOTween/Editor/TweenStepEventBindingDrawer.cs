@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Valkyrie.DOTween.Editor
+namespace Astra.Valkyrie.Integrations.DOTween.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Editor", "Valkyrie.DOTween.Editor")]
     public sealed class TweenStepEventOptions
     {
         public readonly List<string> Ids = new List<string> { string.Empty };
@@ -45,6 +46,7 @@ namespace Valkyrie.DOTween.Editor
     }
 
     [CustomPropertyDrawer(typeof(TweenStepEventBinding))]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Editor", "Valkyrie.DOTween.Editor")]
     public sealed class TweenStepEventBindingDrawer : PropertyDrawer
     {
         private static float Gap => EditorGUIUtility.standardVerticalSpacing;
@@ -98,7 +100,7 @@ namespace Valkyrie.DOTween.Editor
     {
         static TweenStepClipboardIntegration()
         {
-            Valkyrie.Editor.ManagedReferenceClipboard.CloneCreated += clone =>
+            Astra.Valkyrie.Editor.ManagedReferenceClipboard.CloneCreated += clone =>
             {
                 if (clone is TweenStepDefinition step) step.RegenerateId();
             };

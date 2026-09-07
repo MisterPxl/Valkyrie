@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
     /// <summary>
     /// Renderer for <c>[SerializeReference]</c> collections (<c>List&lt;T&gt;</c> or <c>T[]</c>).
@@ -20,6 +20,7 @@ namespace Valkyrie.Editor
     ///         with its own foldout, type picker and child properties.</item>
     /// </list>
     /// </summary>
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class ManagedReferenceListRenderer
     {
         // ReorderableLists are stateful and must be reused across draw calls for a given

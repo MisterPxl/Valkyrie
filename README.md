@@ -2,8 +2,10 @@
 
 Part of the **Astra** family. This package works independently of the Astra framework.
 
-The Astra menu labels described here are unreleased. Existing published tags keep
-their previous labels until the next release; package IDs and C# APIs are unchanged.
+This is the **2.0 API migration candidate**, paired with the DOTween integration
+3.0 candidate. Namespaces and assemblies now use Astra; package IDs stay stable.
+Read the [migration guide](Documentation~/Migration-2.0/README.md) before upgrading.
+No new release tag has been created; use the exact revision in the Astra catalog.
 
 Valkyrie is a lightweight inspector helper for Unity projects.
 
@@ -12,18 +14,18 @@ Valkyrie is a lightweight inspector helper for Unity projects.
 Add the package to the project's `Packages/manifest.json`:
 
 ```json
-"com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.5.0"
+"com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#codex/astra-conventions"
 ```
 
 ## Optional integrations
 
 The DOTween integration (`com.misterpxl.valkyrie.dotween`) is an opt-in bonus and is
 not included when installing this package. It lives on the
-[`addon/dotween` branch](https://github.com/misterpxl/Valkyrie/tree/addon/dotween/Addons~/DOTween);
+[`codex/astra-conventions` branch](https://github.com/misterpxl/Valkyrie/tree/codex/astra-conventions/Addons~/DOTween);
 see its README for prerequisites and installation instructions:
 
 ```json
-"com.misterpxl.valkyrie.dotween": "https://github.com/misterpxl/Valkyrie.git?path=/Addons~/DOTween#dotween-v2.1.0"
+"com.misterpxl.valkyrie.dotween": "https://github.com/misterpxl/Valkyrie.git?path=/Addons~/DOTween#codex/astra-conventions"
 ```
 
 ## Sample
@@ -101,7 +103,7 @@ reference rendering:
 
 ```csharp
 using UnityEditor;
-using Valkyrie.Editor;
+using Astra.Valkyrie.Editor;
 
 [CustomEditor(typeof(MyComponent))]
 public sealed class MyComponentEditor : ValkyrieEditor

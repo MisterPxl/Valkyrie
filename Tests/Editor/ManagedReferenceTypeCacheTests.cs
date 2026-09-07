@@ -2,10 +2,11 @@ using System;
 using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
-using Valkyrie.Editor;
+using Astra.Valkyrie.Editor;
 
-namespace Valkyrie.Tests.Editor
+namespace Astra.Valkyrie.Tests.EditMode
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public sealed class ManagedReferenceTypeCacheTests
     {
         [SetUp]

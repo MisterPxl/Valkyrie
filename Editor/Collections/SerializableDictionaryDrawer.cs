@@ -1,11 +1,12 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using Valkyrie.Collections;
+using Astra.Valkyrie.Collections;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
     [CustomPropertyDrawer(typeof(SerializableDictionaryBase), true)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public class SerializableDictionaryDrawer : PropertyDrawer
     {
         private static readonly Color DuplicateKeyColor = new(1f, 0.3f, 0.3f, 0.15f);

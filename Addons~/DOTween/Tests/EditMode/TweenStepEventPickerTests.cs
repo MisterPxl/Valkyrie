@@ -1,11 +1,12 @@
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
-using Valkyrie.DOTween.Editor;
-using Valkyrie.Editor;
+using Astra.Valkyrie.Integrations.DOTween.Editor;
+using Astra.Valkyrie.Editor;
 
-namespace Valkyrie.DOTween.Tests.EditMode
+namespace Astra.Valkyrie.Integrations.DOTween.Tests.EditMode
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Tests.EditMode", "Valkyrie.DOTween.Tests.EditMode")]
     public class TweenStepEventPickerTests
     {
         private GameObject _owner;

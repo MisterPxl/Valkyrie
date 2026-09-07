@@ -1,9 +1,10 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
     [CreateAssetMenu(fileName = "TweenSequence", menuName = "Astra/Valkyrie/DOTween/Tween Sequence")]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenSequenceAsset : ScriptableObject
     {
         [SerializeField] private TweenTimeline _timeline = new TweenTimeline();

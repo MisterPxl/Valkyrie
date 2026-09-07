@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Valkyrie.Collections
+namespace Astra.Valkyrie.Collections
 {
     /// <summary>
     /// Non-generic base class used as a target for PropertyDrawer registration.
     /// </summary>
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Collections", "Valkyrie.Collections")]
     public abstract class SerializableDictionaryBase { }
 
     /// <summary>
@@ -16,6 +17,7 @@ namespace Valkyrie.Collections
     /// Backed by a serialized list of key/value pairs, with a runtime dictionary cache.
     /// </summary>
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Collections", "Valkyrie.Collections")]
     public class SerializableDictionary<TKey, TValue> : SerializableDictionaryBase,
         ISerializationCallbackReceiver,
         IDictionary<TKey, TValue>

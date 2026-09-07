@@ -2,17 +2,24 @@ using System;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEditor;
-using Valkyrie.Editor;
+using Astra.Valkyrie.Editor;
 using Object = UnityEngine.Object;
 
-namespace Valkyrie.Tests.Editor
+namespace Astra.Valkyrie.Tests.EditMode
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public interface IAction { }
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     [Serializable] public class ActionA : IAction { public int value; }
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     [Serializable] public class ActionB : IAction { public string text; }
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public class Holder : ScriptableObject { [SerializeReference] public IAction action; }
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     [Serializable] public class IntProducer : IProducer<int> { }
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     [Serializable] public class ObjectConsumer : IConsumer<object> { }
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public class BaseConditions
     {
         private bool visible = false;
@@ -22,8 +29,10 @@ namespace Valkyrie.Tests.Editor
         [ShowIf("VisibleProperty")] public int propertyDetail;
         [ShowIf("VisibleMethod")] public int methodDetail;
     }
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public class DerivedConditions : BaseConditions { }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public class AuditRegressionTests
     {
         [TestCase("detail")]

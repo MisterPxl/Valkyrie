@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEditor;
 
-namespace Valkyrie.DOTween.Editor
+namespace Astra.Valkyrie.Integrations.DOTween.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Editor", "Valkyrie.DOTween.Editor")]
     public static class TweenTimelineClipboard
     {
         private static TweenTimeline _timeline;

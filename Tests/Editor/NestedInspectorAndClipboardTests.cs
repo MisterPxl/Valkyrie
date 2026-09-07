@@ -5,13 +5,15 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
-using Valkyrie.Editor;
+using Astra.Valkyrie.Editor;
 using Object = UnityEngine.Object;
 
-namespace Valkyrie.Tests.Editor
+namespace Astra.Valkyrie.Tests.EditMode
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public interface IClipboardNode { }
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public class ClipboardNode : IClipboardNode
     {
         public int value;
@@ -21,6 +23,7 @@ namespace Valkyrie.Tests.Editor
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public class NestedInspectorData
     {
         public bool show;
@@ -32,8 +35,10 @@ namespace Valkyrie.Tests.Editor
         [Title("Title", "Subtitle"), InfoBox("Information")] public int decorated;
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     [Serializable] public class DrawerData { [ShowIf("missing")] public int number; }
     [CustomPropertyDrawer(typeof(DrawerData))]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public class TestNestedDrawer : PropertyDrawer
     {
         public static bool DrewDisabled;
@@ -45,6 +50,7 @@ namespace Valkyrie.Tests.Editor
         }
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public class NestedInspectorHost : ScriptableObject
     {
         public bool show = true;
@@ -56,6 +62,7 @@ namespace Valkyrie.Tests.Editor
         [SerializeReference] public NestedInspectorData incompatible;
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public class NestedInspectorTestWindow : EditorWindow
     {
         public SerializedObject Owner;
@@ -67,6 +74,7 @@ namespace Valkyrie.Tests.Editor
         }
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public class NestedInspectorAndClipboardTests
     {
         private NestedInspectorHost _a;

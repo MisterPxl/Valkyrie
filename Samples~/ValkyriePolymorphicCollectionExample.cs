@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Valkyrie;
+using Astra.Valkyrie;
+
+namespace Astra.Valkyrie.Samples
+{
 
 /// <summary>
 /// Demonstrates Valkyrie's <c>[SerializeReference]</c> support on collections.
@@ -15,6 +18,7 @@ using Valkyrie;
 /// <para>Reuses <c>ICondition</c> and <c>RewardBase</c> declared in
 /// <c>ValkyriePolymorphicExample.cs</c> to avoid duplicating sample types.</para>
 /// </summary>
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public sealed class ValkyriePolymorphicCollectionExample : MonoBehaviour
 {
     [Title("Conditions (List)", "Interface-based polymorphism in a List<T>")]
@@ -73,4 +77,6 @@ public sealed class ValkyriePolymorphicCollectionExample : MonoBehaviour
         _rewards = new RewardBase[0];
         _bonusRewards?.Clear();
     }
+}
+
 }

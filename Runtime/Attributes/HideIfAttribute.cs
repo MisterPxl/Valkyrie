@@ -1,4 +1,4 @@
-namespace Valkyrie
+namespace Astra.Valkyrie
 {
     public sealed class HideIfAttribute : ConditionalAttribute
     {

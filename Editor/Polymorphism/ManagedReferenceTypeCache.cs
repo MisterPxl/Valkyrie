@@ -4,8 +4,9 @@ using System.Linq;
 using System.Reflection;
 using UnityEditor;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class ManagedReferenceTypeCache
     {
         private static readonly Dictionary<Type, Type[]> Cache = new();

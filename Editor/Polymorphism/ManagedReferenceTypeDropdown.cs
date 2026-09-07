@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
     /// <summary>
     /// Native Unity searchable dropdown listing every concrete type compatible with
@@ -15,6 +15,7 @@ namespace Valkyrie.Editor
     /// <para>Items are grouped by namespace (slashes become hierarchy levels), so
     /// large type lists stay navigable. A "None" entry at the top clears the slot.</para>
     /// </summary>
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public sealed class ManagedReferenceTypeDropdown : AdvancedDropdown
     {
         private readonly Type _baseType;

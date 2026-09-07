@@ -1,10 +1,14 @@
 using UnityEngine;
-using Valkyrie;
+using Astra.Valkyrie;
+
+namespace Astra.Valkyrie.Samples
+{
 
 /// <summary>
 /// Demonstrates all Valkyrie V1 attributes on a MonoBehaviour.
 /// Attach to any GameObject to see the inspector in action.
 /// </summary>
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public class ValkyrieExample : MonoBehaviour
 {
     // ── Title + InfoBox + Required ───────────────────────
@@ -97,4 +101,6 @@ public class ValkyrieExample : MonoBehaviour
 
     private bool IsMaxLevel() => currentLevel >= 99;
     private bool HasTarget => target != null;
+}
+
 }

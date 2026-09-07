@@ -1,6 +1,6 @@
 using System;
 
-namespace Valkyrie
+namespace Astra.Valkyrie
 {
     /// <summary>
     /// Groups a concrete <c>[SerializeReference]</c> type inside Valkyrie's managed-reference picker.

@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public enum TweenDiagnosticSeverity
     {
         Info,
@@ -10,6 +11,7 @@ namespace Valkyrie.DOTween
         Error
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public enum TweenDiagnosticCode
     {
         MissingAsset,
@@ -28,6 +30,7 @@ namespace Valkyrie.DOTween
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenBuildDiagnostic
     {
         [SerializeField] private TweenDiagnosticSeverity _severity;

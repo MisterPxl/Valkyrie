@@ -1,10 +1,11 @@
 using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
-using Valkyrie.Editor;
+using Astra.Valkyrie.Editor;
 
-namespace Valkyrie.Tests.Editor
+namespace Astra.Valkyrie.Tests.EditMode
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Tests.Editor", "Valkyrie.Tests.Editor")]
     public sealed class ManagedReferenceMutationServiceTests
     {
         private ManagedReferenceTestObject _targetA;

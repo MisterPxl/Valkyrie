@@ -1,0 +1,491 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b5652aaed334dbfb407765777ee05a, type: 3}
+  m_Name: Sequence
+  m_EditorClassIdentifier: Valkyrie.DOTween.Runtime::Valkyrie.DOTween.TweenSequenceAsset
+  _timeline:
+    _steps:
+    - rid: 5529774003593412608
+    - rid: 5529774003593412609
+    - rid: 5529774003593412610
+    - rid: 5529774003593412611
+    - rid: 5529774003593412612
+    - rid: 5529774003593412613
+    - rid: 5529774003593412614
+    - rid: 5529774003593412615
+    - rid: 5529774003593412616
+    - rid: 5529774003593412617
+    - rid: 5529774003593412618
+    - rid: 5529774003593412619
+    - rid: 5529774003593412620
+    - rid: 5529774003593412621
+    - rid: 5529774003593412622
+    - rid: 5529774003593412623
+    - rid: 5529774003593412624
+    - rid: 5529774003593412625
+    - rid: 5529774003593412626
+    - rid: 5529774003593412627
+    - rid: 5529774003593412628
+    - rid: 5529774003593412629
+    _ease: 7
+    _loops: 3
+    _loopType: 0
+    _updateType: 0
+    _independentUpdate: 0
+    _timeScale: 0.75
+    _autoKill: 0
+    _recyclable: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 5529774003593412608
+      type: {class: CallbackStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: c00ffd74c405419e8bc07ccb47e05e5b
+        _name: Legacy CallbackStepDefinition
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _callback:
+          m_PersistentCalls:
+            m_Calls: []
+    - rid: 5529774003593412609
+      type: {class: CameraBackgroundColorStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: 7bc7ceeffeed4d07819ace48ec7e41dc
+        _name: Legacy CameraBackgroundColorStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _color: {r: 0, g: 0, b: 0, a: 1}
+    - rid: 5529774003593412610
+      type: {class: CameraFieldOfViewStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: 3eba05f2e95f4ce7a886318306407b38
+        _name: Legacy CameraFieldOfViewStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _fieldOfView: 60
+    - rid: 5529774003593412611
+      type: {class: CameraOrthographicSizeStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: d561bd252a454b98a838a862e72be56e
+        _name: Legacy CameraOrthographicSizeStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _orthographicSize: 5
+    - rid: 5529774003593412612
+      type: {class: CanvasGroupFadeStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: 0c451a151418435fa77c7527fe36050c
+        _name: Legacy CanvasGroupFadeStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _endAlpha: 1
+    - rid: 5529774003593412613
+      type: {class: GraphicColorStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.UGUI.Runtime}
+      data:
+        _enabled: 1
+        _id: af218734fc334249a2a170513b198ec9
+        _name: Legacy GraphicColorStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 5529774003593412614
+      type: {class: GraphicFadeStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.UGUI.Runtime}
+      data:
+        _enabled: 1
+        _id: 3420e0a8b2cc4b2da30d7c23d4d20c19
+        _name: Legacy GraphicFadeStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _alpha: 1
+    - rid: 5529774003593412615
+      type: {class: ImageFillAmountStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.UGUI.Runtime}
+      data:
+        _enabled: 1
+        _id: 3fd530741e324364930d508ea241e0d2
+        _name: Legacy ImageFillAmountStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _fillAmount: 1
+    - rid: 5529774003593412616
+      type: {class: IntervalStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: eb6923710c5f4cb2b1ffd3e89c532620
+        _name: Legacy IntervalStepDefinition
+        _duration: 1
+        _placement:
+          _mode: 0
+          _insertAt: 0
+    - rid: 5529774003593412617
+      type: {class: MaterialColorStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: 3a2e281ecd344803a33209852329ed89
+        _name: Legacy MaterialColorStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _colorProperty: _Color
+        _color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 5529774003593412618
+      type: {class: RectTransformSizeStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.UGUI.Runtime}
+      data:
+        _enabled: 1
+        _id: f605a4488b2047b784d42d3927f5f65d
+        _name: Legacy RectTransformSizeStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _sizeDelta: {x: 100, y: 100}
+    - rid: 5529774003593412619
+      type: {class: SpriteRendererColorStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: 5553ec52a1aa4d86a69021ea33fea7ce
+        _name: Legacy SpriteRendererColorStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _color: {r: 1, g: 1, b: 1, a: 1}
+    - rid: 5529774003593412620
+      type: {class: TextTypewriterStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.UGUI.Runtime}
+      data:
+        _enabled: 1
+        _id: 7f8e005db03c4cd1a9295ff63d4c80ac
+        _name: Legacy TextTypewriterStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _text: New text
+    - rid: 5529774003593412621
+      type: {class: TransformMoveStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: 5e860f28460e4bc8a8c9d22d02976880
+        _name: Legacy TransformMoveStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _endValue: {x: 0, y: 0, z: 0}
+        _local: 0
+        _snapping: 0
+    - rid: 5529774003593412622
+      type: {class: TransformPunchPositionStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: 8d4608d648e74971b1f4a1ceae801677
+        _name: Legacy TransformPunchPositionStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _punch: {x: 0, y: 1, z: 0}
+        _vibrato: 10
+        _elasticity: 1
+    - rid: 5529774003593412623
+      type: {class: TransformPunchRotationStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: 07b68d68494b46139d1664ba148596bf
+        _name: Legacy TransformPunchRotationStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _punch: {x: 0, y: 0, z: 15}
+        _vibrato: 10
+        _elasticity: 1
+    - rid: 5529774003593412624
+      type: {class: TransformPunchScaleStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: db4bfa47029e4a0aa4bfbfd688e612ae
+        _name: Legacy TransformPunchScaleStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _punch: {x: 0.2, y: 0.2, z: 0.2}
+        _vibrato: 10
+        _elasticity: 1
+    - rid: 5529774003593412625
+      type: {class: TransformRotationStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: 9eeb0d11d02647d5a0df0bbdb4087529
+        _name: Legacy TransformRotationStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _endValue: {x: 0, y: 0, z: 0}
+        _rotateMode: 0
+        _local: 0
+    - rid: 5529774003593412626
+      type: {class: TransformScaleStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: 6d492ab43e1846199d9ff9b7428ca8e1
+        _name: Legacy TransformScaleStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _endValue: {x: 1, y: 1, z: 1}
+    - rid: 5529774003593412627
+      type: {class: TransformShakePositionStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: a7ddd280d8de4aa6b151920dffdfecd4
+        _name: Legacy TransformShakePositionStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _strength: {x: 1, y: 1, z: 1}
+        _vibrato: 10
+        _randomness: 90
+        _fadeOut: 1
+    - rid: 5529774003593412628
+      type: {class: TransformShakeRotationStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: b4aed5aee61b4980b0c8054fe3707bd2
+        _name: Legacy TransformShakeRotationStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _strength: {x: 0, y: 0, z: 15}
+        _vibrato: 10
+        _randomness: 90
+        _fadeOut: 1
+    - rid: 5529774003593412629
+      type: {class: TransformShakeScaleStepDefinition, ns: Valkyrie.DOTween, asm: Valkyrie.DOTween.Runtime}
+      data:
+        _enabled: 1
+        _id: a0c944e474b54052b63c59a4eed85a76
+        _name: Legacy TransformShakeScaleStepDefinition
+        _duration: 1
+        _delay: 0
+        _ease: 6
+        _loops: 1
+        _loopType: 0
+        _valueMode: 0
+        _placement:
+          _mode: 0
+          _insertAt: 0
+        _target:
+          _mode: 0
+          _target: {fileID: 0}
+          _key: Self
+        _strength: {x: 0.2, y: 0.2, z: 0.2}
+        _vibrato: 10
+        _randomness: 90
+        _fadeOut: 1

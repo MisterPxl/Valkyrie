@@ -1,12 +1,16 @@
 using System;
 using UnityEngine;
-using Valkyrie;
-using Valkyrie.Collections;
+using Astra.Valkyrie;
+using Astra.Valkyrie.Collections;
+
+namespace Astra.Valkyrie.Samples
+{
 
 // ═══════════════════════════════════════════════════════
 //  Supporting types for the demo
 // ═══════════════════════════════════════════════════════
 
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public enum ItemRarity
 {
     Common,
@@ -16,6 +20,7 @@ public enum ItemRarity
 }
 
 [Serializable]
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public class ItemConfig
 {
     public string displayName = "Item";
@@ -32,6 +37,7 @@ public class ItemConfig
 /// Demonstrates SerializableDictionary with 3 different type combinations.
 /// Attach to a GameObject to test in the inspector.
 /// </summary>
+[UnityEngine.Scripting.APIUpdating.MovedFrom(false, "")]
 public class ValkyrieDictionaryExample : MonoBehaviour
 {
     // ── string → int ─────────────────────────────────────
@@ -86,4 +92,6 @@ public class ValkyrieDictionaryExample : MonoBehaviour
         else
             Debug.Log("No prefab registered for key 'Player'");
     }
+}
+
 }

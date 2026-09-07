@@ -2,8 +2,9 @@ using System;
 using UnityEditor;
 using UnityEngine;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class ButtonRenderer
     {
         private static readonly Color SeparatorColor = new(0.35f, 0.35f, 0.35f, 0.8f);

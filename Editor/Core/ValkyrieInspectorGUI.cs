@@ -1,11 +1,12 @@
 using System;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
     /// <summary>
     /// Draws Valkyrie's inspector from a custom Unity editor that cannot inherit
     /// from <see cref="ValkyrieEditor"/>.
     /// </summary>
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class ValkyrieInspectorGUI
     {
         /// <summary>

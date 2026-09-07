@@ -1,6 +1,6 @@
 using System;
 
-namespace Valkyrie
+namespace Astra.Valkyrie
 {
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
     public abstract class ValkyrieAttribute : Attribute

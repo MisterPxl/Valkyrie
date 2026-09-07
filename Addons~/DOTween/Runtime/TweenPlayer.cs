@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public enum TweenCleanupMode
     {
         None,
@@ -12,6 +13,7 @@ namespace Valkyrie.DOTween
         CompleteAndKill
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public enum TweenPlayerSourceMode
     {
         Single,
@@ -19,6 +21,7 @@ namespace Valkyrie.DOTween
         Asset
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenSequenceRuntimeIdentity
     {
         public TweenPlayer Player { get; private set; }
@@ -40,6 +43,7 @@ namespace Valkyrie.DOTween
 
     [AddComponentMenu("Astra/Valkyrie/DOTween/Tween Player")]
     [DisallowMultipleComponent]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public class TweenPlayer : MonoBehaviour
     {
         [SerializeField] private TweenPlayerSourceMode _sourceMode = TweenPlayerSourceMode.Single;

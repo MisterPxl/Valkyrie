@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Valkyrie.DOTween.Samples
+namespace Astra.Valkyrie.Integrations.DOTween.Samples
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Samples", "Valkyrie.DOTween.Sample.ReusableSequence")]
     public sealed class ReusableTweenSequenceSample : MonoBehaviour
     {
         private const string AnimatedBindingKey = "Animated";

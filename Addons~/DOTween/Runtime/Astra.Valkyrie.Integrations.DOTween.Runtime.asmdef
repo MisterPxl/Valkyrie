@@ -1,10 +1,8 @@
 {
-  "name": "Valkyrie.DOTween.UGUI.Runtime",
-  "rootNamespace": "Valkyrie.DOTween",
+  "name": "Astra.Valkyrie.Integrations.DOTween.Runtime",
+  "rootNamespace": "Astra.Valkyrie.Integrations.DOTween",
   "references": [
-    "Valkyrie.DOTween.Runtime",
-    "Valkyrie.Runtime",
-    "Unity.ugui"
+    "Astra.Valkyrie.Annotations"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
@@ -15,13 +13,13 @@
   ],
   "autoReferenced": true,
   "defineConstraints": [
-    "VALKYRIE_DOTWEEN_UGUI"
+    "ASTRA_VALKYRIE_V2"
   ],
   "versionDefines": [
     {
-      "name": "com.unity.ugui",
-      "expression": "0.0.0",
-      "define": "VALKYRIE_DOTWEEN_UGUI"
+      "name": "com.misterpxl.valkyrie",
+      "expression": "[2.0.0,3.0.0)",
+      "define": "ASTRA_VALKYRIE_V2"
     }
   ],
   "noEngineReferences": false

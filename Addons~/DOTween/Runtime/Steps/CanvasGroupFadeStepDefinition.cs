@@ -2,10 +2,11 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
     [Serializable]
     [ManagedReferenceCategory("UI", "Canvas Group Fade", 100)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class CanvasGroupFadeStepDefinition : TimedTweenStep, ITweenTargetStep, ITweenTargetStepDefinition, ITweenCapturableStep
     {
         [SerializeField] private TweenTargetReference _target = TweenTargetReference.Self();

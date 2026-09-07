@@ -1,0 +1,29 @@
+{
+  "name": "Astra.Valkyrie.Integrations.DOTween.Editor",
+  "rootNamespace": "Astra.Valkyrie.Integrations.DOTween.Editor",
+  "references": [
+    "Astra.Valkyrie.Integrations.DOTween.Runtime",
+    "Astra.Valkyrie.Editor"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "DOTween.dll"
+  ],
+  "autoReferenced": true,
+  "defineConstraints": [
+    "ASTRA_VALKYRIE_V2"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.misterpxl.valkyrie",
+      "expression": "[2.0.0,3.0.0)",
+      "define": "ASTRA_VALKYRIE_V2"
+    }
+  ],
+  "noEngineReferences": false
+}

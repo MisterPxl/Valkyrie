@@ -1,9 +1,7 @@
 {
-  "name": "Valkyrie.DOTween.Sample.ReusableSequence",
-  "rootNamespace": "Valkyrie.DOTween.Samples",
-  "references": [
-    "Valkyrie.DOTween.Runtime"
-  ],
+  "name": "Astra.Valkyrie.Collections.Runtime",
+  "rootNamespace": "Astra.Valkyrie.Collections",
+  "references": [],
   "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": false,

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-namespace Valkyrie.Editor
+namespace Astra.Valkyrie.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.Editor", "Valkyrie.Editor")]
     public static class ConditionResolver
     {
         private enum MemberKind { NotFound, Field, Property, Method }

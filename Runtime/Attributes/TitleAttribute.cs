@@ -1,6 +1,6 @@
 using System;
 
-namespace Valkyrie
+namespace Astra.Valkyrie
 {
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = true)]
     public sealed class TitleAttribute : ValkyrieAttribute

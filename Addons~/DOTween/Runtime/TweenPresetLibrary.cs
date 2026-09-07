@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
     [CreateAssetMenu(fileName = "TweenPresetLibrary", menuName = "Astra/Valkyrie/DOTween/Tween Preset Library")]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenPresetLibrary : ScriptableObject
     {
         [SerializeField] private List<TweenPreset> _presets = new List<TweenPreset>();
@@ -24,6 +25,7 @@ namespace Valkyrie.DOTween
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class TweenPreset
     {
         [SerializeField] private string _name = "Preset";

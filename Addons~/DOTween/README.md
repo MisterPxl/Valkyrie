@@ -1,15 +1,16 @@
 # Astra Valkyrie — DOTween Integration
 
 An optional **Astra integration**. Install its prerequisites explicitly; the base
-packages remain usable independently. Astra labels in this working copy will ship
-with the next release; existing published tags retain their earlier labels.
+packages remain usable independently. This is the **3.0 migration candidate** for
+Valkyrie 2.x. Follow the [migration guide](../../Documentation~/Migration-2.0/README.md).
+Use the exact revisions from the Astra catalog; no new release tag has been created.
 
 Optional no-code DOTween integration for Valkyrie Inspector.
 
 ## Prerequisites
 
 - Unity 6 or newer.
-- Valkyrie Inspector 1.5.0 or newer.
+- Valkyrie Inspector 2.x (this integration does not target the old 1.x API).
 - DOTween Free installed separately. DOTween Pro is not required.
 
 Install DOTween in the consuming Unity project and run DOTween setup before
@@ -20,8 +21,8 @@ installing this integration.
 ```json
 {
   "dependencies": {
-    "com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#v1.5.0",
-    "com.misterpxl.valkyrie.dotween": "https://github.com/misterpxl/Valkyrie.git?path=/Addons~/DOTween#dotween-v2.1.0"
+    "com.misterpxl.valkyrie": "https://github.com/misterpxl/Valkyrie.git#codex/astra-conventions",
+    "com.misterpxl.valkyrie.dotween": "https://github.com/misterpxl/Valkyrie.git?path=/Addons~/DOTween#codex/astra-conventions"
   }
 }
 ```
@@ -47,7 +48,7 @@ Runtime steps include transform move, rotate, scale, punch, shake, CanvasGroup
 fade, material color, sprite color, camera FOV/orthographic size/background
 color, interval, and callback.
 
-The optional `Valkyrie.DOTween.UGUI.Runtime` assembly adds uGUI steps when
+The optional `Astra.Valkyrie.Integrations.DOTween.UGUI.Runtime` assembly adds uGUI steps when
 `com.unity.ugui` is installed: `Graphic` color/fade, `Image.fillAmount`,
 `RectTransform.sizeDelta`, and legacy `Text` typewriter.
 

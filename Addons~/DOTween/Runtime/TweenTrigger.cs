@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 
-namespace Valkyrie.DOTween
+namespace Astra.Valkyrie.Integrations.DOTween
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public enum TweenPlayerAction
     {
         Play,
@@ -15,6 +16,7 @@ namespace Valkyrie.DOTween
         Rewind
     }
 
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public enum TweenPlayerLifecycleEvent
     {
         OnEnable,
@@ -24,6 +26,7 @@ namespace Valkyrie.DOTween
     }
 
     [Serializable]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public abstract class TweenTrigger
     {
         [SerializeField] private TweenPlayerAction _action = TweenPlayerAction.Play;
@@ -75,6 +78,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Lifecycle", "On Enable", 0)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class OnEnableTweenTrigger : TweenTrigger
     {
         public override bool Matches(TweenPlayerLifecycleEvent lifecycleEvent)
@@ -85,6 +89,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Lifecycle", "Start", 1)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class StartTweenTrigger : TweenTrigger
     {
         public override bool Matches(TweenPlayerLifecycleEvent lifecycleEvent)
@@ -95,6 +100,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Lifecycle", "On Disable", 2)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class OnDisableTweenTrigger : TweenTrigger
     {
         public override bool Matches(TweenPlayerLifecycleEvent lifecycleEvent)
@@ -105,6 +111,7 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Lifecycle", "On Destroy", 3)]
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween", "Valkyrie.DOTween.Runtime")]
     public sealed class OnDestroyTweenTrigger : TweenTrigger
     {
         public override bool Matches(TweenPlayerLifecycleEvent lifecycleEvent)

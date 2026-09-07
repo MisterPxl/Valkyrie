@@ -1,8 +1,9 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Valkyrie.DOTween.Editor
+namespace Astra.Valkyrie.Integrations.DOTween.Editor
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Editor", "Valkyrie.DOTween.Editor")]
     public static class TweenTimelineCloneUtility
     {
         public static TweenTimeline Clone(TweenTimeline source)

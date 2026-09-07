@@ -1,10 +1,11 @@
 using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
-using Valkyrie.DOTween.Editor;
+using Astra.Valkyrie.Integrations.DOTween.Editor;
 
-namespace Valkyrie.DOTween.Tests.EditMode
+namespace Astra.Valkyrie.Integrations.DOTween.Tests.EditMode
 {
+    [UnityEngine.Scripting.APIUpdating.MovedFrom(false, "Valkyrie.DOTween.Tests.EditMode", "Valkyrie.DOTween.Tests.EditMode")]
     public sealed class TweenDiagnosticsTests
     {
         [Test]

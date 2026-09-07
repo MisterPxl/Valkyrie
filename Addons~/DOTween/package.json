@@ -1,12 +1,12 @@
 {
   "name": "com.misterpxl.valkyrie.dotween",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "license": "MIT",
-  "displayName": "Astra Valkyrie — DOTween Integration",
+  "displayName": "Astra Valkyrie \u2014 DOTween Integration",
   "description": "Optional no-code DOTween player, presets, preview, and sequence assets for Valkyrie. DOTween must be installed separately.",
   "unity": "6000.0",
   "dependencies": {
-    "com.misterpxl.valkyrie": "1.5.0"
+    "com.misterpxl.valkyrie": "2.0.0"
   },
   "samples": [
     {
