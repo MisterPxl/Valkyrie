@@ -200,6 +200,10 @@ namespace Valkyrie.Editor
                     Type target = targetArguments[i];
                     Type source = sourceArguments[i];
 
+                    // CLR variance applies only to reference-type arguments.
+                    if (source != target && (source.IsValueType || target.IsValueType))
+                        return false;
+
                     if (variance == GenericParameterAttributes.Covariant)
                     {
                         if (!target.IsAssignableFrom(source))

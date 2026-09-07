@@ -19,12 +19,17 @@ namespace Valkyrie.DOTween
         {
             Graphic target;
             if (!ValidateDefinition(context) || !context.TryResolve(Target, out target)) return false;
-            Color current = target.color;
-            Color endValue = ResolveColorEndValue(current, _color);
-            ApplyColorStartValue(value => target.color = value, _color);
+            Color endValue = _color;
             Tweener tween = DG.Tweening.DOTween.To(() => target.color, value => target.color = value, endValue, Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
+        }
+
+        public override void CaptureSnapshot(TweenBuildContext context, TweenStateSnapshot snapshot)
+        {
+            if (!context.TryResolve(Target, out Graphic target)) return;
+            Color original = target.color;
+            snapshot.AddRestoreAction(() => { if (target != null) target.color = original; });
         }
 
         public bool CaptureCurrentValue(TweenBuildContext context)
@@ -51,12 +56,17 @@ namespace Valkyrie.DOTween
         {
             Graphic target;
             if (!ValidateDefinition(context) || !context.TryResolve(Target, out target)) return false;
-            float current = target.color.a;
-            float endValue = ResolveFloatEndValue(current, _alpha);
-            ApplyFloatStartValue(value => SetAlpha(target, value), _alpha);
+            float endValue = _alpha;
             Tweener tween = DG.Tweening.DOTween.To(() => target.color.a, value => SetAlpha(target, value), endValue, Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
+        }
+
+        public override void CaptureSnapshot(TweenBuildContext context, TweenStateSnapshot snapshot)
+        {
+            if (!context.TryResolve(Target, out Graphic target)) return;
+            Color original = target.color;
+            snapshot.AddRestoreAction(() => { if (target != null) target.color = original; });
         }
 
         public bool CaptureCurrentValue(TweenBuildContext context)
@@ -90,12 +100,17 @@ namespace Valkyrie.DOTween
         {
             Image target;
             if (!ValidateDefinition(context) || !context.TryResolve(Target, out target)) return false;
-            float current = target.fillAmount;
-            float endValue = ResolveFloatEndValue(current, _fillAmount);
-            ApplyFloatStartValue(value => target.fillAmount = Mathf.Clamp01(value), _fillAmount);
+            float endValue = _fillAmount;
             Tweener tween = DG.Tweening.DOTween.To(() => target.fillAmount, value => target.fillAmount = Mathf.Clamp01(value), endValue, Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
+        }
+
+        public override void CaptureSnapshot(TweenBuildContext context, TweenStateSnapshot snapshot)
+        {
+            if (!context.TryResolve(Target, out Image target)) return;
+            float original = target.fillAmount;
+            snapshot.AddRestoreAction(() => { if (target != null) target.fillAmount = original; });
         }
 
         public bool CaptureCurrentValue(TweenBuildContext context)
@@ -121,11 +136,9 @@ namespace Valkyrie.DOTween
         {
             RectTransform target;
             if (!ValidateDefinition(context) || !context.TryResolve(Target, out target)) return false;
-            Vector2 current = target.sizeDelta;
-            Vector2 endValue = ValueMode == TweenValueMode.By ? current + _sizeDelta : ValueMode == TweenValueMode.From ? current : _sizeDelta;
-            if (ValueMode == TweenValueMode.From) target.sizeDelta = _sizeDelta;
+            Vector2 endValue = _sizeDelta;
             Tweener tween = DG.Tweening.DOTween.To(() => target.sizeDelta, value => target.sizeDelta = value, endValue, Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
         }
 
@@ -155,7 +168,6 @@ namespace Valkyrie.DOTween
             if (!ValidateDefinition(context) || !context.TryResolve(Target, out target)) return false;
             string fullText = _text ?? string.Empty;
             int length = 0;
-            target.text = string.Empty;
             Tweener tween = DG.Tweening.DOTween.To(
                 () => length,
                 value =>
@@ -167,6 +179,13 @@ namespace Valkyrie.DOTween
                 Duration);
             ConfigureTween(tween);
             return TryPlaceTween(sequence, tween, context);
+        }
+
+        public override void CaptureSnapshot(TweenBuildContext context, TweenStateSnapshot snapshot)
+        {
+            if (!context.TryResolve(Target, out Text target)) return;
+            string original = target.text;
+            snapshot.AddRestoreAction(() => { if (target != null) target.text = original; });
         }
 
         public bool CaptureCurrentValue(TweenBuildContext context)

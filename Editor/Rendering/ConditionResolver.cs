@@ -110,19 +110,23 @@ namespace Valkyrie.Editor
             if (MemberCache.TryGetValue(key, out var cached))
                 return cached;
 
-            const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+            const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public
+                | BindingFlags.NonPublic | BindingFlags.DeclaredOnly;
 
-            var field = type.GetField(memberName, flags);
-            if (field != null)
-                return Cache(key, new ResolvedMember(field));
+            for (Type current = type; current != null; current = current.BaseType)
+            {
+                var field = current.GetField(memberName, flags);
+                if (field != null)
+                    return Cache(key, new ResolvedMember(field));
 
-            var prop = FindProperty(type, memberName, flags);
-            if (prop != null)
-                return Cache(key, new ResolvedMember(prop));
+                var prop = FindProperty(current, memberName, flags);
+                if (prop != null)
+                    return Cache(key, new ResolvedMember(prop));
 
-            var method = type.GetMethod(memberName, flags, null, Type.EmptyTypes, null);
-            if (method != null && method.ReturnType == typeof(bool))
-                return Cache(key, new ResolvedMember(method));
+                var method = current.GetMethod(memberName, flags, null, Type.EmptyTypes, null);
+                if (method != null && method.ReturnType == typeof(bool))
+                    return Cache(key, new ResolvedMember(method));
+            }
 
             MemberCache[key] = ResolvedMember.NotFound;
             return ResolvedMember.NotFound;

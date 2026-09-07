@@ -79,21 +79,7 @@ namespace Valkyrie.DOTween
                 return false;
             }
 
-            Vector3 currentValue = _local ? target.localEulerAngles : target.eulerAngles;
-            Vector3 endValue = ResolveVector3EndValue(currentValue, _endValue);
-            ApplyVector3StartValue(
-                value =>
-                {
-                    if (_local)
-                    {
-                        target.localEulerAngles = value;
-                    }
-                    else
-                    {
-                        target.eulerAngles = value;
-                    }
-                },
-                _endValue);
+            Vector3 endValue = _endValue;
 
             Tweener tween = DG.Tweening.DOTween.To(
                 () => _local ? target.localEulerAngles : target.eulerAngles,
@@ -110,7 +96,7 @@ namespace Valkyrie.DOTween
                 },
                 endValue,
                 Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
         }
 

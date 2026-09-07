@@ -59,6 +59,26 @@ The optional `Valkyrie.DOTween.UGUI.Runtime` assembly adds uGUI steps when
 Use `TweenSequenceAsset` when several scene objects should reuse the same
 animation. Put scene-specific targets on each `TweenPlayer` via bindings.
 
+`Single` uses only the first list entry for playback, validation and preview.
+`Sequence` and `Asset` use all enabled entries. A disabled first entry in Single
+mode produces an empty-sequence diagnostic.
+
+`From` and `By` values are evaluated when their step starts. Building or
+validating a built-in animation does not apply its starting value to the target.
+Step event bindings match `StepId`; absent and disabled steps do not emit events.
+Their start, update, loop-complete (`OnStep`), complete and rewind events follow
+the corresponding tween. Player `OnStep` follows the loops of the whole sequence.
+Seeking with `Goto` uses DOTween's seek callback behavior rather than normal playback.
+
+In **Events**, each step binding has a **Step** dropdown showing the animation's
+step names. Selections keep their IDs when steps are renamed or reordered.
+A missing or inactive step displays a warning; choose another step or **None**
+to change the binding. Asset mode lists the selected asset's steps.
+
+Right-click a step header to copy/paste its configuration or duplicate a list
+element. Pasted and duplicated steps receive a new ID; existing bindings continue
+to refer to the original step. Bind the new step explicitly through the dropdown.
+
 ## Custom Steps
 
 Create a serializable subclass of `TweenStep` or `TimedTweenStep`. Add
@@ -66,9 +86,29 @@ Create a serializable subclass of `TweenStep` or `TimedTweenStep`. Add
 control where it appears in the designer picker. No central enum or registry is
 needed.
 
+Keep `ValidateDefinition` and `ValidateTarget` free of target mutations. Validation
+in the inspector calls these methods without building a sequence. Steps implementing
+`ITweenTargetStep` get component-type validation automatically; override
+`ValidateTarget` for additional requirements such as shader properties.
+
+For value tweens, pass the authored value directly to `DOTween.To`, then call
+`ConfigureValueTween(tween)` and `TryPlaceTween(sequence, tween, context)`.
+`ConfigureValueTween` applies timing and defers From/By initialization. The older
+`Resolve*EndValue`/`Apply*StartValue` helpers are obsolete because they evaluate or
+write target values during construction. Use `ConfigureTween` for timing-only
+steps such as punch and shake. `TryPlaceTween` also registers the tween for step events;
+group multiple internal tweens into a single tween/sequence when exposing one step.
+
+Override `CaptureSnapshot(context, snapshot)` for additional animated properties.
+Resolve the target, capture its original values and register a null-safe restoration
+callback through `snapshot.AddRestoreAction`. This is used by both Edit Mode preview
+and `CaptureSpawnPoint`. The uGUI steps provide examples while keeping uGUI optional.
+
 ## Tests
 
 The addon ships EditMode and PlayMode tests guarded by `UNITY_INCLUDE_TESTS`.
+The core package's GUI integration test requires a graphics device (omit
+`-nographics`); it is skipped in runs without a graphics device.
 Add the addon package to `testables` when running them from a consuming project:
 
 ```json

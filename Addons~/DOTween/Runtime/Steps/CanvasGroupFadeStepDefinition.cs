@@ -79,15 +79,13 @@ namespace Valkyrie.DOTween
                 return false;
             }
 
-            float currentValue = target.alpha;
-            float endValue = ResolveFloatEndValue(currentValue, _endAlpha);
-            ApplyFloatStartValue(value => target.alpha = Mathf.Clamp01(value), _endAlpha);
+            float endValue = _endAlpha;
             Tweener tween = DG.Tweening.DOTween.To(
                 () => target.alpha,
                 value => target.alpha = Mathf.Clamp01(value),
                 endValue,
                 Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
         }
 

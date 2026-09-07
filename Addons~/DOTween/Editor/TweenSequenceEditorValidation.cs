@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using DG.Tweening;
 
 namespace Valkyrie.DOTween.Editor
 {
@@ -39,17 +38,16 @@ namespace Valkyrie.DOTween.Editor
                 return diagnostics;
             }
 
-            Sequence validationSequence = null;
             try
             {
-                player.TryBuildConfiguredSequence(context, out validationSequence);
+                player.ValidateConfiguration(context);
             }
             catch (Exception exception)
             {
                 diagnostics.Add(new TweenBuildDiagnostic(
                     TweenDiagnosticSeverity.Error,
                     TweenDiagnosticCode.BuildFailure,
-                    "Editor validation could not build the sequence: " + exception.Message,
+                    "Editor validation failed: " + exception.Message,
                     -1,
                     string.Empty,
                     string.Empty,
@@ -58,11 +56,6 @@ namespace Valkyrie.DOTween.Editor
             }
             finally
             {
-                if (validationSequence != null && validationSequence.IsActive())
-                {
-                    validationSequence.Kill(false);
-                }
-
                 CopyDiagnostics(context.Diagnostics, diagnostics);
             }
 

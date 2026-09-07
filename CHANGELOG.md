@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Render field attributes and foldout groups inside nested serializable objects, lists and managed references, using the nested owner for conditions.
+- Add session-local Copy/Paste and list-element Duplicate commands for managed references, preserving nested graphs and Unity object references with Undo support.
+- Add a nested-inspector sample and regression coverage for nested rendering and clipboard operations.
+
+### Fixed
+
+- Reset each selected managed reference using its own concrete type, preserving null slots.
+- Resolve inherited private condition fields, properties and methods for ShowIf/HideIf.
+- Exclude invalid generic variance conversions involving value-type arguments from the type picker.
+- Add regression tests for mixed-type resets, inherited conditions and generic variance.
+
 ## 1.5.0 - 2026-08-10
 
 ### Added

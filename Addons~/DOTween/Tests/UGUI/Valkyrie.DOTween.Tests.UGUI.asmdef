@@ -1,0 +1,37 @@
+{
+  "name": "Valkyrie.DOTween.Tests.UGUI",
+  "rootNamespace": "Valkyrie.DOTween.Tests.EditMode",
+  "references": [
+    "UnityEngine.TestRunner",
+    "UnityEditor.TestRunner",
+    "Valkyrie.Runtime",
+    "Valkyrie.Editor",
+    "Valkyrie.DOTween.Runtime",
+    "Valkyrie.DOTween.Editor",
+    "Unity.ugui",
+    "Valkyrie.DOTween.UGUI.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "nunit.framework.dll",
+    "DOTween.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS",
+    "VALKYRIE_DOTWEEN_UGUI"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.unity.ugui",
+      "expression": "0.0.0",
+      "define": "VALKYRIE_DOTWEEN_UGUI"
+    }
+  ],
+  "noEngineReferences": false
+}

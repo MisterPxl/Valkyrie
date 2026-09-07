@@ -96,6 +96,7 @@ namespace Valkyrie.DOTween
                 return false;
             }
 
+            context.RegisterTween(tween);
             switch (_mode)
             {
                 case TweenPlacementMode.Append:
@@ -219,49 +220,25 @@ namespace Valkyrie.DOTween
             _id = Guid.NewGuid().ToString("N");
         }
 
-        private static bool TryResolveSnapshotTarget(
-            TweenBuildContext context,
-            ITweenTargetStep targetStep,
-            out UnityEngine.Object target)
+        public virtual bool ValidateTarget(TweenBuildContext context)
         {
-            target = null;
-            Type requiredType = targetStep.RequiredTargetType;
-            if (requiredType == typeof(Transform))
-            {
-                Transform transform;
-                bool resolved = context.TryResolve(targetStep.Target, out transform);
-                target = transform;
-                return resolved;
-            }
+            return !(this is ITweenTargetStep targetStep)
+                || context.TryResolve(targetStep.Target, targetStep.RequiredTargetType, out _);
+        }
 
-            if (requiredType == typeof(CanvasGroup))
-            {
-                CanvasGroup canvasGroup;
-                bool resolved = context.TryResolve(targetStep.Target, out canvasGroup);
-                target = canvasGroup;
-                return resolved;
-            }
+        /// <summary>Override to capture additional properties in optional or custom steps.</summary>
+        public virtual void CaptureSnapshot(TweenBuildContext context, TweenStateSnapshot snapshot)
+        {
+            var targets = new List<UnityEngine.Object>();
+            CollectSnapshotTargets(context, targets);
+            foreach (UnityEngine.Object target in targets)
+                snapshot.CaptureTarget(target);
+        }
 
-            if (requiredType == typeof(Camera))
-            {
-                Camera camera;
-                bool resolved = context.TryResolve(targetStep.Target, out camera);
-                target = camera;
-                return resolved;
-            }
-
-            if (requiredType == typeof(Renderer))
-            {
-                Renderer renderer;
-                bool resolved = context.TryResolve(targetStep.Target, out renderer);
-                target = renderer;
-                return resolved;
-            }
-
-            Component component;
-            bool componentResolved = context.TryResolve(targetStep.Target, out component);
-            target = component;
-            return componentResolved;
+        private static bool TryResolveSnapshotTarget(
+            TweenBuildContext context, ITweenTargetStep targetStep, out UnityEngine.Object target)
+        {
+            return context.TryResolve(targetStep.Target, targetStep.RequiredTargetType, out target);
         }
     }
 
@@ -410,6 +387,17 @@ namespace Valkyrie.DOTween
             tween.SetLoops(_loops, _loopType);
         }
 
+        /// <summary>Defers From/By evaluation until this tween starts in its sequence.</summary>
+        protected void ConfigureValueTween(Tweener tween)
+        {
+            if (_valueMode == TweenValueMode.From)
+                tween.From(setImmediately: false, isRelative: false);
+            else
+                tween.SetRelative(_valueMode == TweenValueMode.By);
+            ConfigureTween(tween);
+        }
+
+        [Obsolete("Pass the configured value to DOTween.To and call ConfigureValueTween to defer From/By evaluation.")]
         protected Vector3 ResolveVector3EndValue(Vector3 currentValue, Vector3 configuredValue)
         {
             if (_valueMode == TweenValueMode.By)
@@ -420,6 +408,7 @@ namespace Valkyrie.DOTween
             return _valueMode == TweenValueMode.From ? currentValue : configuredValue;
         }
 
+        [Obsolete("Pass the configured value to DOTween.To and call ConfigureValueTween to defer From/By evaluation.")]
         protected float ResolveFloatEndValue(float currentValue, float configuredValue)
         {
             if (_valueMode == TweenValueMode.By)
@@ -430,6 +419,7 @@ namespace Valkyrie.DOTween
             return _valueMode == TweenValueMode.From ? currentValue : configuredValue;
         }
 
+        [Obsolete("Pass the configured value to DOTween.To and call ConfigureValueTween to defer From/By evaluation.")]
         protected Color ResolveColorEndValue(Color currentValue, Color configuredValue)
         {
             if (_valueMode == TweenValueMode.By)
@@ -440,6 +430,7 @@ namespace Valkyrie.DOTween
             return _valueMode == TweenValueMode.From ? currentValue : configuredValue;
         }
 
+        [Obsolete("Pass the configured value to DOTween.To and call ConfigureValueTween to defer From/By evaluation.")]
         protected void ApplyVector3StartValue(Action<Vector3> setter, Vector3 configuredValue)
         {
             if (_valueMode == TweenValueMode.From && setter != null)
@@ -448,6 +439,7 @@ namespace Valkyrie.DOTween
             }
         }
 
+        [Obsolete("Pass the configured value to DOTween.To and call ConfigureValueTween to defer From/By evaluation.")]
         protected void ApplyFloatStartValue(Action<float> setter, float configuredValue)
         {
             if (_valueMode == TweenValueMode.From && setter != null)
@@ -456,6 +448,7 @@ namespace Valkyrie.DOTween
             }
         }
 
+        [Obsolete("Pass the configured value to DOTween.To and call ConfigureValueTween to defer From/By evaluation.")]
         protected void ApplyColorStartValue(Action<Color> setter, Color configuredValue)
         {
             if (_valueMode == TweenValueMode.From && setter != null)

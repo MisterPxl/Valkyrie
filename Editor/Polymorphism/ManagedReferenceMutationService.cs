@@ -36,13 +36,20 @@ namespace Valkyrie.Editor
             if (serializedObject == null || string.IsNullOrEmpty(propertyPath))
                 return;
 
-            Type currentType = null;
-            SerializedProperty sourceProperty = serializedObject.FindProperty(propertyPath);
-            if (sourceProperty != null)
-                currentType = ManagedReferenceTypeNameUtility.GetValueType(sourceProperty);
+            foreach (UnityEngine.Object target in serializedObject.targetObjects)
+            {
+                if (target == null)
+                    continue;
 
-            if (currentType != null)
-                AssignType(serializedObject, propertyPath, currentType, preserveExistingValues: false);
+                using SerializedObject individualObject = new SerializedObject(target);
+                SerializedProperty property = individualObject.FindProperty(propertyPath);
+                Type currentType = ManagedReferenceTypeNameUtility.GetValueType(property);
+                if (currentType == null)
+                    continue;
+
+                SetManagedReference(property, currentType, preserveExistingValues: false);
+                individualObject.ApplyModifiedProperties();
+            }
         }
 
         public static void AppendInstance(SerializedObject serializedObject, string propertyPath, Type type)

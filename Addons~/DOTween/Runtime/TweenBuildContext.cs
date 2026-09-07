@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Valkyrie.DOTween
@@ -11,6 +12,14 @@ namespace Valkyrie.DOTween
         private readonly List<TweenBuildDiagnostic> _diagnostics;
         private int _currentStepIndex;
         private object _currentStep;
+        internal readonly List<(TweenStepDefinition Step, Tween Tween)> BuiltTweens
+            = new List<(TweenStepDefinition, Tween)>();
+
+        internal void RegisterTween(Tween tween)
+        {
+            if (_currentStep is TweenStepDefinition step)
+                BuiltTweens.Add((step, tween));
+        }
 
         public Transform Self
         {
@@ -97,106 +106,72 @@ namespace Valkyrie.DOTween
 
         public bool TryResolve<T>(string key, out T target) where T : UnityEngine.Object
         {
-            string normalizedKey = NormalizeKey(key);
-            UnityEngine.Object source;
-
-            if (TweenTargetBinding.IsSelfKey(normalizedKey))
-            {
-                source = _self;
-                normalizedKey = TweenTargetBinding.SelfKey;
-            }
-            else if (!_bindings.TryGetValue(normalizedKey, out source))
-            {
-                target = null;
-                Report(
-                    TweenDiagnosticSeverity.Error,
-                    TweenDiagnosticCode.MissingBinding,
-                    "No target is bound to key '" + normalizedKey + "'.",
-                    normalizedKey,
-                    typeof(T).FullName,
-                    string.Empty);
-                return false;
-            }
-
-            if (source == null)
-            {
-                target = null;
-                Report(
-                    TweenDiagnosticSeverity.Error,
-                    TweenDiagnosticCode.MissingBinding,
-                    "Binding '" + normalizedKey + "' has no target.",
-                    normalizedKey,
-                    typeof(T).FullName,
-                    string.Empty);
-                return false;
-            }
-
-            target = source as T;
-            if (target != null)
-            {
-                return true;
-            }
-
-            target = ResolveComponent<T>(source);
-            if (target != null)
-            {
-                return true;
-            }
-
-            Report(
-                TweenDiagnosticSeverity.Error,
-                TweenDiagnosticCode.WrongBindingType,
-                "Binding '" + normalizedKey + "' cannot resolve " + typeof(T).FullName + ".",
-                normalizedKey,
-                typeof(T).FullName,
-                source.GetType().FullName);
-            return false;
+            bool resolved = TryResolve(new TweenTargetReference { Mode = TweenTargetMode.Key, Key = key }, typeof(T), out UnityEngine.Object value);
+            target = value as T;
+            return resolved;
         }
 
         public bool TryResolve<T>(TweenTargetReference reference, out T target) where T : UnityEngine.Object
         {
-            if (reference == null || reference.Mode == TweenTargetMode.Self)
+            bool resolved = TryResolve(reference, typeof(T), out UnityEngine.Object value);
+            target = value as T;
+            return resolved;
+        }
+
+        /// <summary>Resolves the exact required component, including types from optional assemblies.</summary>
+        public bool TryResolve(TweenTargetReference reference, Type requiredType, out UnityEngine.Object target)
+        {
+            if (requiredType == null || !typeof(UnityEngine.Object).IsAssignableFrom(requiredType))
+                throw new ArgumentException("A UnityEngine.Object type is required.", nameof(requiredType));
+
+            target = null;
+            UnityEngine.Object source;
+            string key = string.Empty;
+            bool objectReference = reference != null && reference.Mode == TweenTargetMode.Object;
+            if (objectReference)
             {
-                return TryResolve(TweenTargetBinding.SelfKey, out target);
+                source = reference.Target;
+            }
+            else
+            {
+                key = reference == null || reference.Mode == TweenTargetMode.Self
+                    ? TweenTargetBinding.SelfKey : NormalizeKey(reference.Key);
+                if (TweenTargetBinding.IsSelfKey(key))
+                    source = _self;
+                else if (!_bindings.TryGetValue(key, out source))
+                {
+                    Report(TweenDiagnosticSeverity.Error, TweenDiagnosticCode.MissingBinding,
+                        "No target is bound to key '" + key + "'.", key, requiredType.FullName, string.Empty);
+                    return false;
+                }
             }
 
-            if (reference.Mode == TweenTargetMode.Key)
+            if (source == null)
             {
-                return TryResolve(reference.Key, out target);
-            }
-
-            if (reference.Target == null)
-            {
-                target = null;
-                Report(
-                    TweenDiagnosticSeverity.Error,
-                    TweenDiagnosticCode.MissingTarget,
-                    "The target reference has no object assigned.",
-                    string.Empty,
-                    typeof(T).FullName,
-                    string.Empty);
+                Report(TweenDiagnosticSeverity.Error,
+                    objectReference ? TweenDiagnosticCode.MissingTarget : TweenDiagnosticCode.MissingBinding,
+                    objectReference ? "The target reference has no object assigned." : "Binding '" + key + "' has no target.",
+                    key, requiredType.FullName, string.Empty);
                 return false;
             }
 
-            target = reference.Target as T;
-            if (target != null)
+            if (requiredType.IsInstanceOfType(source))
+                target = source;
+            else if (typeof(Component).IsAssignableFrom(requiredType))
             {
-                return true;
+                GameObject gameObject = source as GameObject;
+                if (gameObject == null && source is Component component)
+                    gameObject = component.gameObject;
+                if (gameObject != null)
+                    target = gameObject.GetComponent(requiredType);
             }
 
-            target = ResolveComponent<T>(reference.Target);
             if (target != null)
-            {
                 return true;
-            }
 
-            Report(
-                TweenDiagnosticSeverity.Error,
-                TweenDiagnosticCode.WrongBindingType,
-                "The target reference cannot resolve " + typeof(T).FullName + ".",
-                reference.DisplayName,
-                typeof(T).FullName,
-                reference.Target.GetType().FullName);
+            Report(TweenDiagnosticSeverity.Error, TweenDiagnosticCode.WrongBindingType,
+                "Target '" + key + "' cannot resolve " + requiredType.FullName + ".",
+                key, requiredType.FullName, source.GetType().FullName);
             return false;
         }
 
@@ -263,26 +238,5 @@ namespace Valkyrie.DOTween
             return target != null ? target.GetType().FullName : string.Empty;
         }
 
-        private static T ResolveComponent<T>(UnityEngine.Object source) where T : UnityEngine.Object
-        {
-            if (!typeof(Component).IsAssignableFrom(typeof(T)))
-            {
-                return null;
-            }
-
-            GameObject gameObject = source as GameObject;
-            if (gameObject != null)
-            {
-                return gameObject.GetComponent(typeof(T)) as T;
-            }
-
-            Component component = source as Component;
-            if (component != null)
-            {
-                return component.GetComponent(typeof(T)) as T;
-            }
-
-            return null;
-        }
     }
 }

@@ -390,7 +390,7 @@ namespace Valkyrie.DOTween.Editor
                 return false;
             }
 
-            IList<TweenStepDefinition> steps = player.EffectiveTimeline.Steps;
+            IList<TweenStepDefinition> steps = player.EffectiveSteps;
             for (int index = 0; index < steps.Count; index++)
             {
                 ITweenTargetStep targetStep = steps[index] as ITweenTargetStep;
@@ -418,16 +418,16 @@ namespace Valkyrie.DOTween.Editor
                 return;
             }
 
-            IList<TweenStepDefinition> steps = player.EffectiveTimeline.Steps;
+            IList<TweenStepDefinition> steps = player.EffectiveSteps;
             TweenBuildContext context = new TweenBuildContext(player.TargetRoot, player.Bindings);
             for (int index = 0; index < steps.Count; index++)
             {
                 ITweenTargetStep targetStep = steps[index] as ITweenTargetStep;
                 if (targetStep == null) continue;
 
-                Component component;
+                if (!steps[index].Enabled) continue;
                 context.SetCurrentStep(index, steps[index]);
-                if (!context.TryResolve(targetStep.Target, out component))
+                if (!context.TryResolve(targetStep.Target, targetStep.RequiredTargetType, out _))
                 {
                     EditorGUILayout.HelpBox("No valid Component was found for the selected animation.", MessageType.Error);
                     return;

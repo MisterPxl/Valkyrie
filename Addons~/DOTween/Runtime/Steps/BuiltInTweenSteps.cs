@@ -197,11 +197,9 @@ namespace Valkyrie.DOTween
         {
             Camera target;
             if (!ValidateDefinition(context) || !context.TryResolve(Target, out target)) return false;
-            float current = target.fieldOfView;
-            float endValue = ResolveFloatEndValue(current, _fieldOfView);
-            ApplyFloatStartValue(value => target.fieldOfView = value, _fieldOfView);
+            float endValue = _fieldOfView;
             Tweener tween = DG.Tweening.DOTween.To(() => target.fieldOfView, value => target.fieldOfView = value, endValue, Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
         }
 
@@ -228,11 +226,9 @@ namespace Valkyrie.DOTween
         {
             Camera target;
             if (!ValidateDefinition(context) || !context.TryResolve(Target, out target)) return false;
-            float current = target.orthographicSize;
-            float endValue = ResolveFloatEndValue(current, _orthographicSize);
-            ApplyFloatStartValue(value => target.orthographicSize = value, _orthographicSize);
+            float endValue = _orthographicSize;
             Tweener tween = DG.Tweening.DOTween.To(() => target.orthographicSize, value => target.orthographicSize = value, endValue, Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
         }
 
@@ -259,11 +255,9 @@ namespace Valkyrie.DOTween
         {
             Camera target;
             if (!ValidateDefinition(context) || !context.TryResolve(Target, out target)) return false;
-            Color current = target.backgroundColor;
-            Color endValue = ResolveColorEndValue(current, _color);
-            ApplyColorStartValue(value => target.backgroundColor = value, _color);
+            Color endValue = _color;
             Tweener tween = DG.Tweening.DOTween.To(() => target.backgroundColor, value => target.backgroundColor = value, endValue, Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
         }
 
@@ -287,25 +281,27 @@ namespace Valkyrie.DOTween
         public TweenTargetReference Target { get { return _target ?? (_target = TweenTargetReference.Self()); } }
         public Type RequiredTargetType { get { return typeof(Renderer); } }
 
+        public override bool ValidateTarget(TweenBuildContext context)
+        {
+            if (!context.TryResolve(Target, out Renderer renderer)) return false;
+            if (renderer.sharedMaterial != null && renderer.sharedMaterial.HasProperty(_colorProperty)) return true;
+            context.ReportError(TweenDiagnosticCode.InvalidTarget, "Renderer material does not expose color property '" + _colorProperty + "'.");
+            return false;
+        }
+
         public override bool TryAddTo(Sequence sequence, TweenBuildContext context)
         {
             Renderer renderer;
             if (!ValidateDefinition(context) || !context.TryResolve(Target, out renderer)) return false;
-            if (renderer.material == null || !renderer.material.HasProperty(_colorProperty))
-            {
-                context.ReportError(TweenDiagnosticCode.InvalidTarget, "Renderer material does not expose color property '" + _colorProperty + "'.");
-                return false;
-            }
+            if (!ValidateTarget(context)) return false;
 
-            Color current = renderer.material.GetColor(_colorProperty);
-            Color endValue = ResolveColorEndValue(current, _color);
-            ApplyColorStartValue(value => renderer.material.SetColor(_colorProperty, value), _color);
+            Color endValue = _color;
             Tweener tween = DG.Tweening.DOTween.To(
                 () => renderer.material.GetColor(_colorProperty),
                 value => renderer.material.SetColor(_colorProperty, value),
                 endValue,
                 Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
         }
 
@@ -332,11 +328,9 @@ namespace Valkyrie.DOTween
         {
             SpriteRenderer target;
             if (!ValidateDefinition(context) || !context.TryResolve(Target, out target)) return false;
-            Color current = target.color;
-            Color endValue = ResolveColorEndValue(current, _color);
-            ApplyColorStartValue(value => target.color = value, _color);
+            Color endValue = _color;
             Tweener tween = DG.Tweening.DOTween.To(() => target.color, value => target.color = value, endValue, Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
         }
 
@@ -351,37 +345,23 @@ namespace Valkyrie.DOTween
 
     [Serializable]
     [ManagedReferenceCategory("Callbacks", "Callback", 950)]
-    public sealed class CallbackStepDefinition : TweenStep
+    public sealed class CallbackStepDefinition : TweenStep, ITweenTimelineStepDefinition
     {
         [SerializeField] private TweenPlacement _placement = new TweenPlacement();
         [SerializeField] private UnityEvent _callback = new UnityEvent();
+
+        public TweenPlacement Placement => _placement;
+        public float EstimatedDuration => 0f;
+        public bool RequiresPositiveDuration => false;
 
         public UnityEvent Callback { get { return _callback; } }
 
         public override bool TryAddTo(Sequence sequence, TweenBuildContext context)
         {
-            if (_placement == null)
-            {
-                context.ReportError(TweenDiagnosticCode.InvalidValue, "Timeline placement is missing.");
-                return false;
-            }
-
-            TweenCallback callback = () => _callback.Invoke();
-            switch (_placement.Mode)
-            {
-                case TweenPlacementMode.Append:
-                    sequence.AppendCallback(callback);
-                    return true;
-                case TweenPlacementMode.Join:
-                    sequence.InsertCallback(sequence.Duration(false), callback);
-                    return true;
-                case TweenPlacementMode.Insert:
-                    sequence.InsertCallback(_placement.InsertAt, callback);
-                    return true;
-                default:
-                    context.ReportError(TweenDiagnosticCode.InvalidValue, "The timeline placement mode is invalid.");
-                    return false;
-            }
+            if (!ValidateDefinition(context)) return false;
+            Sequence callback = DG.Tweening.DOTween.Sequence();
+            callback.AppendCallback(() => _callback.Invoke());
+            return _placement.TryAdd(sequence, callback, context);
         }
     }
 }

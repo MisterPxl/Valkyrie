@@ -40,27 +40,8 @@ namespace Valkyrie.Editor
         /// </summary>
         public static void DrawElement(SerializedProperty property, System.Type baseType, string label)
         {
-            if (property.propertyType != SerializedPropertyType.ManagedReference)
-            {
-                EditorGUILayout.PropertyField(property, true);
-                return;
-            }
-
-            bool hasValue = !string.IsNullOrEmpty(property.managedReferenceFullTypename);
-
-            // Header line: foldout triangle (when value exists) + label + type dropdown.
-            Rect line = EditorGUILayout.GetControlRect(true, EditorGUIUtility.singleLineHeight);
-            DrawHeader(line, property, baseType, label, hasValue);
-
-            if (!hasValue)
-                return;
-
-            if (!property.isExpanded)
-                return;
-
-            EditorGUI.indentLevel++;
-            DrawChildProperties(property);
-            EditorGUI.indentLevel--;
+            float height = GetElementHeight(property, baseType);
+            DrawElement(EditorGUILayout.GetControlRect(true, height), property, baseType, label);
         }
 
         public static float GetElementHeight(SerializedProperty property, System.Type baseType)
@@ -76,27 +57,7 @@ namespace Valkyrie.Editor
             if (!hasValue || !property.isExpanded)
                 return height;
 
-            SerializedProperty iterator = property.Copy();
-            SerializedProperty endProperty = iterator.GetEndProperty();
-            if (!iterator.NextVisible(true))
-                return height;
-
-            height += EditorGUIUtility.standardVerticalSpacing;
-
-            bool first = true;
-            while (!SerializedProperty.EqualContents(iterator, endProperty))
-            {
-                if (!first)
-                    height += EditorGUIUtility.standardVerticalSpacing;
-
-                height += ManagedReferencePropertyRouter.GetPropertyHeight(iterator);
-                first = false;
-
-                if (!iterator.NextVisible(false))
-                    break;
-            }
-
-            return height;
+            return height + NestedObjectRenderer.GetChildrenHeight(property);
         }
 
         public static void DrawElement(Rect rect, SerializedProperty property, System.Type baseType, string label, float labelWidthAdjustment = 0f)
@@ -117,26 +78,8 @@ namespace Valkyrie.Editor
             if (!hasValue || !property.isExpanded)
                 return;
 
-            float y = headerRect.yMax + spacing;
-            EditorGUI.indentLevel++;
-
-            SerializedProperty iterator = property.Copy();
-            SerializedProperty endProperty = iterator.GetEndProperty();
-            if (iterator.NextVisible(true))
-            {
-                while (!SerializedProperty.EqualContents(iterator, endProperty))
-                {
-                    float height = ManagedReferencePropertyRouter.GetPropertyHeight(iterator);
-                    Rect childRect = new Rect(rect.x, y, rect.width, height);
-                    ManagedReferencePropertyRouter.DrawGUI(childRect, iterator);
-
-                    y += height + spacing;
-                    if (!iterator.NextVisible(false))
-                        break;
-                }
-            }
-
-            EditorGUI.indentLevel--;
+            NestedObjectRenderer.DrawChildren(
+                new Rect(rect.x, headerRect.yMax, rect.width, rect.height - lineHeight), property);
         }
 
         private static void DrawHeader(Rect rect, SerializedProperty property, System.Type baseType, string label, bool hasValue, float labelWidthAdjustment = 0f)
@@ -206,27 +149,8 @@ namespace Valkyrie.Editor
             GUI.Label(buttonRect, GUIContent.none, _objectFieldButtonStyle);
         }
 
-        private static void DrawChildProperties(SerializedProperty property)
-        {
-            SerializedProperty iterator = property.Copy();
-            SerializedProperty endProperty = iterator.GetEndProperty();
-
-            if (!iterator.NextVisible(true))
-                return;
-
-            while (!SerializedProperty.EqualContents(iterator, endProperty))
-            {
-                ManagedReferencePropertyRouter.DrawGUILayout(iterator);
-                if (!iterator.NextVisible(false))
-                    break;
-            }
-        }
-
         private static void DrawContextMenu(Rect rect, SerializedProperty property, bool hasValue)
         {
-            if (!hasValue)
-                return;
-
             Event current = Event.current;
             if (current == null || current.type != EventType.ContextClick || !rect.Contains(current.mousePosition))
                 return;
@@ -237,18 +161,32 @@ namespace Valkyrie.Editor
             string propertyPath = property.propertyPath;
 
             var menu = new GenericMenu();
-            menu.AddItem(
-                new GUIContent("Reset/New Instance"),
-                false,
-                () => ManagedReferenceMutationService.ResetCurrentType(owner, propertyPath));
-            menu.AddItem(
-                new GUIContent("Clear"),
-                false,
-                () => ManagedReferenceMutationService.AssignType(
-                    owner,
-                    propertyPath,
-                    null,
-                    preserveExistingValues: false));
+            bool editable = GUI.enabled;
+            if (hasValue && !property.hasMultipleDifferentValues)
+                menu.AddItem(new GUIContent("Copy"), false, () => ManagedReferenceClipboard.Copy(owner, propertyPath));
+            else menu.AddDisabledItem(new GUIContent("Copy"));
+            if (editable && ManagedReferenceClipboard.CanPaste(owner, propertyPath))
+                menu.AddItem(new GUIContent("Paste"), false, () => ManagedReferenceClipboard.Paste(owner, propertyPath));
+            else menu.AddDisabledItem(new GUIContent("Paste"));
+            if (ManagedReferenceClipboard.TryGetListElement(propertyPath, out string listPath, out int index))
+            {
+                if (editable) menu.AddItem(new GUIContent("Duplicate"), false,
+                    () => ManagedReferenceClipboard.Duplicate(owner, listPath, index));
+                else menu.AddDisabledItem(new GUIContent("Duplicate"));
+            }
+            menu.AddSeparator("");
+            if (editable && hasValue)
+            {
+                menu.AddItem(new GUIContent("Reset/New Instance"), false,
+                    () => ManagedReferenceMutationService.ResetCurrentType(owner, propertyPath));
+                menu.AddItem(new GUIContent("Clear"), false,
+                    () => ManagedReferenceMutationService.AssignType(owner, propertyPath, null, preserveExistingValues: false));
+            }
+            else
+            {
+                menu.AddDisabledItem(new GUIContent("Reset/New Instance"));
+                menu.AddDisabledItem(new GUIContent("Clear"));
+            }
 
             menu.ShowAsContext();
             current.Use();

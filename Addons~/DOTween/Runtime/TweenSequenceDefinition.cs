@@ -201,6 +201,35 @@ namespace Valkyrie.DOTween
             return valid && !context.HasErrors;
         }
 
+        public static bool ValidateTargets(IList<TweenStepDefinition> steps, TweenBuildContext context)
+        {
+            if (context == null || steps == null) return false;
+            bool valid = true;
+            for (int index = 0; index < steps.Count; index++)
+            {
+                TweenStepDefinition step = steps[index];
+                if (step == null || !step.Enabled) continue;
+                context.SetCurrentStep(index, step);
+                try
+                {
+                    int count = context.Diagnostics.Count;
+                    if (!step.ValidateTarget(context))
+                    {
+                        valid = false;
+                        if (count == context.Diagnostics.Count)
+                            context.ReportError(TweenDiagnosticCode.InvalidTarget, "The step target is invalid.");
+                    }
+                }
+                catch (Exception exception)
+                {
+                    valid = false;
+                    context.ReportError(TweenDiagnosticCode.InvalidTarget, "The step target could not be validated: " + exception.Message);
+                }
+            }
+            context.SetCurrentStep(-1, null);
+            return valid && !context.HasErrors;
+        }
+
         public static bool TryBuildSequence(
             IList<TweenStepDefinition> steps,
             TweenSequenceBuildSettings settings,
@@ -213,7 +242,8 @@ namespace Valkyrie.DOTween
                 return false;
             }
 
-            if (!ValidateDefinitions(steps, settings, context))
+            context.BuiltTweens.Clear();
+            if (!ValidateDefinitions(steps, settings, context) || !ValidateTargets(steps, context))
             {
                 return false;
             }

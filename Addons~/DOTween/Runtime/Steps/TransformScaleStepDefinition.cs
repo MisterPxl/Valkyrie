@@ -65,16 +65,14 @@ namespace Valkyrie.DOTween
                 return false;
             }
 
-            Vector3 currentValue = target.localScale;
-            Vector3 endValue = ResolveVector3EndValue(currentValue, _endValue);
-            ApplyVector3StartValue(value => target.localScale = value, _endValue);
+            Vector3 endValue = _endValue;
 
             Tweener tween = DG.Tweening.DOTween.To(
                 () => target.localScale,
                 value => target.localScale = value,
                 endValue,
                 Duration);
-            ConfigureTween(tween);
+            ConfigureValueTween(tween);
             return TryPlaceTween(sequence, tween, context);
         }
 

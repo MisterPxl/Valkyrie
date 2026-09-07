@@ -57,6 +57,36 @@ Use `[ManagedReferenceCategory("Gameplay/Actions", "Display Name", order)]` on
 concrete serializable types to group the dropdown by designer-facing categories
 instead of namespaces.
 
+### Nested fields
+
+Field attributes also apply inside ordinary serializable classes/structs, list
+elements and managed references. Conditions resolve against the object containing
+the field; for a selection of multiple objects, every owner's condition must allow
+the field to be shown. Foldout groups are scoped to their full property path.
+Custom property drawers for ordinary nested values keep their own rendering.
+
+The `ValkyrieNestedInspectorExample` sample demonstrates nested conditions,
+validation, read-only fields, groups and polymorphic lists.
+
+### Copy, paste and duplicate
+
+Right-click a managed-reference header to **Copy** or **Paste** its serialized
+configuration. Right-click a managed-reference list element to **Duplicate** it
+immediately after the source. Paste is available on empty slots when the copied
+type is compatible; it is disabled for incompatible types and read-only fields.
+Copy is disabled when a multi-selection contains mixed values.
+
+The clipboard lasts for the current Unity domain/session. It preserves nested
+managed references, cycles, shared nodes and references to Unity objects.
+Each pasted or duplicated root owns an independent graph, including when editing
+multiple targets. Duplicate uses each selected object's own source element.
+Edits support Undo/Redo through SerializedObject. Nonserialized fields and runtime
+UnityEvent listeners are not part of the copied configuration.
+
+Editor integrations can subscribe to `ManagedReferenceClipboard.CloneCreated`
+to refresh a cloned root's identity. The DOTween addon uses this to generate a
+new step ID, preserving bindings to the original step.
+
 ## Custom editors
 
 A type-specific Unity `[CustomEditor]` takes priority over Valkyrie's global

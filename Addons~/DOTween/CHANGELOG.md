@@ -1,5 +1,26 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- Validate definitions and target bindings without building or executing tweens in the inspector.
+- Defer built-in From and By values until each tween starts; sequential relative steps now accumulate correctly.
+- Restore RectTransform dimensions, Graphic colors/alpha, Image fill and Text content after preview and spawn-point restarts.
+- Stop and restore previews before scene saves, assembly reloads and entering Play Mode; repeated Stop calls no longer reapply an old snapshot.
+- Resolve snapshot targets using the exact component type, including optional uGUI components.
+- Route step bindings by StepId to the corresponding tween callbacks, including interval and callback steps.
+- Fire player OnStep once per sequence loop and avoid duplicate OnRewind notifications.
+- Apply Single mode consistently to playback, validation, snapshots and preview.
+- Add EditMode, optional uGUI and PlayMode regression tests; strengthen the spawn-point restoration assertion.
+
+### Added
+
+- Select event-binding steps by name; preserve selections across renames/reorders and explain missing or inactive steps.
+- Generate new step IDs when using Valkyrie's polymorphic clipboard, preserving the original step's bindings.
+- Add ValidateTarget and CaptureSnapshot extension points for custom steps and ConfigureValueTween for deferred From/By configuration.
+- Retain the legacy value/start helpers as obsolete APIs for source compatibility.
+
 ## 2.1.0 - 2026-08-10
 
 ### Changed

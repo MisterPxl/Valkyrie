@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Valkyrie.DOTween.Editor
 {
+    [InitializeOnLoad]
     public static class TweenEditModePreview
     {
         private static readonly TweenStateSnapshot Snapshot = new TweenStateSnapshot();
@@ -13,6 +14,17 @@ namespace Valkyrie.DOTween.Editor
         private static double _lastEditorTime;
         private static float _time;
         private static bool _playing;
+
+        static TweenEditModePreview()
+        {
+            AssemblyReloadEvents.beforeAssemblyReload += Stop;
+            EditorApplication.quitting += Stop;
+            EditorApplication.playModeStateChanged += state =>
+            {
+                if (state == PlayModeStateChange.ExitingEditMode) Stop();
+            };
+            UnityEditor.SceneManagement.EditorSceneManager.sceneSaving += (scene, path) => Stop();
+        }
 
         public static bool IsPreviewing
         {
@@ -61,6 +73,8 @@ namespace Valkyrie.DOTween.Editor
 
             _sequence = null;
             Snapshot.Restore();
+            Snapshot.Clear();
+            _player = null;
             SceneView.RepaintAll();
         }
 
@@ -74,7 +88,8 @@ namespace Valkyrie.DOTween.Editor
             EnsureSequence(player);
             _playing = false;
             _time = Mathf.Clamp(time, 0f, Duration);
-            _sequence.Goto(_time, false);
+            if (_sequence != null && _sequence.IsActive())
+                _sequence.Goto(_time, false);
             SceneView.RepaintAll();
         }
 
@@ -110,14 +125,13 @@ namespace Valkyrie.DOTween.Editor
         private static void CaptureSnapshot(TweenPlayer player, TweenBuildContext context)
         {
             List<UnityEngine.Object> targets = new List<UnityEngine.Object>();
-            TweenTimeline timeline = player.EffectiveTimeline;
-            IList<TweenStepDefinition> steps = timeline != null ? timeline.Steps : null;
+            IList<TweenStepDefinition> steps = player.EffectiveSteps;
             if (steps != null)
             {
                 for (int index = 0; index < steps.Count; index++)
                 {
                     TweenStepDefinition step = steps[index];
-                    if (step == null) continue;
+                    if (step == null || !step.Enabled) continue;
                     context.SetCurrentStep(index, step);
                     step.CollectSnapshotTargets(context, targets);
                 }
@@ -125,7 +139,7 @@ namespace Valkyrie.DOTween.Editor
 
             context.SetCurrentStep(-1, null);
             Undo.RegisterCompleteObjectUndo(targets.ToArray(), "DOTween Preview");
-            Snapshot.Capture(targets);
+            Snapshot.CaptureSteps(context, steps);
         }
 
         private static void Tick()
@@ -145,7 +159,8 @@ namespace Valkyrie.DOTween.Editor
                 _playing = false;
             }
 
-            _sequence.Goto(_time, false);
+            if (_sequence != null && _sequence.IsActive())
+                _sequence.Goto(_time, false);
             SceneView.RepaintAll();
         }
     }

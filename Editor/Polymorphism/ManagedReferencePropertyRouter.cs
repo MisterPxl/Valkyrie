@@ -14,58 +14,28 @@ namespace Valkyrie.Editor
         // negative results included; domain reload clears the cache.
         private static readonly System.Collections.Generic.Dictionary<(Type, string), FieldInfo> FieldCache = new();
 
-        public static void DrawGUILayout(SerializedProperty property)
+        public static void DrawGUILayout(SerializedProperty property) => PropertyRenderer.DrawGUILayout(property);
+        public static float GetPropertyHeight(SerializedProperty property) => PropertyRenderer.GetHeight(property);
+        public static void DrawGUI(Rect rect, SerializedProperty property) => PropertyRenderer.Draw(rect, property);
+
+        internal static float GetContentHeight(SerializedProperty property)
         {
-            if (property == null)
-                return;
-
-            if (TryGetManagedReferenceBaseType(property, out Type baseType))
-            {
-                ManagedReferenceRenderer.DrawElement(property, baseType, property.displayName);
-                return;
-            }
-
-            if (TryGetManagedReferenceCollectionElementType(property, out Type elementType))
-            {
-                ManagedReferenceListRenderer.Draw(property, elementType);
-                return;
-            }
-
-            EditorGUILayout.PropertyField(property, true);
-        }
-
-        public static float GetPropertyHeight(SerializedProperty property)
-        {
-            if (property == null)
-                return EditorGUIUtility.singleLineHeight;
-
             if (TryGetManagedReferenceBaseType(property, out Type baseType))
                 return ManagedReferenceRenderer.GetElementHeight(property, baseType);
-
             if (TryGetManagedReferenceCollectionElementType(property, out Type elementType))
                 return ManagedReferenceListRenderer.GetHeight(property, elementType);
-
+            if (NestedObjectRenderer.Handles(property)) return NestedObjectRenderer.GetHeight(property);
             return EditorGUI.GetPropertyHeight(property, true);
         }
 
-        public static void DrawGUI(Rect rect, SerializedProperty property)
+        internal static void DrawContent(Rect rect, SerializedProperty property)
         {
-            if (property == null)
-                return;
-
             if (TryGetManagedReferenceBaseType(property, out Type baseType))
-            {
                 ManagedReferenceRenderer.DrawElement(rect, property, baseType, property.displayName);
-                return;
-            }
-
-            if (TryGetManagedReferenceCollectionElementType(property, out Type elementType))
-            {
+            else if (TryGetManagedReferenceCollectionElementType(property, out Type elementType))
                 ManagedReferenceListRenderer.Draw(rect, property, elementType);
-                return;
-            }
-
-            EditorGUI.PropertyField(rect, property, true);
+            else if (NestedObjectRenderer.Handles(property)) NestedObjectRenderer.Draw(rect, property);
+            else EditorGUI.PropertyField(rect, property, true);
         }
 
         public static bool TryGetManagedReferenceBaseType(SerializedProperty property, out Type baseType)

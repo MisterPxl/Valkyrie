@@ -28,6 +28,37 @@ namespace Valkyrie.DOTween
             }
         }
 
+        public void CaptureSteps(TweenBuildContext context, IList<TweenStepDefinition> steps)
+        {
+            _entries.Clear();
+            if (steps == null) return;
+            try
+            {
+                for (int index = 0; index < steps.Count; index++)
+                {
+                    TweenStepDefinition step = steps[index];
+                    if (step == null || !step.Enabled) continue;
+                    context.SetCurrentStep(index, step);
+                    step.CaptureSnapshot(context, this);
+                }
+            }
+            finally { context.SetCurrentStep(-1, null); }
+        }
+
+        public void CaptureTarget(UnityEngine.Object target)
+        {
+            if (TryCreateEntry(target, out Entry entry))
+                _entries.Add(entry);
+        }
+
+        /// <summary>Adds restoration for properties supplied by an optional/custom step.</summary>
+        public void AddRestoreAction(Action restore)
+        {
+            if (restore != null) _entries.Add(new ActionEntry(restore));
+        }
+
+        public void Clear() => _entries.Clear();
+
         public void Restore()
         {
             for (int index = 0; index < _entries.Count; index++)
@@ -39,6 +70,12 @@ namespace Valkyrie.DOTween
         private static bool TryCreateEntry(UnityEngine.Object target, out Entry entry)
         {
             entry = null;
+            if (target is RectTransform rectTransform)
+            {
+                entry = new RectTransformEntry(rectTransform);
+                return true;
+            }
+
             Transform transform = target as Transform;
             if (transform != null)
             {
@@ -80,6 +117,46 @@ namespace Valkyrie.DOTween
         private abstract class Entry
         {
             public abstract void Restore();
+        }
+
+        private sealed class ActionEntry : Entry
+        {
+            private readonly Action _restore;
+            public ActionEntry(Action restore) { _restore = restore; }
+            public override void Restore() => _restore();
+        }
+
+        private sealed class RectTransformEntry : Entry
+        {
+            private readonly RectTransform _target;
+            private readonly TransformEntry _transform;
+            private readonly Vector2 _sizeDelta;
+            private readonly Vector2 _anchorMin;
+            private readonly Vector2 _anchorMax;
+            private readonly Vector2 _pivot;
+            private readonly Vector3 _anchoredPosition;
+
+            public RectTransformEntry(RectTransform target)
+            {
+                _target = target;
+                _transform = new TransformEntry(target);
+                _sizeDelta = target.sizeDelta;
+                _anchorMin = target.anchorMin;
+                _anchorMax = target.anchorMax;
+                _pivot = target.pivot;
+                _anchoredPosition = target.anchoredPosition3D;
+            }
+
+            public override void Restore()
+            {
+                if (_target == null) return;
+                _transform.Restore();
+                _target.anchorMin = _anchorMin;
+                _target.anchorMax = _anchorMax;
+                _target.pivot = _pivot;
+                _target.sizeDelta = _sizeDelta;
+                _target.anchoredPosition3D = _anchoredPosition;
+            }
         }
 
         private sealed class TransformEntry : Entry

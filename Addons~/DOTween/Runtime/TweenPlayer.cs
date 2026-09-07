@@ -99,6 +99,25 @@ namespace Valkyrie.DOTween
             get { return _sourceMode == TweenPlayerSourceMode.Asset && _asset != null ? _asset.Timeline : Timeline; }
         }
 
+        /// <summary>The steps used by playback, validation and snapshots for the current source mode.</summary>
+        public IList<TweenStepDefinition> EffectiveSteps => SelectSteps(EffectiveTimeline);
+
+        private IList<TweenStepDefinition> SelectSteps(TweenTimeline timeline)
+        {
+            IList<TweenStepDefinition> steps = timeline.Steps;
+            return _sourceMode == TweenPlayerSourceMode.Single && steps.Count > 1
+                ? new[] { steps[0] } : steps;
+        }
+
+        public bool ValidateConfiguration(TweenBuildContext context)
+        {
+            TweenTimeline timeline = ResolveTimeline(context);
+            if (timeline == null) return false;
+            IList<TweenStepDefinition> steps = SelectSteps(timeline);
+            bool valid = TweenSequenceDefinitionBuilder.ValidateDefinitions(steps, timeline.CreateSettings(), context);
+            return TweenSequenceDefinitionBuilder.ValidateTargets(steps, context) && valid;
+        }
+
         public Transform TargetRoot
         {
             get { return _targetRoot != null ? _targetRoot : transform; }
@@ -310,22 +329,7 @@ namespace Valkyrie.DOTween
         public void CaptureSpawnPoint()
         {
             TweenBuildContext context = CreateBuildContext();
-            IList<TweenStepDefinition> steps = EffectiveTimeline != null ? EffectiveTimeline.Steps : null;
-            List<UnityEngine.Object> targets = new List<UnityEngine.Object>();
-
-            if (steps != null)
-            {
-                for (int index = 0; index < steps.Count; index++)
-                {
-                    TweenStepDefinition step = steps[index];
-                    if (step == null) continue;
-                    context.SetCurrentStep(index, step);
-                    step.CollectSnapshotTargets(context, targets);
-                }
-            }
-
-            context.SetCurrentStep(-1, null);
-            _spawnPoint.Capture(targets);
+            _spawnPoint.CaptureSteps(context, EffectiveSteps);
             CopyAndPublishDiagnostics(context.Diagnostics);
         }
 
@@ -333,14 +337,14 @@ namespace Valkyrie.DOTween
         public bool CaptureCurrentValues()
         {
             TweenBuildContext context = CreateBuildContext();
-            IList<TweenStepDefinition> steps = EffectiveTimeline != null ? EffectiveTimeline.Steps : null;
+            IList<TweenStepDefinition> steps = EffectiveSteps;
             bool captured = false;
             if (steps != null)
             {
                 for (int index = 0; index < steps.Count; index++)
                 {
                     ITweenCapturableStep capturableStep = steps[index] as ITweenCapturableStep;
-                    if (capturableStep == null) continue;
+                    if (capturableStep == null || !steps[index].Enabled) continue;
 
                     context.SetCurrentStep(index, steps[index]);
                     captured |= capturableStep.CaptureCurrentValue(context);
@@ -366,7 +370,7 @@ namespace Valkyrie.DOTween
                 return false;
             }
 
-            bool built = timeline.TryBuildSequence(context, out sequence);
+            bool built = TweenSequenceDefinitionBuilder.TryBuildSequence(SelectSteps(timeline), timeline.CreateSettings(), context, out sequence);
             if (!built || sequence == null || context.HasErrors)
             {
                 if (sequence != null)
@@ -389,12 +393,15 @@ namespace Valkyrie.DOTween
                 sequence.OnPlay(InvokeOnPlay);
                 sequence.OnUpdate(InvokeOnUpdate);
                 sequence.OnComplete(InvokeOnComplete);
+                sequence.OnStepComplete(() => Events.OnStep.Invoke());
                 sequence.OnRewind(InvokeOnRewind);
                 Sequence ownedSequence = sequence;
                 sequence.OnKill(() => ReleaseSequence(ownedSequence));
                 _currentSequence = sequence;
+                ConfigureStepEvents(context);
                 Events.OnCreated.Invoke();
-                InvokeAllStepEvents(events => events.OnCreated.Invoke());
+                foreach (var builtTween in context.BuiltTweens)
+                    InvokeStepCreated(builtTween.Step);
             }
             catch (Exception exception)
             {
@@ -419,7 +426,7 @@ namespace Valkyrie.DOTween
                 return false;
             }
 
-            return timeline.TryBuildSequence(context, out sequence);
+            return TweenSequenceDefinitionBuilder.TryBuildSequence(SelectSteps(timeline), timeline.CreateSettings(), context, out sequence);
         }
 
         public void Pause()
@@ -437,7 +444,6 @@ namespace Valkyrie.DOTween
             if (_currentSequence != null && _currentSequence.IsActive())
             {
                 _currentSequence.Rewind(includeDelay);
-                InvokeOnRewind();
             }
         }
 
@@ -509,13 +515,11 @@ namespace Valkyrie.DOTween
         private void InvokeOnStart()
         {
             Events.OnStart.Invoke();
-            InvokeAllStepEvents(events => events.OnStart.Invoke());
         }
 
         private void InvokeOnPlay()
         {
             Events.OnPlay.Invoke();
-            InvokeAllStepEvents(events => events.OnPlay.Invoke());
         }
 
         private void InvokeOnUpdate()
@@ -526,35 +530,45 @@ namespace Valkyrie.DOTween
         private void InvokeOnComplete()
         {
             Events.OnComplete.Invoke();
-            Events.OnStep.Invoke();
-            InvokeAllStepEvents(events =>
-            {
-                events.OnStep.Invoke();
-                events.OnComplete.Invoke();
-            });
         }
 
         private void InvokeOnRewind()
         {
             Events.OnRewind.Invoke();
-            InvokeAllStepEvents(events => events.OnRewind.Invoke());
         }
 
-        private void InvokeAllStepEvents(Action<TweenPlayerEvents> invoker)
+        private void ConfigureStepEvents(TweenBuildContext context)
         {
-            if (invoker == null || _stepEvents == null)
+            foreach (var built in context.BuiltTweens)
             {
-                return;
-            }
-
-            for (int index = 0; index < _stepEvents.Count; index++)
-            {
-                TweenStepEventBinding binding = _stepEvents[index];
-                if (binding != null)
+                foreach (TweenStepEventBinding binding in StepEvents)
                 {
-                    invoker(binding.Events);
+                    if (binding == null || binding.StepId != built.Step.Id) continue;
+                    TweenPlayerEvents events = binding.Events;
+                    // Preserve callbacks registered by custom steps.
+                    bool started = false;
+                    built.Tween.onPlay += () =>
+                    {
+                        if (!started)
+                        {
+                            started = true;
+                            events.OnStart.Invoke();
+                        }
+                        events.OnPlay.Invoke();
+                    };
+                    built.Tween.onUpdate += () => events.OnUpdate.Invoke();
+                    built.Tween.onStepComplete += () => events.OnStep.Invoke();
+                    built.Tween.onComplete += () => events.OnComplete.Invoke();
+                    built.Tween.onRewind += () => events.OnRewind.Invoke();
                 }
             }
+        }
+
+        private void InvokeStepCreated(TweenStepDefinition step)
+        {
+            foreach (TweenStepEventBinding binding in StepEvents)
+                if (binding != null && binding.StepId == step.Id)
+                    binding.Events.OnCreated.Invoke();
         }
 
         private void ReleaseSequence(Sequence sequence)
