@@ -402,6 +402,7 @@ namespace Astra.Valkyrie.Integrations.DOTween
                 Sequence ownedSequence = sequence;
                 sequence.OnKill(() => ReleaseSequence(ownedSequence));
                 _currentSequence = sequence;
+                TweenSequenceRuntimeRegistry.Register(_runtimeIdentity, sequence, context.BuiltTweens, SelectSteps(timeline));
                 ConfigureStepEvents(context);
                 Events.OnCreated.Invoke();
                 foreach (var builtTween in context.BuiltTweens)
@@ -410,6 +411,7 @@ namespace Astra.Valkyrie.Integrations.DOTween
             catch (Exception exception)
             {
                 context.ReportError(TweenDiagnosticCode.BuildFailure, "DOTween identity could not be configured: " + exception.Message);
+                TweenSequenceRuntimeRegistry.Unregister(sequence);
                 sequence.Kill();
                 sequence = null;
                 _runtimeIdentity = null;
@@ -466,6 +468,7 @@ namespace Astra.Valkyrie.Integrations.DOTween
                 _currentSequence.Kill(complete);
             }
 
+            TweenSequenceRuntimeRegistry.Unregister(_currentSequence);
             _currentSequence = null;
             _runtimeIdentity = null;
         }
@@ -577,6 +580,7 @@ namespace Astra.Valkyrie.Integrations.DOTween
 
         private void ReleaseSequence(Sequence sequence)
         {
+            TweenSequenceRuntimeRegistry.Unregister(sequence);
             if (_currentSequence == sequence)
             {
                 _currentSequence = null;

@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Add `TweenSequenceRuntimeRegistry`: live sequence and step tweens resolve back to their
+  `TweenPlayer`, asset, step and diagnostics; entries are released with the sequence.
+- Add the optional `Astra.Valkyrie.Integrations.DOTween.Helios.Runtime` assembly with
+  `ValkyrieTweenSourceProvider` for the Helios Tweens tab, compiled only when the Helios DOTween
+  integration 2.x is present.
+
 ## 3.0.0 — Astra migration candidate (unreleased)
 
 - Migrate namespaces and assemblies to Astra, preserving script and assembly GUIDs.

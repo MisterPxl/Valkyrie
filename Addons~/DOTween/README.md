@@ -109,6 +109,20 @@ Resolve the target, capture its original values and register a null-safe restora
 callback through `snapshot.AddRestoreAction`. This is used by both Edit Mode preview
 and `CaptureSpawnPoint`. The uGUI steps provide examples while keeping uGUI optional.
 
+## Helios Tweens tab
+
+`TweenSequenceRuntimeRegistry` maps every live sequence and step tween built by a
+`TweenPlayer` back to its `TweenSequenceRuntimeIdentity`, step and index; entries are
+removed when the sequence is killed or released. When the Helios DOTween integration
+(`com.misterpxl.helios-debugger.dotween` 2.x) is also installed, the optional assembly
+`Astra.Valkyrie.Integrations.DOTween.Helios.Runtime` registers `ValkyrieTweenSourceProvider`
+so the Helios `Tweens` tab shows, for each observed sequence, the owning player and readable id,
+the sequence asset (or inline sequence), its step count and the player's diagnostic count, and
+lets you search by them. DOTween lists only top-level tweens, so nested step tweens are not
+separate rows; any tool holding a step tween reference can still resolve its step through the
+registry or the provider. `ValkyrieTweenSourceProvider.Unregister()` detaches it. Neither base
+package depends on the other; without Helios the registry is still available to your tools.
+
 ## Tests
 
 The integration ships EditMode and PlayMode tests guarded by `UNITY_INCLUDE_TESTS`.

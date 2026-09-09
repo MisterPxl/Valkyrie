@@ -1,0 +1,35 @@
+{
+  "name": "Astra.Valkyrie.Integrations.DOTween.Helios.Runtime",
+  "rootNamespace": "Astra.Valkyrie.Integrations.DOTween.Helios",
+  "references": [
+    "Astra.Valkyrie.Integrations.DOTween.Runtime",
+    "Astra.Helios.Integrations.DOTween.Runtime"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "DOTween.dll"
+  ],
+  "autoReferenced": true,
+  "defineConstraints": [
+    "ASTRA_VALKYRIE_V2",
+    "VALKYRIE_DOTWEEN_HELIOS",
+    "DOTWEEN",
+    "!HELIOS_DEBUGGER_DISABLE"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.misterpxl.valkyrie",
+      "expression": "[2.0.0,3.0.0)",
+      "define": "ASTRA_VALKYRIE_V2"
+    },
+    {
+      "name": "com.misterpxl.helios-debugger.dotween",
+      "expression": "[2.0.0,3.0.0)",
+      "define": "VALKYRIE_DOTWEEN_HELIOS"
+    }
+  ],
+  "noEngineReferences": false
+}

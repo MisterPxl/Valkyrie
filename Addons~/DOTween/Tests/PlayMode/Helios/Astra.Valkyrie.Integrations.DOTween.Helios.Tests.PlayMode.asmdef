@@ -1,0 +1,39 @@
+{
+  "name": "Astra.Valkyrie.Integrations.DOTween.Helios.Tests.PlayMode",
+  "rootNamespace": "Astra.Valkyrie.Integrations.DOTween.Helios.Tests",
+  "references": [
+    "UnityEngine.TestRunner",
+    "Astra.Valkyrie.Integrations.DOTween.Runtime",
+    "Astra.Valkyrie.Integrations.DOTween.Helios.Runtime",
+    "Astra.Helios.Integrations.DOTween.Runtime"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "nunit.framework.dll",
+    "DOTween.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS",
+    "ASTRA_VALKYRIE_V2",
+    "VALKYRIE_DOTWEEN_HELIOS",
+    "DOTWEEN",
+    "!HELIOS_DEBUGGER_DISABLE"
+  ],
+  "versionDefines": [
+    {
+      "name": "com.misterpxl.valkyrie",
+      "expression": "[2.0.0,3.0.0)",
+      "define": "ASTRA_VALKYRIE_V2"
+    },
+    {
+      "name": "com.misterpxl.helios-debugger.dotween",
+      "expression": "[2.0.0,3.0.0)",
+      "define": "VALKYRIE_DOTWEEN_HELIOS"
+    }
+  ],
+  "noEngineReferences": false
+}
