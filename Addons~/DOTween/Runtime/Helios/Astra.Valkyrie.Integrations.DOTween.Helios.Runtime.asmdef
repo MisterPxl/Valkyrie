@@ -27,7 +27,7 @@
     },
     {
       "name": "com.misterpxl.helios-debugger.dotween",
-      "expression": "[2.0.0,3.0.0)",
+      "expression": "[2.1.0,3.0.0)",
       "define": "VALKYRIE_DOTWEEN_HELIOS"
     }
   ],

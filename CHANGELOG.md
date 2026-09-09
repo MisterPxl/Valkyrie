@@ -1,19 +1,16 @@
 # Changelog
 
-## Unreleased
+## 2.1.0 - 2026-09-09
 
 - Add the inspector composition point `IValkyrieInspectorExtension` /
   `ValkyrieInspectorExtensions` (begin, after each top-level field, end), called by the
   Valkyrie renderers; failing extensions are isolated.
 
-## 2.0.0 — Astra migration candidate (unreleased)
+## 2.0.0 - 2026-09-09
 
 - Migrate namespaces and assemblies to Astra, preserving script and assembly GUIDs.
 - Map serialized type history with `MovedFrom`; retain fields, tween IDs, bindings and preferences.
 - Update samples and consumer contracts; provide legacy fixtures and an upgrade/rollback guide.
-
-
-## Unreleased
 
 ### Changed
 
