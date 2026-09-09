@@ -18,7 +18,10 @@ namespace Astra.Valkyrie.Editor
         }
 
         public static void DrawField(SerializedProperty property, Object[] targets, InspectedField field)
-            => DrawGUILayout(property);
+        {
+            DrawGUILayout(property);
+            ValkyrieInspectorExtensions.NotifyAfterField(new ValkyrieInspectorContext(property.serializedObject, targets), property, field);
+        }
 
         public static void DrawGUILayout(SerializedProperty property)
         {

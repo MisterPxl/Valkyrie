@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Add the inspector composition point `IValkyrieInspectorExtension` /
+  `ValkyrieInspectorExtensions` (begin, after each top-level field, end), called by the
+  Valkyrie renderers; failing extensions are isolated.
+
 ## 2.0.0 — Astra migration candidate (unreleased)
 
 - Migrate namespaces and assemblies to Astra, preserving script and assembly GUIDs.

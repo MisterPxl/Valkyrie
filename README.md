@@ -134,6 +134,17 @@ public override void OnInspectorGUI()
 
 The `Usage Examples` sample includes a complete custom-editor integration.
 
+## Inspector extensions
+
+Other packages can add content to the Valkyrie inspector without replacing it or
+registering a second global editor. Implement `IValkyrieInspectorExtension` (`Order`,
+`OnBeginInspector`, `OnAfterField`, `OnEndInspector`) and register it with
+`ValkyrieInspectorExtensions.Register`; the returned handle unregisters. Extensions run
+at the top of every Valkyrie inspector, after each top-level field (including grouped
+fields) and after the buttons. An extension that throws is logged once and skipped until
+it is registered again. The Aegis–Valkyrie integration uses this to show Aegis findings
+next to the fields they concern.
+
 ## Opt out
 
 Valkyrie installs global editors for `MonoBehaviour` and `ScriptableObject`.

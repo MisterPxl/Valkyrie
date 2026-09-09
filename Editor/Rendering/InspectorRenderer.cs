@@ -10,9 +10,12 @@ namespace Astra.Valkyrie.Editor
         {
             serializedObject.Update();
 
+            var context = new ValkyrieInspectorContext(serializedObject, targets);
             DrawScriptField(serializedObject);
+            ValkyrieInspectorExtensions.NotifyBegin(context);
             DrawLayout(serializedObject, targets, typeData);
             ButtonRenderer.DrawButtons(targets, typeData);
+            ValkyrieInspectorExtensions.NotifyEnd(context);
 
             serializedObject.ApplyModifiedProperties();
         }
